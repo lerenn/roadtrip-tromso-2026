@@ -1,5 +1,0 @@
-matplotlib>=3.8
-requests>=2.31
-contextily>=1.6
-pyproj>=3.6
-rasterio>=1.3

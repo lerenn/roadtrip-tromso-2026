@@ -25,22 +25,61 @@
         "name": "Near Brensholmen ferry quay",
         "type": "scenic",
         "lat": 69.6225,
-        "lon": 18.0900,
+        "lon": 18.09,
         "alt_campsite": "Brensholmen / Kvaløya roadside pull-offs; confirm allemannsretten rules"
       },
       "waypoints": [
-        {"name": "Indie Campers Tromsø", "lat": 69.6730, "lon": 18.9865, "kind": "depot"},
-        {"name": "Grocery stop (City Nord / Coop)", "lat": 69.6680, "lon": 18.9650, "kind": "shop"},
-        {"name": "Ersfjordbotn", "lat": 69.7005, "lon": 18.6150, "kind": "viewpoint"},
-        {"name": "Grøtfjord beach", "lat": 69.7750, "lon": 18.4950, "kind": "viewpoint"},
-        {"name": "Brensholmen ferry", "lat": 69.6220, "lon": 18.0880, "kind": "ferry"},
-        {"name": "Overnight near Brensholmen", "lat": 69.6225, "lon": 18.0900, "kind": "sleep"}
+        {
+          "name": "Indie Campers Tromsø",
+          "lat": 69.673,
+          "lon": 18.9865,
+          "kind": "depot"
+        },
+        {
+          "name": "Grocery stop (City Nord / Coop)",
+          "lat": 69.668,
+          "lon": 18.965,
+          "kind": "shop"
+        },
+        {
+          "name": "Ersfjordbotn",
+          "lat": 69.7005,
+          "lon": 18.615,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Grøtfjord beach",
+          "lat": 69.775,
+          "lon": 18.495,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Brensholmen ferry",
+          "lat": 69.622,
+          "lon": 18.088,
+          "kind": "ferry"
+        },
+        {
+          "name": "Overnight near Brensholmen",
+          "lat": 69.6225,
+          "lon": 18.09,
+          "kind": "sleep"
+        }
       ],
       "ferry": null,
       "notes": [
         "Late pickup — keep the day short.",
         "Stock groceries + water before leaving Tromsø.",
         "Sleep close to the quay so Sunday morning ferry is relaxed."
+      ],
+      "optional": [
+        {
+          "activity": "Short beach walk / photos",
+          "place": "Grøtfjord",
+          "duration_h": 0.5,
+          "notes": "Extends the Grøtfjord stop — white sand + turquoise water; good drone light if calm",
+          "during": "Grøtfjord"
+        }
       ]
     },
     {
@@ -53,30 +92,86 @@
       "overnight": {
         "name": "Senja Fjordcamp / Mefjordvær area",
         "type": "campsite",
-        "lat": 69.5200,
-        "lon": 17.5800,
+        "lat": 69.52,
+        "lon": 17.58,
         "alt_scenic": "Pull-off above Mefjordvær if campsite full"
       },
       "waypoints": [
-        {"name": "Brensholmen ferry", "lat": 69.6220, "lon": 18.0880, "kind": "ferry"},
-        {"name": "Botnhamn", "lat": 69.5055, "lon": 17.8850, "kind": "ferry"},
-        {"name": "Husøy", "lat": 69.5420, "lon": 17.6650, "kind": "viewpoint"},
-        {"name": "Mefjordvær", "lat": 69.5150, "lon": 17.5850, "kind": "viewpoint"},
-        {"name": "Tungeneset", "lat": 69.4780, "lon": 17.4480, "kind": "viewpoint"},
-        {"name": "Overnight Mefjordvær area", "lat": 69.5200, "lon": 17.5800, "kind": "sleep"}
+        {
+          "name": "Brensholmen ferry",
+          "lat": 69.622,
+          "lon": 18.088,
+          "kind": "ferry"
+        },
+        {
+          "name": "Botnhamn",
+          "lat": 69.5055,
+          "lon": 17.885,
+          "kind": "ferry"
+        },
+        {
+          "name": "Husøy",
+          "lat": 69.542,
+          "lon": 17.665,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Mefjordvær",
+          "lat": 69.515,
+          "lon": 17.585,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Tungeneset",
+          "lat": 69.478,
+          "lon": 17.448,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Overnight Mefjordvær area",
+          "lat": 69.52,
+          "lon": 17.58,
+          "kind": "sleep"
+        }
       ],
       "ferry": {
         "route": "181 Brensholmen → Botnhamn",
         "duration_min": 35,
         "target_departure": "10:15",
-        "backup": ["12:15", "17:00"],
-        "sunday_from_brensholmen": ["10:15", "12:15", "17:00", "19:00", "20:45", "22:15"],
+        "backup": [
+          "12:15",
+          "17:00"
+        ],
+        "sunday_from_brensholmen": [
+          "10:15",
+          "12:15",
+          "17:00",
+          "19:00",
+          "20:45",
+          "22:15"
+        ],
         "source": "https://havspor.no/rute/botnhamn-brensholmen"
       },
       "notes": [
         "Sunday timetable — first useful sailing 10:15.",
         "National Scenic Route Senja starts here — stop often.",
         "Short walks only: Tungeneset boardwalk / viewpoints."
+      ],
+      "optional": [
+        {
+          "activity": "Tungeneset boardwalk loop",
+          "place": "Tungeneset",
+          "duration_h": 0.75,
+          "notes": "Short coastal walk — pick this OR kayak, not both; skip if rain/wind is nasty",
+          "after": "Tungeneset"
+        },
+        {
+          "activity": "Sea kayak (guided)",
+          "place": "Mefjordvær / northern Senja",
+          "duration_h": 2.0,
+          "notes": "Calm sea only; book same day — pick kayak OR Tungeneset boardwalk, not both",
+          "after": "Mefjordvær"
+        }
       ]
     },
     {
@@ -89,22 +184,56 @@
       "overnight": {
         "name": "Gryllefjord ferry queue / harbour",
         "type": "scenic",
-        "lat": 69.3620,
-        "lon": 17.0530,
+        "lat": 69.362,
+        "lon": 17.053,
         "alt_campsite": "Hamn i Senja or Gryllefjord camping if available"
       },
       "waypoints": [
-        {"name": "Mefjordvær", "lat": 69.5150, "lon": 17.5850, "kind": "start"},
-        {"name": "Bergsbotn viewpoint", "lat": 69.4550, "lon": 17.3850, "kind": "viewpoint"},
-        {"name": "Hamn i Senja", "lat": 69.4100, "lon": 17.1700, "kind": "viewpoint"},
-        {"name": "Gryllefjord ferry", "lat": 69.3615, "lon": 17.0520, "kind": "ferry"},
-        {"name": "Overnight Gryllefjord", "lat": 69.3620, "lon": 17.0530, "kind": "sleep"}
+        {
+          "name": "Mefjordvær",
+          "lat": 69.515,
+          "lon": 17.585,
+          "kind": "start"
+        },
+        {
+          "name": "Bergsbotn viewpoint",
+          "lat": 69.455,
+          "lon": 17.385,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Hamn i Senja",
+          "lat": 69.41,
+          "lon": 17.17,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Gryllefjord ferry",
+          "lat": 69.3615,
+          "lon": 17.052,
+          "kind": "ferry"
+        },
+        {
+          "name": "Overnight Gryllefjord",
+          "lat": 69.362,
+          "lon": 17.053,
+          "kind": "sleep"
+        }
       ],
       "ferry": null,
       "notes": [
         "Aim to arrive Gryllefjord late afternoon and join the queue for tomorrow's 11:00 ferry.",
         "Campervans often sleep in/near the ferry queue — arrive early evening.",
         "Skip Segla hike (steep); Bergsbotn viewpoint is enough."
+      ],
+      "optional": [
+        {
+          "activity": "Sauna / fjord dip",
+          "place": "Hamn i Senja",
+          "duration_h": 1.5,
+          "notes": "Paid experience — still leaves time for Gryllefjord queue by evening if you skip later photo stops",
+          "after": "Hamn i Senja"
+        }
       ]
     },
     {
@@ -117,27 +246,67 @@
       "overnight": {
         "name": "Andenes / Bleik campsite",
         "type": "campsite",
-        "lat": 69.3140,
-        "lon": 16.1200,
+        "lat": 69.314,
+        "lon": 16.12,
         "alt_scenic": "Bleik beach parking overnight if legal/quiet"
       },
       "waypoints": [
-        {"name": "Gryllefjord ferry", "lat": 69.3615, "lon": 17.0520, "kind": "ferry"},
-        {"name": "Andenes ferry", "lat": 69.3240, "lon": 16.1350, "kind": "ferry"},
-        {"name": "Andenes lighthouse", "lat": 69.3275, "lon": 16.1150, "kind": "viewpoint"},
-        {"name": "Bleik beach", "lat": 69.2730, "lon": 15.9550, "kind": "viewpoint"},
-        {"name": "Overnight Andenes/Bleik", "lat": 69.3140, "lon": 16.1200, "kind": "sleep"}
+        {
+          "name": "Gryllefjord ferry",
+          "lat": 69.3615,
+          "lon": 17.052,
+          "kind": "ferry"
+        },
+        {
+          "name": "Andenes ferry",
+          "lat": 69.324,
+          "lon": 16.135,
+          "kind": "ferry"
+        },
+        {
+          "name": "Andenes lighthouse",
+          "lat": 69.3275,
+          "lon": 16.115,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Bleik beach",
+          "lat": 69.273,
+          "lon": 15.955,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Overnight Andenes/Bleik",
+          "lat": 69.314,
+          "lon": 16.12,
+          "kind": "sleep"
+        }
       ],
       "ferry": {
         "route": "180 Gryllefjord → Andenes",
         "duration_min": 100,
         "target_departure": "11:00",
-        "backup": ["19:00"],
+        "backup": [
+          "19:00"
+        ],
         "season_note": "From 24 Aug–27 Sep 2026: only 11:00 and 19:00 from Gryllefjord. No vehicle booking — first come, first served. Arrive 2–3h early with a camper.",
         "source": "https://svipper.no/_f/p1/ib5455b64-e81b-4f9e-a9bf-20150e215f93/180-gryllefjord-andenes_rutetabell.pdf"
       },
       "optional": [
-        "Whale safari from Andenes — book same-day/morning if weather & seats look good."
+        {
+          "activity": "Whale safari",
+          "place": "Andenes harbour",
+          "duration_h": 3.0,
+          "notes": "Book same-day/morning if weather & seats look good — skip Bleik stops if you do this (still fine for campsite night)",
+          "after": "Andenes ferry"
+        },
+        {
+          "activity": "Whales Centre / museum",
+          "place": "Andenes",
+          "duration_h": 1.0,
+          "notes": "Rainy-day / no-safari alternative — pick this OR the whale safari, not both",
+          "after": "Andenes lighthouse"
+        }
       ],
       "notes": [
         "If you miss 11:00, use Day 6 flexibility and take 19:00.",
@@ -155,21 +324,62 @@
         "name": "Nyksund harbour / village edge",
         "type": "scenic",
         "lat": 68.9955,
-        "lon": 15.1850,
+        "lon": 15.185,
         "alt_campsite": "Stø or Myre camping"
       },
       "waypoints": [
-        {"name": "Bleik", "lat": 69.2730, "lon": 15.9550, "kind": "start"},
-        {"name": "Bukkekjerka", "lat": 69.1850, "lon": 15.9250, "kind": "viewpoint"},
-        {"name": "Andøya scenic coast", "lat": 69.1200, "lon": 15.8800, "kind": "viewpoint"},
-        {"name": "Risøyhamn", "lat": 68.9700, "lon": 15.6400, "kind": "via"},
-        {"name": "Nyksund", "lat": 68.9955, "lon": 15.1850, "kind": "sleep"}
+        {
+          "name": "Bleik",
+          "lat": 69.273,
+          "lon": 15.955,
+          "kind": "start"
+        },
+        {
+          "name": "Bukkekjerka",
+          "lat": 69.185,
+          "lon": 15.925,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Andøya scenic coast",
+          "lat": 69.12,
+          "lon": 15.88,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Risøyhamn",
+          "lat": 68.97,
+          "lon": 15.64,
+          "kind": "via"
+        },
+        {
+          "name": "Nyksund",
+          "lat": 68.9955,
+          "lon": 15.185,
+          "kind": "sleep"
+        }
       ],
       "ferry": null,
       "notes": [
         "Slow day — beaches, rest areas, fishing villages.",
         "Spend real time in Nyksund (not a 20-minute stop).",
         "Cook dinner with a harbour view."
+      ],
+      "optional": [
+        {
+          "activity": "Detour to Stø harbour",
+          "place": "Stø",
+          "duration_h": 1.5,
+          "notes": "Sea-eagle coast / fishing village — skip if behind schedule for Nyksund",
+          "after": "Andøya scenic coast"
+        },
+        {
+          "activity": "Nyksund café / galleries",
+          "place": "Nyksund",
+          "duration_h": 1.0,
+          "notes": "Linger in the village — this is the highlight of the afternoon",
+          "after": "Nyksund"
+        }
       ]
     },
     {
@@ -182,22 +392,56 @@
       "overnight": {
         "name": "Finnsnes / Midt-Troms camping",
         "type": "campsite",
-        "lat": 69.2290,
-        "lon": 17.9810,
+        "lat": 69.229,
+        "lon": 17.981,
         "alt_scenic": "Quiet fjord pull-off south of Finnsnes if weather is perfect"
       },
       "waypoints": [
-        {"name": "Nyksund", "lat": 68.9955, "lon": 15.1850, "kind": "start"},
-        {"name": "Sortland", "lat": 68.6960, "lon": 15.4120, "kind": "shop"},
-        {"name": "Stokmarknes", "lat": 68.5680, "lon": 14.9100, "kind": "viewpoint"},
-        {"name": "Gullesfjordbotn (E10)", "lat": 68.5600, "lon": 15.7800, "kind": "via"},
-        {"name": "Finnsnes", "lat": 69.2290, "lon": 17.9810, "kind": "sleep"}
+        {
+          "name": "Nyksund",
+          "lat": 68.9955,
+          "lon": 15.185,
+          "kind": "start"
+        },
+        {
+          "name": "Sortland",
+          "lat": 68.696,
+          "lon": 15.412,
+          "kind": "shop"
+        },
+        {
+          "name": "Stokmarknes",
+          "lat": 68.568,
+          "lon": 14.91,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Gullesfjordbotn (E10)",
+          "lat": 68.56,
+          "lon": 15.78,
+          "kind": "via"
+        },
+        {
+          "name": "Finnsnes",
+          "lat": 69.229,
+          "lon": 17.981,
+          "kind": "sleep"
+        }
       ],
       "ferry": null,
       "notes": [
         "Explorer day — longest drive. Cut Stokmarknes if weather is poor.",
         "If Gryllefjord ferry slipped to Day 5 evening, compress this day and sleep farther north.",
         "Fuel + big grocery stop in Sortland."
+      ],
+      "optional": [
+        {
+          "activity": "Hurtigruten Museum",
+          "place": "Stokmarknes",
+          "duration_h": 1.0,
+          "notes": "Indoor option if weather is poor; cut it if you need driving buffer",
+          "after": "Stokmarknes"
+        }
       ]
     },
     {
@@ -210,21 +454,49 @@
       "overnight": {
         "name": "Tromsø area campsite (near depot)",
         "type": "campsite",
-        "lat": 69.6500,
-        "lon": 18.9550,
+        "lat": 69.65,
+        "lon": 18.955,
         "alt_scenic": "Only if showers already done — stay within ~30 min of depot"
       },
       "waypoints": [
-        {"name": "Finnsnes", "lat": 69.2290, "lon": 17.9810, "kind": "start"},
-        {"name": "Bardu / E6 corridor", "lat": 69.0500, "lon": 18.5200, "kind": "via"},
-        {"name": "Nordkjosbotn", "lat": 69.2170, "lon": 19.5580, "kind": "via"},
-        {"name": "Tromsø overnight near depot", "lat": 69.6500, "lon": 18.9550, "kind": "sleep"}
+        {
+          "name": "Finnsnes",
+          "lat": 69.229,
+          "lon": 17.981,
+          "kind": "start"
+        },
+        {
+          "name": "Bardu / E6 corridor",
+          "lat": 69.05,
+          "lon": 18.52,
+          "kind": "via"
+        },
+        {
+          "name": "Nordkjosbotn",
+          "lat": 69.217,
+          "lon": 19.558,
+          "kind": "via"
+        },
+        {
+          "name": "Tromsø overnight near depot",
+          "lat": 69.65,
+          "lon": 18.955,
+          "kind": "sleep"
+        }
       ],
       "ferry": null,
       "notes": [
         "Mandatory buffer night near Tromsø — no long drive on return morning.",
-        "Empty grey water / refill water / showers tonight.",
-        "Optional short stop: scenic fjord viewpoints only if ahead of schedule."
+        "Empty grey water / refill water / showers tonight."
+      ],
+      "optional": [
+        {
+          "activity": "Målselvfossen viewpoint",
+          "place": "Målselv",
+          "duration_h": 0.5,
+          "notes": "Short waterfall stop on the E6 corridor if ahead of schedule",
+          "after": "Bardu / E6 corridor"
+        }
       ]
     },
     {
@@ -236,8 +508,18 @@
       "drive_h_approx": 0.3,
       "overnight": null,
       "waypoints": [
-        {"name": "Tromsø overnight", "lat": 69.6500, "lon": 18.9550, "kind": "start"},
-        {"name": "Indie Campers Tromsø", "lat": 69.6730, "lon": 18.9865, "kind": "depot"}
+        {
+          "name": "Tromsø overnight",
+          "lat": 69.65,
+          "lon": 18.955,
+          "kind": "start"
+        },
+        {
+          "name": "Indie Campers Tromsø",
+          "lat": 69.673,
+          "lon": 18.9865,
+          "kind": "depot"
+        }
       ],
       "ferry": null,
       "notes": [

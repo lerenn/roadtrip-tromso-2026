@@ -1,50 +1,19 @@
-# Byte-compiled / cache
+# Vue app
+app/node_modules/
+app/dist/
+app/*.local
+
+# Python leftovers (if any)
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-
-# Virtual environments
 .venv/
 venv/
-ENV/
-env/
 
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-.eggs/
-*.egg
-
-# Test / coverage
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.nox/
-.mypy_cache/
-.ruff_cache/
-
-# Type checkers / linters
-.pytype/
-.pyre/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Environment / secrets
-.env
-.env.*
-!.env.example
-
-# IDE / OS
-.idea/
-.vscode/
-*.swp
+# OS / editor
 .DS_Store
+.idea/
+*.swp
 Thumbs.db
 
-# Local map tile / tool caches (if any)
+# Caches
 .cache/

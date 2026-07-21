@@ -12,12 +12,24 @@ Campervan roadbook for **Louis + girlfriend** — Indie Campers Active Pop Top.
 | Language | English |
 | After | Extra week in Tromsø (keep local day trips for then) |
 
-## Alternatives
+## Roadbook app (presentation)
 
-| Option | Theme | When to pick |
-| --- | --- | --- |
-| **[A — Senja + Vesterålen](option-a-senja-vesteralen/)** | Coastal loop + Gryllefjord→Andenes ferry | Default if the ferry queue works |
-| **[B — Senja + Lyngen](option-b-senja-lyngen/)** | Senja then alpine Lyngen | If ferry is full/cancelled, or you prefer peaks/glaciers |
+The trip lives in JSON. The Vue app only presents it (live chronology + MapLibre maps):
+
+```bash
+cd app && npm install && npm run dev
+```
+
+See [`app/README.md`](app/README.md).
+
+## Alternatives (data)
+
+| Option | Theme | Data | When to pick |
+| --- | --- | --- | --- |
+| **[A — Senja + Vesterålen](option-a-senja-vesteralen/)** | Coastal loop + Gryllefjord→Andenes ferry | [`itinerary.json`](option-a-senja-vesteralen/itinerary.json) | Default if the ferry queue works |
+| **[B — Senja + Lyngen](option-b-senja-lyngen/)** | Senja then alpine Lyngen | [`itinerary.json`](option-b-senja-lyngen/itinerary.json) | If ferry is full/cancelled, or you prefer peaks/glaciers |
+
+Shared depot: [`shared/depot.json`](shared/depot.json).
 
 Both options:
 
@@ -27,21 +39,6 @@ Both options:
 - Phone + drone (respect bird cliffs / no-fly zones)
 - Whale safari: **book if weather/spots look good** (Andenes — Option A)
 - Day 6 kept flexible for weather / ferry slip
-
-## Maps
-
-Each option has:
-
-- `maps/overview.png` + `maps/overview.gpx`
-- `maps/day-XX.png` + `maps/day-XX.gpx`
-- One markdown file per day under `days/`
-
-Routes are generated with the public **OSRM** driving API (real road network), not hand-drawn geography.
-
-```bash
-python3 scripts/generate_maps.py
-python3 scripts/generate_days.py
-```
 
 ## Quick ferry cheat-sheet (verify before travel)
 
