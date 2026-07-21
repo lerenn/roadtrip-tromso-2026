@@ -1,0 +1,251 @@
+{
+  "id": "B",
+  "title": "Senja + Lyngen",
+  "tagline": "Plan B / alpine alternative — no Gryllefjord ferry dependency. Fjords, peaks, glaciers.",
+  "nights_summary": {
+    "scenic": 3,
+    "campsite": 4,
+    "rule": "Last night near Tromsø"
+  },
+  "anchors": [
+    "Pickup Sat 29 Aug 15:30 Tromsø",
+    "Ferry Brensholmen → Botnhamn (Sun 30 Aug)",
+    "Leave Senja via Finnsnes (bridge) — no Andenes ferry",
+    "Ferries Breivikeidet↔Svensby and Lyngseidet↔Olderdalen (frequent)",
+    "Return Sat 5 Sep before 11:30 Tromsø"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-08-29",
+      "weekday": "Saturday",
+      "title": "Pickup → Kvaløya → Brensholmen",
+      "drive_km_approx": 85,
+      "drive_h_approx": 2.0,
+      "overnight": {
+        "name": "Near Brensholmen ferry quay",
+        "type": "scenic",
+        "lat": 69.6225,
+        "lon": 18.0900,
+        "alt_campsite": "Kvaløya pull-offs / small campsite if preferred"
+      },
+      "waypoints": [
+        {"name": "Indie Campers Tromsø", "lat": 69.6730, "lon": 18.9865, "kind": "depot"},
+        {"name": "Grocery stop", "lat": 69.6680, "lon": 18.9650, "kind": "shop"},
+        {"name": "Ersfjordbotn", "lat": 69.7005, "lon": 18.6150, "kind": "viewpoint"},
+        {"name": "Grøtfjord beach", "lat": 69.7750, "lon": 18.4950, "kind": "viewpoint"},
+        {"name": "Overnight Brensholmen", "lat": 69.6225, "lon": 18.0900, "kind": "sleep"}
+      ],
+      "ferry": null,
+      "notes": [
+        "Same soft start as Option A.",
+        "Stock up in Tromsø — Senja shops are fewer on Sunday."
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-08-30",
+      "weekday": "Sunday",
+      "title": "Ferry to Senja → northern coast",
+      "drive_km_approx": 95,
+      "drive_h_approx": 2.5,
+      "overnight": {
+        "name": "Senja Fjordcamp / Mefjordvær",
+        "type": "campsite",
+        "lat": 69.5200,
+        "lon": 17.5800,
+        "alt_scenic": "Viewpoint pull-off near Tungeneset"
+      },
+      "waypoints": [
+        {"name": "Brensholmen", "lat": 69.6220, "lon": 18.0880, "kind": "ferry"},
+        {"name": "Botnhamn", "lat": 69.5055, "lon": 17.8850, "kind": "ferry"},
+        {"name": "Husøy", "lat": 69.5420, "lon": 17.6650, "kind": "viewpoint"},
+        {"name": "Mefjordvær", "lat": 69.5150, "lon": 17.5850, "kind": "viewpoint"},
+        {"name": "Tungeneset", "lat": 69.4780, "lon": 17.4480, "kind": "viewpoint"},
+        {"name": "Overnight Mefjordvær", "lat": 69.5200, "lon": 17.5800, "kind": "sleep"}
+      ],
+      "ferry": {
+        "route": "181 Brensholmen → Botnhamn",
+        "duration_min": 35,
+        "target_departure": "10:15",
+        "backup": ["12:15", "17:00"],
+        "source": "https://havspor.no/rute/botnhamn-brensholmen"
+      },
+      "notes": [
+        "Target Sunday 10:15 sailing.",
+        "Same northern Senja highlights as Option A."
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-08-31",
+      "weekday": "Monday",
+      "title": "Scenic Route → south Senja → toward Finnsnes",
+      "drive_km_approx": 140,
+      "drive_h_approx": 3.5,
+      "overnight": {
+        "name": "Hamn / Gryllefjord scenic stop — or Finnsnes campsite",
+        "type": "scenic",
+        "lat": 69.4100,
+        "lon": 17.1700,
+        "alt_campsite": "Finnsnes camping if you want showers before Lyngen"
+      },
+      "waypoints": [
+        {"name": "Mefjordvær", "lat": 69.5150, "lon": 17.5850, "kind": "start"},
+        {"name": "Bergsbotn viewpoint", "lat": 69.4550, "lon": 17.3850, "kind": "viewpoint"},
+        {"name": "Hamn i Senja", "lat": 69.4100, "lon": 17.1700, "kind": "viewpoint"},
+        {"name": "Silsand / Finnsnes approach", "lat": 69.2400, "lon": 17.8700, "kind": "via"},
+        {"name": "Overnight Hamn area", "lat": 69.4100, "lon": 17.1700, "kind": "sleep"}
+      ],
+      "ferry": null,
+      "notes": [
+        "Do not queue for Andenes — you leave Senja east via Gisund Bridge tomorrow.",
+        "If tired of moving, overnight Finnsnes campsite instead (flip scenic→campsite)."
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-09-01",
+      "weekday": "Tuesday",
+      "title": "Senja → Breivikeidet ferry → Lyngen",
+      "drive_km_approx": 200,
+      "drive_h_approx": 4.0,
+      "overnight": {
+        "name": "Lyngseidet campsite / motorhome area",
+        "type": "campsite",
+        "lat": 69.5760,
+        "lon": 20.2180,
+        "alt_scenic": "Fjellveggen / fjord pull-offs west of Lyngseidet"
+      },
+      "waypoints": [
+        {"name": "Hamn / south Senja", "lat": 69.4100, "lon": 17.1700, "kind": "start"},
+        {"name": "Finnsnes", "lat": 69.2290, "lon": 17.9810, "kind": "shop"},
+        {"name": "Breivikeidet ferry", "lat": 69.6550, "lon": 19.7200, "kind": "ferry"},
+        {"name": "Svensby", "lat": 69.6650, "lon": 19.8250, "kind": "ferry"},
+        {"name": "Lyngseidet", "lat": 69.5760, "lon": 20.2180, "kind": "sleep"}
+      ],
+      "ferry": {
+        "route": "191 Breivikeidet → Svensby",
+        "duration_min": 20,
+        "note": "Frequent sailings (~hourly daytime). No booking needed for cars/campers usually.",
+        "source": "https://havspor.no/stopp/breivikeidet-ferjekai"
+      },
+      "notes": [
+        "Explorer-leaning day — leave early from Senja.",
+        "Western Lyngen alpine views start after Svensby."
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-09-02",
+      "weekday": "Wednesday",
+      "title": "Cross Lyngen → eastern side",
+      "drive_km_approx": 80,
+      "drive_h_approx": 2.0,
+      "overnight": {
+        "name": "Olderdalen / Kåfjord scenic overnight",
+        "type": "scenic",
+        "lat": 69.6040,
+        "lon": 20.5350,
+        "alt_campsite": "Olderdalen camping / motorhome area"
+      },
+      "waypoints": [
+        {"name": "Lyngseidet", "lat": 69.5760, "lon": 20.2180, "kind": "start"},
+        {"name": "Lyngseidet ferry", "lat": 69.5765, "lon": 20.2300, "kind": "ferry"},
+        {"name": "Olderdalen", "lat": 69.6040, "lon": 20.5350, "kind": "ferry"},
+        {"name": "Kåfjorddalen viewpoint", "lat": 69.5200, "lon": 20.5800, "kind": "viewpoint"},
+        {"name": "Nordmannvik coast", "lat": 69.7200, "lon": 20.4800, "kind": "viewpoint"},
+        {"name": "Overnight Olderdalen area", "lat": 69.6040, "lon": 20.5350, "kind": "sleep"}
+      ],
+      "ferry": {
+        "route": "190 Lyngseidet → Olderdalen",
+        "duration_min": 40,
+        "note": "Frequent daytime sailings. Short walks only — skip Blåisvatnet full hike.",
+        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen"
+      },
+      "notes": [
+        "Stay on the eastern Lyngen shore after the ferry — no need to circle back west today.",
+        "Alpine day — turquoise water + peaks from roadside viewpoints.",
+        "Optional: short glacier-view walk only if weather is clear."
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-09-03",
+      "weekday": "Thursday",
+      "title": "Flexible Lyngen day → Svensby",
+      "drive_km_approx": 100,
+      "drive_h_approx": 2.5,
+      "overnight": {
+        "name": "Svensby / Ullsfjord campsite area",
+        "type": "campsite",
+        "lat": 69.6650,
+        "lon": 19.8250,
+        "alt_scenic": "Ullsfjord pull-off if facilities not needed"
+      },
+      "waypoints": [
+        {"name": "Olderdalen", "lat": 69.6040, "lon": 20.5350, "kind": "start"},
+        {"name": "Olderdalen ferry", "lat": 69.6040, "lon": 20.5350, "kind": "ferry"},
+        {"name": "Lyngseidet", "lat": 69.5760, "lon": 20.2180, "kind": "ferry"},
+        {"name": "Western Lyngen viewpoints", "lat": 69.6200, "lon": 20.0500, "kind": "viewpoint"},
+        {"name": "Svensby overnight", "lat": 69.6650, "lon": 19.8250, "kind": "sleep"}
+      ],
+      "ferry": {
+        "route": "190 Olderdalen → Lyngseidet",
+        "duration_min": 40,
+        "note": "Joker day — linger for light/weather on either shore, then sleep near Svensby for an easy Friday ferry."
+      },
+      "notes": [
+        "Flexible day (same philosophy as Option A Day 6).",
+        "Good weather: drone + slow coastal photography on the west side after ferry.",
+        "Bad weather: café time in Lyngseidet, earlier campsite at Svensby."
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2026-09-04",
+      "weekday": "Friday",
+      "title": "Ferry to mainland → Tromsø buffer night",
+      "drive_km_approx": 80,
+      "drive_h_approx": 1.5,
+      "overnight": {
+        "name": "Tromsø area campsite (near depot)",
+        "type": "campsite",
+        "lat": 69.6500,
+        "lon": 18.9550,
+        "alt_scenic": "Only within ~30 min of depot after showers elsewhere"
+      },
+      "waypoints": [
+        {"name": "Svensby", "lat": 69.6650, "lon": 19.8250, "kind": "ferry"},
+        {"name": "Breivikeidet", "lat": 69.6550, "lon": 19.7200, "kind": "ferry"},
+        {"name": "Tromsø overnight near depot", "lat": 69.6500, "lon": 18.9550, "kind": "sleep"}
+      ],
+      "ferry": {
+        "route": "191 Svensby → Breivikeidet",
+        "duration_min": 20,
+        "note": "Easy morning crossing, then short drive to Tromsø."
+      },
+      "notes": [
+        "Short day by design — protect the return.",
+        "Service the van (water, waste, fuel) tonight."
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2026-09-05",
+      "weekday": "Saturday",
+      "title": "Return camper",
+      "drive_km_approx": 15,
+      "drive_h_approx": 0.3,
+      "overnight": null,
+      "waypoints": [
+        {"name": "Tromsø overnight", "lat": 69.6500, "lon": 18.9550, "kind": "start"},
+        {"name": "Indie Campers Tromsø", "lat": 69.6730, "lon": 18.9865, "kind": "depot"}
+      ],
+      "ferry": null,
+      "notes": [
+        "Return before 11:30."
+      ]
+    }
+  ]
+}
