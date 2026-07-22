@@ -28,7 +28,7 @@ npm run preview
 
 Production base path for GitHub Pages is set automatically in CI from `GITHUB_REPOSITORY` (→ `/roadtrip-tromso-2026/`). Local builds keep `/`. Override with `VITE_BASE` if needed.
 
-Deploy: push to `main` runs [`.github/workflows/pages.yml`](../.github/workflows/pages.yml). Site: https://lerenn.github.io/roadtrip-tromso-2026/
+Deploy: push to `main` runs [`.github/workflows/pages.yml`](../.github/workflows/pages.yml). Site: https://louisfradin.com/roadtrip-tromso-2026/
 
 ## Stack
 
