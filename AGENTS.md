@@ -4,7 +4,7 @@ This file is the **Cursor equivalent of `CLAUDE.md`**: persistent project instru
 
 ## Required skill
 
-Before editing itineraries, chronology, maps, scenarios, optionals, coordinates, or deploy/Pages config, read and follow:
+Before editing itineraries, chronology, maps, scenarios, optionals, place photos, coordinates, or deploy/Pages config, read and follow:
 
 1. **[`.cursor/skills/tromso-roadbook/SKILL.md`](.cursor/skills/tromso-roadbook/SKILL.md)** — architecture, constraints, maps, contingencies, deploy
 2. **[`.cursor/skills/tromso-roadbook/itinerary-schema.md`](.cursor/skills/tromso-roadbook/itinerary-schema.md)** — JSON field shapes

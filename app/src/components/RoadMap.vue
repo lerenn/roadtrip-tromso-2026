@@ -23,11 +23,41 @@ const KIND_COLOR = {
   shop: '#f39c12',
   start: '#34495e',
   via: '#7f8c8d',
+  optional: '#0e8a6c',
 }
 
 function markerColor(wp) {
+  if (wp.optional) return KIND_COLOR.optional
   if (wp.kind === 'sleep') return KIND_COLOR.sleep_scenic
   return KIND_COLOR[wp.kind] || '#34495e'
+}
+
+/** ~45 m display nudge so co-located quay pins keep distinct labels. */
+function fanOutCoLocated(waypoints) {
+  const groups = new Map()
+  ;(waypoints || []).forEach((w, i) => {
+    if (w.lat == null || w.lon == null) return
+    const key = `${Number(w.lat).toFixed(5)},${Number(w.lon).toFixed(5)}`
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key).push(i)
+  })
+
+  const out = (waypoints || []).map((w) => ({ ...w }))
+  for (const idxs of groups.values()) {
+    if (idxs.length < 2) continue
+    const latRad = ((out[idxs[0]].lat || 69) * Math.PI) / 180
+    const dLat = 45 / 111_320
+    const dLon = 45 / (111_320 * Math.max(0.2, Math.cos(latRad)))
+    idxs.forEach((i, n) => {
+      const angle = (2 * Math.PI * n) / idxs.length - Math.PI / 2
+      out[i] = {
+        ...out[i],
+        lat: out[i].lat + Math.sin(angle) * dLat,
+        lon: out[i].lon + Math.cos(angle) * dLon,
+      }
+    })
+  }
+  return out
 }
 
 function lineFeatureCollection(tracks) {
@@ -46,7 +76,7 @@ function lineFeatureCollection(tracks) {
 function pointFeatureCollection(waypoints) {
   return {
     type: 'FeatureCollection',
-    features: (waypoints || [])
+    features: fanOutCoLocated(waypoints)
       .filter((w) => w.lat != null && w.lon != null)
       .map((w) => ({
         type: 'Feature',

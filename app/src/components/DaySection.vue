@@ -1,13 +1,15 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
 import RoadMap from './RoadMap.vue'
+import ExtLink from './ExtLink.vue'
+import StepCard from './StepCard.vue'
 import {
   applyOptionalSelection,
   buildDaySteps,
   defaultOptionalSelection,
-  fmtDuration,
   insertMealInterlines,
   insertSunInterlines,
+  routingWaypoints,
 } from '../lib/chronology'
 import {
   ferryScenariosForDay,
@@ -73,8 +75,8 @@ const displayDriveH = computed(
 const displayOvernight = computed(
   () => activeDay.value?.overnight || props.day.overnight,
 )
-const displayWaypoints = computed(
-  () => activeDay.value?.waypoints || props.day.waypoints || [],
+const routeWaypoints = computed(() =>
+  routingWaypoints(activeDay.value || props.day.rawDay, selectedOpts.value),
 )
 
 function syncDefaultSelection() {
@@ -118,7 +120,7 @@ const visibleSteps = computed(() => {
   return steps
 })
 
-const mapWaypoints = computed(() => waypointsForMap(displayWaypoints.value))
+const mapWaypoints = computed(() => waypointsForMap(routeWaypoints.value))
 
 function isScenarioSelected(id) {
   return props.selectedScenarios?.has?.(id) || false
@@ -136,7 +138,7 @@ async function loadRoutes() {
   error.value = ''
   try {
     const { driveTracks: d, ferryTracks: f } = await buildDayRoutes(
-      displayWaypoints.value,
+      routeWaypoints.value,
     )
     driveTracks.value = d
     ferryTracks.value = f
@@ -152,7 +154,7 @@ function downloadGpx() {
     `Day ${props.day.number} — ${displayTitle.value}`,
     driveTracks.value,
     ferryTracks.value,
-    displayWaypoints.value,
+    routeWaypoints.value,
   )
   downloadText(`day-${String(props.day.number).padStart(2, '0')}.gpx`, gpx)
 }
@@ -162,7 +164,7 @@ watch(
   () => [
     props.day.number,
     displayTitle.value,
-    JSON.stringify(displayWaypoints.value),
+    JSON.stringify(routeWaypoints.value),
   ],
   loadRoutes,
 )
@@ -193,16 +195,16 @@ watch(
           class="pill"
           :class="displayOvernight.type"
         >
-          {{ displayOvernight.type }} · {{ displayOvernight.name }}
+          {{ displayOvernight.type }} ·
+          <ExtLink
+            :href="displayOvernight.url"
+            :label="displayOvernight.name"
+          />
         </span>
       </div>
 
       <div v-if="scenarioChoices.length" class="scenario-picker">
         <h4 class="scenario-picker__title">What if…</h4>
-        <p class="scenario-picker__hint">
-          Tick a contingency to swap this day’s roadbook (and linked later days).
-          Several can be on at once.
-        </p>
         <ul class="scenario-picker__list">
           <li
             v-for="choice in scenarioChoices"
@@ -247,13 +249,6 @@ watch(
           </li>
         </ul>
       </div>
-
-      <p class="day-hint">
-        Tick optional / protected blocks to include them in the clock —
-        later starts shift and show
-        <span class="shift-mark" aria-hidden="true">*</span>
-        (hover for which activities piled on).
-      </p>
     </header>
 
     <div class="map-block">
@@ -277,154 +272,16 @@ watch(
       </div>
     </div>
 
-    <div class="table-wrap">
-      <table class="steps">
-        <thead>
-          <tr>
-            <th class="col-check" title="Include optional in the clock">Incl.</th>
-            <th class="col-start">Start</th>
-            <th class="col-duration">Duration</th>
-            <th class="col-step">Step</th>
-            <th class="col-notes">Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <template v-for="(step, i) in visibleSteps" :key="step.optId || step.sun || step.meal || i">
-            <tr v-if="step.interline" class="sun-row" :class="step.rowClass">
-              <td class="col-check" aria-hidden="true"></td>
-              <td class="time col-start">{{ step.start }}</td>
-              <td class="time col-duration">{{ step.duration || '—' }}</td>
-              <td class="col-step sun-row__rule" colspan="2">
-                <span class="sun-interline">
-                  <span class="sun-interline__label">{{ step.activity }}</span>
-                  <span class="sun-interline__line" aria-hidden="true"></span>
-                  <span v-if="step.place" class="sun-interline__place">{{
-                    step.place
-                  }}</span>
-                </span>
-              </td>
-            </tr>
-            <tr
-              v-else
-              :class="[
-                step.rowClass,
-                step.optId && step.included ? 'opt-included' : '',
-                step.optId && !step.included ? 'opt-skipped' : '',
-                step.ferry && ferryScenarios.some((fs) => isScenarioSelected(fs.id))
-                  ? 'ferry-miss-on'
-                  : '',
-              ]"
-            >
-              <td class="col-check">
-                <label v-if="step.optId" class="opt-toggle">
-                  <input
-                    type="checkbox"
-                    :checked="step.included"
-                    :aria-label="`Include ${step.optLabel || step.activity}`"
-                    @change="toggleOptional(step.optId)"
-                  />
-                </label>
-              </td>
-              <td class="time col-start" :class="{ 'time--shifted': step.timeShifted }">
-                <span
-                  v-if="step.timeShifted"
-                  class="time-shift"
-                  tabindex="0"
-                >
-                  <span class="time-shift__value">{{ step.start || '—' }}</span>
-                  <span class="shift-mark" aria-hidden="true">*</span>
-                  <span class="time-shift__tip" role="tooltip">
-                    <strong>+{{ fmtDuration(step.shiftH) }} from optionals / meals</strong>
-                    <ul>
-                      <li v-for="(src, si) in step.shiftSources" :key="src.optId || si">
-                        <span class="time-shift__dur">+{{ src.duration }}</span>
-                        {{ src.activity }}
-                      </li>
-                    </ul>
-                    <span v-if="step.baseStart" class="time-shift__base">
-                      Was {{ step.baseStart }}
-                    </span>
-                  </span>
-                </span>
-                <template v-else>{{ step.start || '—' }}</template>
-              </td>
-              <td class="time col-duration">{{ step.duration || '—' }}</td>
-              <td class="col-step">
-                <div class="activity">
-                  {{ step.activity }}
-                  <span
-                    v-if="step.protected || step.activity?.startsWith('Protected')"
-                    class="badge protected"
-                  >protect</span>
-                  <span
-                    v-else-if="step.activity?.startsWith('Optional')"
-                    class="badge opt"
-                  >optional</span>
-                  <span v-else-if="step.must" class="badge must">must</span>
-                  <span v-if="step.place" class="place">{{ step.place }}</span>
-                </div>
-                <div
-                  v-if="step.ferry && ferryScenarios.length"
-                  class="ferry-miss"
-                >
-                  <label
-                    v-for="fs in ferryScenarios"
-                    :key="fs.id"
-                    class="ferry-miss__item"
-                    :class="{ on: isScenarioSelected(fs.id) }"
-                  >
-                    <input
-                      type="checkbox"
-                      :checked="isScenarioSelected(fs.id)"
-                      @change="emit('toggle-scenario', fs.id)"
-                    />
-                    <span class="ferry-miss__text">
-                      <span class="ferry-miss__label">If missed</span>
-                      <span class="ferry-miss__when">{{ fs.when }}</span>
-                      <span class="ferry-miss__summary">{{ fs.summary }}</span>
-                      <span
-                        v-if="fs.ripple?.length"
-                        class="ferry-miss__ripple"
-                      >
-                        Also reshapes
-                        <template v-for="(r, ri) in fs.ripple" :key="r.day">
-                          <a :href="`#day-${String(r.day).padStart(2, '0')}`"
-                            >Day {{ r.day }}</a
-                          ><template v-if="ri < fs.ripple.length - 1">, </template>
-                        </template>
-                      </span>
-                    </span>
-                  </label>
-                </div>
-              </td>
-              <td class="notes col-notes">
-                <template v-if="step.notes">
-                  <span class="notes-label">Notes</span>
-                  {{ step.notes }}
-                </template>
-              </td>
-            </tr>
-            <tr v-if="!step.interline && step.fallback" class="fallback-row">
-              <td colspan="5">
-                <details class="fallback">
-                  <summary>
-                    If this fails
-                    <span class="fallback__when">— {{ step.fallback.when }}</span>
-                  </summary>
-                  <ul class="fallback__list">
-                    <li v-for="(alt, j) in step.fallback.then" :key="j">
-                      <strong>{{ alt.activity }}</strong>
-                      <span v-if="alt.duration_h"> · ~{{ alt.duration_h }} h</span>
-                      <span v-if="alt.place" class="fallback__place"> · {{ alt.place }}</span>
-                      <span v-if="alt.notes" class="fallback__notes"> — {{ alt.notes }}</span>
-                    </li>
-                  </ul>
-                </details>
-              </td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
+    <div class="steps-list">
+      <StepCard
+        v-for="(step, i) in visibleSteps"
+        :key="step.optId || step.sun || step.meal || i"
+        :step="step"
+        :ferry-scenarios="ferryScenarios"
+        :is-scenario-selected="isScenarioSelected"
+        @toggle-optional="toggleOptional"
+        @toggle-scenario="(id) => emit('toggle-scenario', id)"
+      />
     </div>
   </section>
 </template>

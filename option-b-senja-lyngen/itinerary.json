@@ -28,38 +28,45 @@
         "type": "scenic",
         "lat": 69.61,
         "lon": 18.04,
-        "alt_campsite": "Kvaløya pull-offs / small campsite if preferred"
+        "alt_campsite": "Kvaløya pull-offs / small campsite if preferred",
+        "maps": "https://www.google.com/maps/place/Brensholmen+fergekai/@69.6078446,18.0133376,15z/data=!4m10!1m2!2m1!1sNear+Brensholmen+ferry+quay!3m6!1s0x45c4ae0933665cb9:0x7fa6b84224433c8e"
       },
       "waypoints": [
         {
           "name": "Indie Campers Tromsø",
           "lat": 69.694817,
           "lon": 19.010038,
-          "kind": "depot"
+          "kind": "depot",
+          "url": "https://indiecampers.com/",
+          "maps": "https://maps.app.goo.gl/nNCo44E1x5iMZHy18"
         },
         {
-          "name": "Grocery stop",
-          "lat": 69.668,
-          "lon": 18.965,
-          "kind": "shop"
+          "name": "Grocery stop (Obs / Jekta)",
+          "lat": 69.6746,
+          "lon": 18.9209,
+          "kind": "shop",
+          "maps": "https://www.google.com/maps/place/Obs+Troms%C3%B8/@69.6746,18.9209,15z/data=!4m6!3m5!1s0x45c4c43c502f155d:0x535075af9fec5f5d!8m2!3d69.6746!4d18.9208999!16s%2Fg%2F1tgvc5t5"
         },
         {
           "name": "Ersfjordbotn",
           "lat": 69.69441,
           "lon": 18.62083,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://www.google.com/maps/place/9107+Ersfjordbotn,+Norv%C3%A8ge/@69.69441,18.62083,15z/data=!4m6!3m5!1s0x45c4b888660da56d:0xd7a32a72843fe1f8"
         },
         {
           "name": "Grøtfjord beach",
           "lat": 69.77701,
           "lon": 18.52,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6"
         },
         {
           "name": "Overnight Brensholmen",
           "lat": 69.61,
           "lon": 18.04,
-          "kind": "sleep"
+          "kind": "sleep",
+          "maps": "https://www.google.com/maps/place/Brensholmen+fergekai/@69.6078446,18.0133376,15z/data=!4m10!1m2!2m1!1sNear+Brensholmen+ferry+quay!3m6!1s0x45c4ae0933665cb9:0x7fa6b84224433c8e"
         }
       ],
       "ferry": null,
@@ -79,7 +86,8 @@
           "place": "Grøtfjord",
           "duration_h": 0.5,
           "notes": "Extends the Grøtfjord stop — easy stroll before Brensholmen",
-          "during": "Grøtfjord"
+          "during": "Grøtfjord",
+          "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6"
         }
       ]
     },
@@ -91,48 +99,62 @@
       "drive_km_approx": 95,
       "drive_h_approx": 2.5,
       "overnight": {
-        "name": "Senja Fjordcamp / Mefjordvær",
+        "name": "Camp Mefjord, Mefjordvær",
         "type": "campsite",
-        "lat": 69.51864,
-        "lon": 17.43821,
-        "alt_scenic": "Viewpoint pull-off near Tungeneset"
+        "lat": 69.51571,
+        "lon": 17.4422,
+        "alt_scenic": "Viewpoint pull-off near Tungeneset",
+        "url": "https://campmefjord.no/",
+        "reserve": true,
+        "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
       },
       "waypoints": [
         {
           "name": "Brensholmen",
           "lat": 69.60785,
           "lon": 18.03186,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9118+Brensholmen,+Norv%C3%A8ge/@69.60785,18.03186,15z/data=!4m6!3m5!1s0x45c4adfb9e71b231:0xfab2e46a536fab12"
         },
         {
           "name": "Botnhamn",
           "lat": 69.50694,
           "lon": 17.90873,
-          "kind": "ferry"
+          "kind": "ferry",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818"
         },
         {
           "name": "Husøy",
           "lat": 69.542,
           "lon": 17.665,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb"
         },
         {
           "name": "Mefjordvær",
           "lat": 69.51864,
           "lon": 17.43821,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869"
         },
         {
           "name": "Tungeneset",
           "lat": 69.48695,
           "lon": 17.33304,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
         },
         {
-          "name": "Overnight Mefjordvær",
-          "lat": 69.51864,
-          "lon": 17.43821,
-          "kind": "sleep"
+          "name": "Overnight Camp Mefjord (Mefjordvær)",
+          "lat": 69.51571,
+          "lon": 17.4422,
+          "kind": "sleep",
+          "url": "https://campmefjord.no/",
+          "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
         }
       ],
       "ferry": {
@@ -170,14 +192,19 @@
           "duration_h": 1,
           "protected": true,
           "notes": "Clear evening priority",
-          "after": "Tungeneset"
+          "after": "Tungeneset",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
         },
         {
           "activity": "Sea kayak (guided)",
           "place": "Mefjordvær / northern Senja",
           "duration_h": 2,
           "notes": "Calm sea only — not with evening Tungeneset",
-          "after": "Mefjordvær"
+          "after": "Mefjordvær",
+          "url": "https://www.mefjordbrygge.no/guided-activities/",
+          "reserve": true,
+          "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869"
         }
       ],
       "scenarios": [
@@ -217,7 +244,9 @@
                 "duration_h": 0.75,
                 "protected": true,
                 "notes": "Short version — only if you arrive with daylight",
-                "after": "Tungeneset"
+                "after": "Tungeneset",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
               }
             ]
           },
@@ -253,7 +282,10 @@
                     "duration_h": 1.5,
                     "protected": true,
                     "notes": "Best grey-day use of Senja",
-                    "after": "Hamn i Senja"
+                    "after": "Hamn i Senja",
+                    "url": "https://hamnisenja.no/",
+                    "reserve": true,
+                    "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
                   }
                 ],
                 "notes": [
@@ -284,50 +316,55 @@
         "type": "scenic",
         "lat": 69.41736,
         "lon": 17.16489,
-        "alt_campsite": "Finnsnes camping if you want showers before Lyngen"
+        "alt_campsite": "Finnsnes camping if you want showers before Lyngen",
+        "url": "https://hamnisenja.no/",
+        "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
       },
       "waypoints": [
         {
-          "name": "Mefjordvær",
-          "lat": 69.51864,
-          "lon": 17.43821,
-          "kind": "start"
+          "name": "Mefjordvær (Camp Mefjord)",
+          "lat": 69.51571,
+          "lon": 17.4422,
+          "kind": "start",
+          "url": "https://campmefjord.no/",
+          "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
         },
         {
           "name": "Bergsbotn viewpoint",
           "lat": 69.42307,
           "lon": 17.50384,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/Bergsbotn+Viewing+Platform/@69.42307,17.50384,15z/data=!4m6!3m5!1s0x45db565a7d0aaecd:0xd3f186268d751557"
         },
         {
           "name": "Ersfjordstranda",
           "lat": 69.47882,
           "lon": 17.39482,
-          "kind": "viewpoint"
-        },
-        {
-          "name": "Bøvær beach",
-          "lat": 69.46626,
-          "lon": 17.22925,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/Ersfjord+Beach/@69.47882,17.39482,15z/data=!4m6!3m5!1s0x45dcaa22f67731b5:0x1e5f06865184b49d"
         },
         {
           "name": "Hamn i Senja",
           "lat": 69.41736,
           "lon": 17.16489,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "url": "https://hamnisenja.no/",
+          "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         },
         {
           "name": "Overnight Hamn area",
           "lat": 69.41736,
           "lon": 17.16489,
-          "kind": "sleep"
+          "kind": "sleep",
+          "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         }
       ],
       "ferry": null,
       "notes": [
         {
-          "text": "Linger day — same Senja icons as Option A, without ferry-queue pressure.",
+          "text": "Linger on the Scenic Route spine — Bergsbotn, Ersfjordstranda, then Hamn. Bøvær is an optional fishing-village beach detour (no ferry-queue pressure today).",
           "after": "Mefjordvær"
         },
         {
@@ -337,9 +374,22 @@
       ],
       "optional": [
         {
+          "activity": "Bøvær beach detour",
+          "place": "Bøvær beach",
+          "duration_h": 0.75,
+          "lat": 69.46626,
+          "lon": 17.22925,
+          "notes": "NTV lists Bøvær as a detour off the Scenic Route — white sand / fishing village; easy to add without a ferry queue today",
+          "after": "Ersfjordstranda",
+          "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+          "maps": "https://www.google.com/maps/place/B%C3%B8stranda/@69.468857,17.2127457,15z/data=!4m10!1m2!2m1!1zQsO4dsOmciBiZWFjaA!3m6!1s0x45dca9492b7a30c7:0x1c850dabb44a5d04"
+        },
+        {
           "activity": "Kayak or SUP at Hamn",
           "place": "Hamn i Senja",
           "duration_h": 2,
+          "lat": 69.41736,
+          "lon": 17.16489,
           "notes": "Best calm-water session of the Senja leg",
           "after": "Hamn i Senja",
           "fallback": {
@@ -349,17 +399,27 @@
                 "activity": "Sauna / fjord dip",
                 "place": "Hamn i Senja",
                 "duration_h": 1.5,
-                "notes": "Warm Plan B at Hamn"
+                "notes": "Warm Plan B at Hamn",
+                "url": "https://hamnisenja.no/",
+                "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
               }
             ]
-          }
+          },
+          "url": "https://hamnisenja.no/",
+          "reserve": true,
+          "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         },
         {
           "activity": "Sauna / fjord dip",
           "place": "Hamn i Senja",
           "duration_h": 1.5,
+          "lat": 69.41736,
+          "lon": 17.16489,
           "notes": "Evening ritual before leaving Senja",
-          "after": "Hamn i Senja"
+          "after": "Hamn i Senja",
+          "url": "https://hamnisenja.no/",
+          "reserve": true,
+          "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         }
       ]
     },
@@ -371,42 +431,51 @@
       "drive_km_approx": 200,
       "drive_h_approx": 4,
       "overnight": {
-        "name": "Lyngseidet campsite / motorhome area",
+        "name": "Fastdalen Grendehus (near Lyngseidet)",
         "type": "campsite",
-        "lat": 69.576,
-        "lon": 20.218,
-        "alt_scenic": "Fjellveggen / fjord pull-offs west of Lyngseidet"
+        "lat": 69.65575,
+        "lon": 20.27361,
+        "alt_scenic": "Fjellveggen / fjord pull-offs west of Lyngseidet",
+        "url": "https://campio.no/campsite/fastdalen-grendehus",
+        "reserve": true,
+        "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
       },
       "waypoints": [
         {
           "name": "Hamn / south Senja",
           "lat": 69.41736,
           "lon": 17.16489,
-          "kind": "start"
+          "kind": "start",
+          "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         },
         {
           "name": "Finnsnes",
           "lat": 69.229,
           "lon": 17.981,
-          "kind": "shop"
+          "kind": "shop",
+          "maps": "https://www.google.com/maps/place/9300+Finnsnes,+Norv%C3%A8ge/@69.229,17.981,15z/data=!4m6!3m5!1s0x45db46f390c68fd9:0x6cfbfb4e6aad3dd8"
         },
         {
           "name": "Breivikeidet ferry",
           "lat": 69.66992,
           "lon": 19.65118,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9027+Breivikeidet,+Norv%C3%A8ge/@69.66992,19.65118,15z/data=!4m6!3m5!1s0x45c4df69b7c1d8a9:0xb9b0bcaf56ed25c3"
         },
         {
           "name": "Svensby",
           "lat": 69.66327,
           "lon": 19.80893,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9064+Svensby,+Norv%C3%A8ge/@69.66327,19.80893,15z/data=!4m6!3m5!1s0x45c5219cb48295d3:0x52730b1f30068923"
         },
         {
-          "name": "Lyngseidet",
-          "lat": 69.576,
-          "lon": 20.218,
-          "kind": "sleep"
+          "name": "Overnight Fastdalen Grendehus",
+          "lat": 69.65575,
+          "lon": 20.27361,
+          "kind": "sleep",
+          "url": "https://campio.no/campsite/fastdalen-grendehus",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
         }
       ],
       "ferry": {
@@ -437,7 +506,8 @@
           "place": "Svensby → Lyngseidet",
           "duration_h": 1,
           "notes": "Pull over for peaks/fjord light — no long hike",
-          "after": "Svensby"
+          "after": "Svensby",
+          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
         }
       ],
       "scenarios": [
@@ -484,44 +554,52 @@
         "type": "scenic",
         "lat": 69.60166,
         "lon": 20.53229,
-        "alt_campsite": "Olderdalen camping / motorhome area"
+        "alt_campsite": "Olderdalen camping / motorhome area",
+        "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
       },
       "waypoints": [
         {
-          "name": "Lyngseidet",
-          "lat": 69.576,
-          "lon": 20.218,
-          "kind": "start"
+          "name": "Fastdalen Grendehus (near Lyngseidet)",
+          "lat": 69.65575,
+          "lon": 20.27361,
+          "kind": "start",
+          "url": "https://campio.no/campsite/fastdalen-grendehus",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
         },
         {
           "name": "Blåisvatnet trailhead",
           "lat": 69.75814,
           "lon": 19.95418,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa"
         },
         {
           "name": "Lyngseidet ferry",
           "lat": 69.57712,
           "lon": 20.224,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/Olderdalen-Lyngseidet,+Norv%C3%A8ge/@69.57712,20.224,15z/data=!4m6!3m5!1s0x45c53e59ee432c73:0x7a906669386263c4"
         },
         {
           "name": "Olderdalen",
           "lat": 69.60166,
           "lon": 20.53229,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
         },
         {
           "name": "Nordmannvik coast",
           "lat": 69.67869,
           "lon": 20.50214,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://www.google.com/maps/place/9146+Nordmannvik,+Norv%C3%A8ge/@69.67869,20.50214,15z/data=!4m6!3m5!1s0x45c514ff5e89d2c5:0xcf8f32faa3bc8b97"
         },
         {
           "name": "Overnight Olderdalen area",
           "lat": 69.60166,
           "lon": 20.53229,
-          "kind": "sleep"
+          "kind": "sleep",
+          "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
         }
       ],
       "ferry": {
@@ -565,17 +643,23 @@
                 "activity": "Café in Lyngseidet",
                 "place": "Lyngseidet",
                 "duration_h": 1,
-                "notes": "Skip the walk; ferry views become the day"
+                "notes": "Skip the walk; ferry views become the day",
+                "url": "https://www.visitlyngenfjord.com/",
+                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
               }
             ]
-          }
+          },
+          "url": "https://ut.no/turforslag/1113458/blaisvatnet",
+          "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa"
         },
         {
           "activity": "Café in Lyngseidet",
           "place": "Lyngseidet",
           "duration_h": 0.75,
           "notes": "If cloud eats the lake — warm up before the ferry",
-          "after": "Lyngseidet"
+          "after": "Lyngseidet",
+          "url": "https://www.visitlyngenfjord.com/",
+          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
         }
       ],
       "scenarios": [
@@ -611,7 +695,9 @@
                 "duration_h": 3,
                 "protected": true,
                 "notes": "Still do this if weather is clear — ferry wait comes after",
-                "after": "Blåisvatnet trailhead"
+                "after": "Blåisvatnet trailhead",
+                "url": "https://ut.no/turforslag/1113458/blaisvatnet",
+                "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa"
               }
             ]
           },
@@ -642,25 +728,29 @@
                 "name": "Lyngseidet",
                 "lat": 69.576,
                 "lon": 20.218,
-                "kind": "start"
+                "kind": "start",
+                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
               },
               {
                 "name": "Lyngseidet ferry",
                 "lat": 69.57712,
                 "lon": 20.224,
-                "kind": "ferry"
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/Olderdalen-Lyngseidet,+Norv%C3%A8ge/@69.57712,20.224,15z/data=!4m6!3m5!1s0x45c53e59ee432c73:0x7a906669386263c4"
               },
               {
                 "name": "Olderdalen",
                 "lat": 69.60166,
                 "lon": 20.53229,
-                "kind": "ferry"
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
               },
               {
                 "name": "Overnight Olderdalen area",
                 "lat": 69.60166,
                 "lon": 20.53229,
-                "kind": "sleep"
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
               }
             ],
             "optional": [
@@ -670,7 +760,9 @@
                 "duration_h": 1,
                 "protected": true,
                 "notes": "Wait out a shower before boarding",
-                "after": "Lyngseidet"
+                "after": "Lyngseidet",
+                "url": "https://www.visitlyngenfjord.com/",
+                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
               }
             ]
           },
@@ -698,7 +790,9 @@
                     "duration_h": 1,
                     "protected": true,
                     "notes": "Rain day anchor",
-                    "after": "Lyngseidet"
+                    "after": "Lyngseidet",
+                    "url": "https://www.visitlyngenfjord.com/",
+                    "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
                   }
                 ]
               }
@@ -715,48 +809,58 @@
       "drive_km_approx": 130,
       "drive_h_approx": 3,
       "overnight": {
-        "name": "Svensby / Ullsfjord campsite area",
+        "name": "Svensby Tursenter",
         "type": "campsite",
-        "lat": 69.66327,
-        "lon": 19.80893,
-        "alt_scenic": "Ullsfjord pull-off if facilities not needed"
+        "lat": 69.66787,
+        "lon": 19.80908,
+        "alt_scenic": "Ullsfjord pull-off if facilities not needed",
+        "url": "https://www.svensbytursenter.no/",
+        "reserve": true,
+        "maps": "https://www.google.com/maps/place/Svensby+Tursenter+AS/@69.66787,19.80908,15z/data=!4m9!3m8!1s0x45c5219b83a01563:0x368c572f035c8777"
       },
       "waypoints": [
         {
           "name": "Olderdalen",
           "lat": 69.60166,
           "lon": 20.53229,
-          "kind": "start"
+          "kind": "start",
+          "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
         },
         {
           "name": "Olderdalen ferry",
           "lat": 69.60166,
           "lon": 20.53229,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
         },
         {
           "name": "Lyngseidet",
           "lat": 69.576,
           "lon": 20.218,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
         },
         {
           "name": "Steindalsbreen viewpoint / trailhead",
           "lat": 69.39,
           "lon": 20.05,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://www.google.com/maps/place/Car+parking+for+the+glacier+walk/@69.39,20.05,15z/data=!4m6!3m5!1s0x45c5313726f35e4b:0x165f4375e5518d12"
         },
         {
           "name": "Western Lyngen viewpoints",
           "lat": 69.62,
           "lon": 20.05,
-          "kind": "viewpoint"
+          "kind": "viewpoint",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Western%20Lyngen%20viewpoints"
         },
         {
-          "name": "Svensby overnight",
-          "lat": 69.66327,
-          "lon": 19.80893,
-          "kind": "sleep"
+          "name": "Overnight Svensby Tursenter",
+          "lat": 69.66787,
+          "lon": 19.80908,
+          "kind": "sleep",
+          "url": "https://www.svensbytursenter.no/",
+          "maps": "https://www.google.com/maps/place/Svensby+Tursenter+AS/@69.66787,19.80908,15z/data=!4m9!3m8!1s0x45c5219b83a01563:0x368c572f035c8777"
         }
       ],
       "ferry": {
@@ -768,7 +872,8 @@
           "11:00",
           "12:00"
         ],
-        "note": "Back to the west shore for glacier approach + easy Friday ferry staging."
+        "note": "Back to the west shore for glacier approach + easy Friday ferry staging.",
+        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen"
       },
       "notes": [
         {
@@ -805,10 +910,13 @@
                 "activity": "Café stop",
                 "place": "Lyngseidet",
                 "duration_h": 0.75,
-                "notes": "Rain Plan B"
+                "notes": "Rain Plan B",
+                "url": "https://www.visitlyngenfjord.com/",
+                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
               }
             ]
-          }
+          },
+          "url": "https://ut.no/turforslag/1112135/steindalsbreen"
         },
         {
           "activity": "Drone / photography session",
@@ -822,7 +930,9 @@
           "place": "Lyngseidet",
           "duration_h": 0.75,
           "notes": "Rain Plan B",
-          "after": "Lyngseidet"
+          "after": "Lyngseidet",
+          "url": "https://www.visitlyngenfjord.com/",
+          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
         }
       ],
       "scenarios": [
@@ -858,7 +968,8 @@
                 "duration_h": 1.5,
                 "protected": true,
                 "notes": "Compressed — viewpoint only if time is tight",
-                "after": "Steindalsbreen viewpoint / trailhead"
+                "after": "Steindalsbreen viewpoint / trailhead",
+                "url": "https://ut.no/turforslag/1112135/steindalsbreen"
               }
             ]
           },
@@ -874,30 +985,37 @@
       "drive_km_approx": 80,
       "drive_h_approx": 1.5,
       "overnight": {
-        "name": "Tromsø area campsite (near depot)",
+        "name": "Tromsø Lodge & Camping (Tromsdalen)",
         "type": "campsite",
-        "lat": 69.65,
-        "lon": 18.955,
-        "alt_scenic": "Only within ~30 min of depot after showers elsewhere"
+        "lat": 69.6483,
+        "lon": 19.0165,
+        "alt_scenic": "Only within ~30 min of depot after showers elsewhere",
+        "url": "https://tromsolodgeandcamping.no/",
+        "reserve": true,
+        "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf"
       },
       "waypoints": [
         {
           "name": "Svensby",
           "lat": 69.66327,
           "lon": 19.80893,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9064+Svensby,+Norv%C3%A8ge/@69.66327,19.80893,15z/data=!4m6!3m5!1s0x45c5219cb48295d3:0x52730b1f30068923"
         },
         {
           "name": "Breivikeidet",
           "lat": 69.66992,
           "lon": 19.65118,
-          "kind": "ferry"
+          "kind": "ferry",
+          "maps": "https://www.google.com/maps/place/9027+Breivikeidet,+Norv%C3%A8ge/@69.66992,19.65118,15z/data=!4m6!3m5!1s0x45c4df69b7c1d8a9:0xb9b0bcaf56ed25c3"
         },
         {
-          "name": "Tromsø overnight near depot",
-          "lat": 69.65,
-          "lon": 18.955,
-          "kind": "sleep"
+          "name": "Overnight Tromsø Lodge & Camping",
+          "lat": 69.6483,
+          "lon": 19.0165,
+          "kind": "sleep",
+          "url": "https://tromsolodgeandcamping.no/",
+          "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf"
         }
       ],
       "ferry": {
@@ -909,7 +1027,8 @@
           "12:00",
           "13:00"
         ],
-        "note": "Easy morning crossing, then short drive to Tromsø."
+        "note": "Easy morning crossing, then short drive to Tromsø.",
+        "source": "https://havspor.no/stopp/breivikeidet-ferjekai"
       },
       "notes": [
         {
@@ -976,26 +1095,34 @@
       "weekday": "Saturday",
       "title": "Return camper",
       "drive_km_approx": 15,
-      "drive_h_approx": 0.3,
+      "drive_h_approx": 0.5,
       "overnight": null,
       "waypoints": [
         {
-          "name": "Tromsø overnight",
-          "lat": 69.65,
-          "lon": 18.955,
-          "kind": "start"
+          "name": "Tromsø Lodge & Camping",
+          "lat": 69.6483,
+          "lon": 19.0165,
+          "kind": "start",
+          "url": "https://tromsolodgeandcamping.no/",
+          "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf"
         },
         {
           "name": "Indie Campers Tromsø",
           "lat": 69.694817,
           "lon": 19.010038,
-          "kind": "depot"
+          "kind": "depot",
+          "url": "https://indiecampers.com/",
+          "maps": "https://maps.app.goo.gl/nNCo44E1x5iMZHy18"
         }
       ],
       "ferry": null,
       "notes": [
         {
-          "text": "Return before 11:30.",
+          "text": "Return appointment 11:30 — leave overnight with ~30 min buffer.",
+          "kind": "depot"
+        },
+        {
+          "text": "Leave fuel / cleaning per Indie Campers checklist.",
           "kind": "depot"
         }
       ]

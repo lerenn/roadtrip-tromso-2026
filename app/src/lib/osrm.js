@@ -104,6 +104,7 @@ export function waypointsForMap(waypoints) {
     kind: wp.kind || 'via',
     lat: wp.lat,
     lon: wp.lon,
+    optional: Boolean(wp.optional),
   }))
 }
 

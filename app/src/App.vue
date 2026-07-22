@@ -2,8 +2,9 @@
 import { computed, ref, watch } from 'vue'
 import DaySection from './components/DaySection.vue'
 import RoadMap from './components/RoadMap.vue'
+import ExtLink from './components/ExtLink.vue'
 import { buildOptionChronology } from './lib/chronology'
-import { hasAnyScenarios, materializeItineraryDays } from './lib/scenarios'
+import { materializeItineraryDays } from './lib/scenarios'
 import { buildOverviewRoutes, waypointsForMap } from './lib/osrm'
 import { downloadText, trackToGpx } from './lib/gpx'
 
@@ -54,7 +55,6 @@ const coverHero = computed(() => {
   }
 })
 const days = computed(() => buildOptionChronology(itinerary.value))
-const showScenarioHint = computed(() => hasAnyScenarios(itinerary.value))
 
 const effectiveDays = computed(() =>
   materializeItineraryDays(itinerary.value, selectedScenarios.value).map(
@@ -234,8 +234,13 @@ watch(
         </dl>
 
         <ul class="meta">
-          <li><strong>Vehicle</strong> {{ depot.vehicle }}</li>
-          <li><strong>Pickup</strong> {{ pickupLabel }}</li>
+          <li>
+            <strong>Vehicle</strong> {{ depot.vehicle }}
+          </li>
+          <li>
+            <strong>Pickup</strong> {{ pickupLabel }} ·
+            <ExtLink :href="depot.url" :label="depot.name" />
+          </li>
           <li><strong>Return</strong> {{ returnLabel }}</li>
         </ul>
 
@@ -285,12 +290,6 @@ watch(
       <div class="wrap">
         <div class="section-head">
           <h2>The loop</h2>
-          <p>
-            The chronology below is the expected plan. Tick optionals to fold them into the clock.
-            <template v-if="showScenarioHint">
-              Program What-ifs sit at the top of each day — tick one or more to swap in the contingency roadbook (linked days update too). Line-level fails stay under a step.
-            </template>
-          </p>
         </div>
         <ul class="anchors">
           <li v-for="(a, i) in itinerary.anchors" :key="i">{{ a }}</li>

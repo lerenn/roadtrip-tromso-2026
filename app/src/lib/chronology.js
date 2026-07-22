@@ -3,11 +3,13 @@
  * Mandatory steps own the baseline clock; optionals are inserted at anchor times
  * without shifting later steps. Selecting optionals in the UI piles their
  * durations onto following start times.
- * Meals (breakfast/lunch/dinner) are interlines that consume time; sunrise/sunset
- * are markers only (see insertMealInterlines / insertSunInterlines).
+ * Meals (breakfast/lunch/dinner) are interlines that consume time on the clock
+ * but do not set the optional `*` shift marker; sunrise/sunset are markers only
+ * (see insertMealInterlines / insertSunInterlines).
  */
 
 import { sunMarkerDates } from './sun.js'
+import depot from '../../../shared/depot.json' with { type: 'json' }
 
 const STOP_DURATION_H = {
   depot: 0.75,
@@ -22,6 +24,29 @@ const STOP_DURATION_H = {
 function parseDate(day) {
   const [y, m, d] = day.date.split('-').map(Number)
   return new Date(y, m - 1, d, 0, 0, 0, 0)
+}
+
+/** Wall-clock appointment on `day` from depot ISO (`pickup` / `return`). */
+function depotAppointment(day, which) {
+  const iso = depot?.[which]
+  const m = String(iso || '').match(/T(\d{2}):(\d{2})/)
+  const base = parseDate(day)
+  if (m) {
+    base.setHours(Number(m[1]), Number(m[2]), 0, 0)
+    return base
+  }
+  // Fallbacks match locked Indie Campers times if depot.json is missing fields.
+  if (which === 'pickup') base.setHours(15, 30, 0, 0)
+  else base.setHours(11, 30, 0, 0)
+  return base
+}
+
+/** Start-waypoint linger used when packing the Day 8 morning before return. */
+function day8StartLingerH(day) {
+  const first = (day.waypoints || [])[0]
+  if (!first) return 0
+  if (['start', 'via'].includes(first.kind)) return 0.05
+  return stopDuration(day, first, 0)
 }
 
 function fmtDate(day) {
@@ -52,11 +77,17 @@ function addHours(t, hours) {
 }
 
 function dayStartClock(day) {
-  const base = parseDate(day)
   if (day.day === 1) {
-    base.setHours(15, 30, 0, 0)
-    return base
+    // Pickup appointment — Day 1 begins at the depot (mirrors depot.pickup).
+    return depotAppointment(day, 'pickup')
   }
+  if (day.day === 8) {
+    // Return appointment — work back through morning drive so Return starts at
+    // depot.return (11:30), same pattern as Day 1 pickup owning 15:30.
+    const driveH = Number(day.drive_h_approx || 0)
+    return addHours(depotAppointment(day, 'return'), -(driveH + day8StartLingerH(day)))
+  }
+  const base = parseDate(day)
   const ferry = day.ferry || {}
   const target = ferry.target_departure
   const firstWp = (day.waypoints || [])[0]
@@ -70,10 +101,6 @@ function dayStartClock(day) {
       const leadH = route.includes('Gryllefjord') ? 2 : 0.5
       return addHours(base, -leadH)
     }
-  }
-  if (day.day === 8) {
-    base.setHours(9, 0, 0, 0)
-    return base
   }
   base.setHours(8, 30, 0, 0)
   return base
@@ -139,6 +166,87 @@ function placeMatches(key, place) {
   const p = norm(place)
   if (p.includes(keyN) || keyN.includes(p)) return true
   return keyN.split('/').some((part) => part.trim() && p.includes(part.trim()))
+}
+
+function haversineM(lat1, lon1, lat2, lon2) {
+  const r = 6_371_000
+  const p1 = (lat1 * Math.PI) / 180
+  const p2 = (lat2 * Math.PI) / 180
+  const dp = ((lat2 - lat1) * Math.PI) / 180
+  const dl = ((lon2 - lon1) * Math.PI) / 180
+  const a =
+    Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2
+  return 2 * r * Math.asin(Math.sqrt(a))
+}
+
+/**
+ * Day waypoints plus selected optionals that have lat/lon.
+ * Real detours (not already on the must route) reshape the day map / GPX.
+ * Protected / reserve activities at an existing stop still get a pin (activity
+ * name) so bookable same-quay stops like whale safari stay visible.
+ * @param {object} day
+ * @param {Set<string>|string[]} selectedOptIds
+ */
+export function routingWaypoints(day, selectedOptIds) {
+  const selected =
+    selectedOptIds instanceof Set
+      ? selectedOptIds
+      : new Set(selectedOptIds || [])
+  const wps = (day?.waypoints || []).map((wp) => ({ ...wp }))
+  if (!wps.length) return wps
+
+  /** @type {{ insertAt: number, wp: object }[]} */
+  const pending = []
+
+  ;(day.optional || []).forEach((item, oi) => {
+    if (!item || typeof item === 'string') return
+    const optId = `d${day.day}-o${oi}`
+    if (!selected.has(optId)) return
+    if (item.lat == null || item.lon == null) return
+
+    const alreadyOnRoute = wps.some(
+      (w) =>
+        w.lat != null &&
+        w.lon != null &&
+        haversineM(w.lat, w.lon, item.lat, item.lon) < 400,
+    )
+    // Plain same-stop optionals (e.g. Hamn kayak) stay off the route pin list;
+    // protected / reserve activities still need a labelled pin at the quay.
+    if (alreadyOnRoute && !(item.protected || item.reserve)) return
+
+    const anchor = item.after || item.during || item.on || item.place
+    let insertAt = Math.max(0, wps.length - 1)
+    if (anchor) {
+      // Match place names loosely; only exact kind for bare anchors like "ferry"
+      // (so "Andenes ferry" does not latch onto Gryllefjord's kind: ferry).
+      const idx = wps.findIndex(
+        (w) =>
+          placeMatches(anchor, w.name) || norm(anchor) === norm(w.kind),
+      )
+      if (idx >= 0) insertAt = idx + 1
+    }
+
+    pending.push({
+      insertAt,
+      wp: {
+        name: alreadyOnRoute
+          ? item.activity || item.place || 'Optional stop'
+          : item.place || item.activity || 'Optional stop',
+        lat: item.lat,
+        lon: item.lon,
+        kind: 'viewpoint',
+        optional: true,
+        url: item.url || null,
+        maps: item.maps || null,
+      },
+    })
+  })
+
+  pending.sort((a, b) => b.insertAt - a.insertAt || a.wp.name.localeCompare(b.wp.name))
+  for (const { insertAt, wp } of pending) {
+    wps.splice(insertAt, 0, wp)
+  }
+  return wps
 }
 
 function findAnchor(item, placeEndTimes, steps) {
@@ -355,6 +463,8 @@ function collapseFerryCluster(cluster) {
   const noteParts = []
   let route = ''
   let place = first.place || ''
+  let url = first.url || null
+  let maps = first.maps || null
 
   for (const s of cluster) {
     durationH += Number(s.duration_h || 0)
@@ -362,6 +472,8 @@ function collapseFerryCluster(cluster) {
     if (a.startsWith('Board ferry — ')) route = a.slice('Board ferry — '.length)
     else if (a.startsWith('Ferry crossing — ')) route = a.slice('Ferry crossing — '.length)
     if (a.startsWith('Ferry crossing') && s.place) place = s.place
+    if (s.url && !url) url = s.url
+    if (s.maps && !maps) maps = s.maps
     if (s.notes) {
       for (const part of String(s.notes).split(' · ')) {
         const p = part.trim()
@@ -380,6 +492,10 @@ function collapseFerryCluster(cluster) {
     must: true,
     ferry: true,
     wpKind: 'ferry',
+    // Norwegian vehicle ferries on this trip are first-come; only keep if JSON set it.
+    reserve: Boolean(first.reserve) || cluster.some((s) => s.reserve),
+    url: url || first.url || null,
+    maps: maps || first.maps || null,
   }
 }
 
@@ -463,6 +579,13 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
         fallback: item.fallback || null,
         optId: `d${day.day}-o${oi}`,
         optLabel: activity,
+        reserve: Boolean(item.reserve),
+        url: item.url || null,
+        maps: item.maps || null,
+        image: item.image || null,
+        imageAlt: item.imageAlt || null,
+        imageCredit: item.imageCredit || null,
+        imagePage: item.imagePage || null,
       },
     ])
   })
@@ -546,6 +669,8 @@ export function buildDaySteps(day) {
           lon: wp.lon,
           _dt: new Date(clock),
           ferry: true,
+          url: ferry.source || ferry.url || wp.url || null,
+          maps: wp.maps || null,
         })
         clock = addHours(clock, crossH)
       }
@@ -582,6 +707,10 @@ export function buildDaySteps(day) {
         notes = 'Short stop / photos / drone if allowed'
       } else if (day.day === 1 && wp.kind === 'depot') {
         notes = 'Indie Campers · pickup 15:30 · Håndverkervegen 6'
+      } else if (day.day === 8 && wp.kind === 'depot') {
+        notes = 'Indie Campers · return 11:30 · Håndverkervegen 6'
+        // Lock appointment start (Day 1 pickup pattern) — ignore any early arrival slack.
+        clock = depotAppointment(day, 'return')
       }
     }
 
@@ -589,6 +718,7 @@ export function buildDaySteps(day) {
     if (wp.kind === 'viewpoint') must = false
 
     if (wp.kind === 'sleep') {
+      const ov = day.overnight || {}
       steps.push({
         date: steps.length ? '' : dateLabel,
         activity,
@@ -602,12 +732,21 @@ export function buildDaySteps(day) {
         lon: wp.lon,
         _dt: new Date(clock),
         overnight: true,
-        overnight_type: (day.overnight || {}).type || 'scenic',
+        overnight_type: ov.type || 'scenic',
         wpKind: wp.kind,
+        reserve: Boolean(ov.reserve || wp.reserve),
+        url: ov.url || wp.url || null,
+        maps: ov.maps || wp.maps || null,
+        fallback: wp.fallback || ov.fallback || null,
+        image: ov.image || wp.image || null,
+        imageAlt: ov.imageAlt || wp.imageAlt || null,
+        imageCredit: ov.imageCredit || wp.imageCredit || null,
+        imagePage: ov.imagePage || wp.imagePage || null,
       })
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
     } else if (dur > 0 || ['depot', 'ferry', 'shop', 'via', 'start'].includes(wp.kind)) {
       if (dur <= 0 && ['via', 'start'].includes(wp.kind)) dur = 0.05
+      const isBoardFerry = wp.kind === 'ferry' && nextWp?.kind === 'ferry'
       steps.push({
         date: steps.length ? '' : dateLabel,
         activity,
@@ -621,7 +760,18 @@ export function buildDaySteps(day) {
         lon: wp.lon,
         _dt: new Date(clock),
         wpKind: wp.kind,
-        ferry: wp.kind === 'ferry' && nextWp?.kind === 'ferry' ? true : undefined,
+        ferry: isBoardFerry ? true : undefined,
+        reserve: Boolean(wp.reserve),
+        url:
+          (isBoardFerry ? ferry.source || ferry.url : null) ||
+          wp.url ||
+          null,
+        maps: wp.maps || null,
+        fallback: wp.fallback || null,
+        image: wp.image || null,
+        imageAlt: wp.imageAlt || null,
+        imageCredit: wp.imageCredit || null,
+        imagePage: wp.imagePage || null,
       })
       clock = addHours(clock, dur)
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
@@ -773,6 +923,9 @@ function mealsForDay(day, steps) {
     if (def.id === 'breakfast' && day.day === 1) return false
     if (def.id === 'dinner' && day.day === 8) return false
     if (def.id === 'lunch' && day.day === 8) return false
+    // Return morning: keep breakfast on the timeline, but do not pack it into the
+    // locked 11:30 appointment (same idea as skipping lunch/dinner on Day 8).
+    if (def.id === 'breakfast' && day.day === 8) return true
 
     const at = mealDate(day, def.hm).getTime()
     // Skip meals that fall entirely before the day clock starts (e.g. lunch on late Day 1),
@@ -790,15 +943,18 @@ function mealsForDay(day, steps) {
     return {
       ...def,
       startMs: at.getTime(),
+      // Day 8 breakfast sits in the buffer morning; must not slide Return past 11:30.
+      consumesTime: !(def.id === 'breakfast' && day.day === 8),
     }
   })
 }
 
 /**
  * Insert breakfast / lunch / dinner as interlines that consume time and shift
- * later steps (same clock effect as selecting an optional). Preferred times are
- * Europe/Oslo wall clock; if the day already runs past a mealtime, the meal is
- * inserted before the next step and everything after slides.
+ * later starts on the clock. Preferred times are Europe/Oslo wall clock; if the
+ * day already runs past a mealtime, the meal is inserted before the next step.
+ * Meals do **not** set `timeShifted` / `*` — that marker is reserved for
+ * selected optionals (`applyOptionalSelection`).
  */
 export function insertMealInterlines(steps, day) {
   const list = steps || []
@@ -808,11 +964,11 @@ export function insertMealInterlines(steps, day) {
   const out = []
   let delayMs = 0
   let mi = 0
-  /** @type {{ optId: string, activity: string, duration_h: number, duration: string }[]} */
-  const appliedMeals = []
 
   const pushMeal = (meal) => {
-    const durMs = Math.round(meal.duration_h * 60) * 60_000
+    const consumes = meal.consumesTime !== false
+    const durH = consumes ? meal.duration_h : 0
+    const durMs = Math.round(durH * 60) * 60_000
     out.push({
       meal: meal.id,
       activity: meal.label,
@@ -827,12 +983,6 @@ export function insertMealInterlines(steps, day) {
       rowClass: `sun-row meal-row meal-row--${meal.id}`,
     })
     delayMs += durMs
-    appliedMeals.push({
-      optId: `meal-${meal.id}`,
-      activity: meal.label,
-      duration_h: meal.duration_h,
-      duration: fmtDuration(meal.duration_h),
-    })
   }
 
   const flushDueMeals = (effectiveMs) => {
@@ -846,16 +996,19 @@ export function insertMealInterlines(steps, day) {
     if (base != null) flushDueMeals(base + delayMs)
 
     const shifted = base != null ? new Date(base + delayMs) : null
-    const mealH = delayMs / 3600000
-    const shiftH = Number(step.shiftH || 0) + mealH
-    const shiftSources = [...(step.shiftSources || []), ...appliedMeals]
+    // Optional-only markers from applyOptionalSelection stay as-is.
+    // Adjust baseStart so the * tooltip is "without this optional" on the
+    // meal-adjusted clock, not the raw pre-meal itinerary time.
+    const optMs = Math.round(Number(step.shiftH || 0) * 60) * 60_000
+    const baseStart =
+      delayMs > 0 && step.startMs != null
+        ? fmtTime(new Date(step.startMs - optMs + delayMs))
+        : step.baseStart
     out.push({
       ...step,
       start: shifted ? fmtTime(shifted) : step.start,
       startMs: shifted ? shifted.getTime() : step.startMs,
-      timeShifted: shiftH > 0.001,
-      shiftH,
-      shiftSources,
+      baseStart,
     })
   }
 

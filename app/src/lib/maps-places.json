@@ -1,0 +1,253 @@
+{
+  "generated": "2026-07-22",
+  "note": "Google Maps place URLs for itinerary steps. Prefer /maps/place/ or maps.app.goo.gl; named search for vague non-POI points.",
+  "places": {
+    "69.32681,16.13402": {
+      "name": "Andenes ferry",
+      "maps": "https://www.google.com/maps/place/Andenes+ferjekai/@69.32681,16.13402,15z/data=!4m6!3m5!1s0x45dcc18ae05630db:0xb80f15d0d8e6febf",
+      "kind": "place"
+    },
+    "69.29753,15.99351": {
+      "name": "Kleivodden",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Kleivodden+And%C3%B8ya",
+      "kind": "search"
+    },
+    "68.98978,15.64687": {
+      "name": "Bjørnskinn",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bj%C3%B8rnskinn+And%C3%B8ya",
+      "kind": "search"
+    },
+    "69.00000,18.52000": {
+      "name": "Bardu / Setermoen",
+      "maps": "https://www.google.com/maps/place/9360+Setermoen,+Norv%C3%A8ge/@69,18.52,15z/data=!4m6!3m5!1s0x45db054c5ed431cd:0xa9dcdc90e32c02a6",
+      "kind": "place"
+    },
+    "69.42307,17.50384": {
+      "name": "Bergsbotn viewpoint",
+      "maps": "https://www.google.com/maps/place/Bergsbotn+Viewing+Platform/@69.42307,17.50384,15z/data=!4m6!3m5!1s0x45db565a7d0aaecd:0xd3f186268d751557",
+      "kind": "place"
+    },
+    "69.75814,19.95418": {
+      "name": "Blåisvatnet trailhead",
+      "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa",
+      "kind": "place"
+    },
+    "69.27300,15.95500": {
+      "name": "Bleik beach",
+      "maps": "https://www.google.com/maps/place/Bleik+sandstrand/@69.273,15.955,15z/data=!4m6!3m5!1s0x45dce94768db855f:0x6ca0a322ce9edb46",
+      "kind": "place"
+    },
+    "69.50694,17.90873": {
+      "name": "Botnhamn",
+      "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818",
+      "kind": "place"
+    },
+    "69.46626,17.22925": {
+      "name": "Bøvær beach",
+      "maps": "https://www.google.com/maps/place/B%C3%B8stranda/@69.468857,17.2127457,15z/data=!4m10!1m2!2m1!1zQsO4dsOmciBiZWFjaA!3m6!1s0x45dca9492b7a30c7:0x1c850dabb44a5d04",
+      "kind": "place"
+    },
+    "69.66992,19.65118": {
+      "name": "Breivikeidet",
+      "maps": "https://www.google.com/maps/place/9027+Breivikeidet,+Norv%C3%A8ge/@69.66992,19.65118,15z/data=!4m6!3m5!1s0x45c4df69b7c1d8a9:0xb9b0bcaf56ed25c3",
+      "kind": "place"
+    },
+    "69.60785,18.03186": {
+      "name": "Brensholmen",
+      "maps": "https://www.google.com/maps/place/9118+Brensholmen,+Norv%C3%A8ge/@69.60785,18.03186,15z/data=!4m6!3m5!1s0x45c4adfb9e71b231:0xfab2e46a536fab12",
+      "kind": "place"
+    },
+    "69.10416,15.57321": {
+      "name": "Bukkekjerka",
+      "maps": "https://www.google.com/maps/place/Bukkekjerka/@69.10416,15.57321,15z/data=!4m6!3m5!1s0x45dcfbabd84e5413:0x61bf89b7f78e6255",
+      "kind": "place"
+    },
+    "69.69441,18.62083": {
+      "name": "Ersfjordbotn",
+      "maps": "https://www.google.com/maps/place/9107+Ersfjordbotn,+Norv%C3%A8ge/@69.69441,18.62083,15z/data=!4m6!3m5!1s0x45c4b888660da56d:0xd7a32a72843fe1f8",
+      "kind": "place"
+    },
+    "69.47882,17.39482": {
+      "name": "Ersfjordstranda",
+      "maps": "https://www.google.com/maps/place/Ersfjord+Beach/@69.47882,17.39482,15z/data=!4m6!3m5!1s0x45dcaa22f67731b5:0x1e5f06865184b49d",
+      "kind": "place"
+    },
+    "69.22900,17.98100": {
+      "name": "Finnsnes",
+      "maps": "https://www.google.com/maps/place/9300+Finnsnes,+Norv%C3%A8ge/@69.229,17.981,15z/data=!4m6!3m5!1s0x45db46f390c68fd9:0x6cfbfb4e6aad3dd8",
+      "kind": "place"
+    },
+    "69.48557,17.65889": {
+      "name": "Fjordgård / Hesten",
+      "maps": "https://www.google.com/maps/place/Hesten+trail+head/@69.48557,17.65889,15z/data=!4m6!3m5!1s0x45db557bb7ef7c39:0xee4508609dba2c44",
+      "kind": "place"
+    },
+    "69.77701,18.52000": {
+      "name": "Grøtfjord beach",
+      "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6",
+      "kind": "place"
+    },
+    "69.36347,17.05290": {
+      "name": "Gryllefjord ferry",
+      "maps": "https://www.google.com/maps/place/Gryllefjord+ferjekai/@69.36347,17.0529,15z/data=!4m6!3m5!1s0x45dca5ca1b82cf8d:0xac5fa26ac1d8622f",
+      "kind": "place"
+    },
+    "68.56000,15.78000": {
+      "name": "Gullesfjordbotn (E10)",
+      "maps": "https://www.google.com/maps/place/Gullesfjordbotn/@68.56,15.78,15z/data=!4m6!3m5!1s0x45dc15390445f6fb:0x150b69f46e2a6a97",
+      "kind": "place"
+    },
+    "69.41736,17.16489": {
+      "name": "Hamn i Senja",
+      "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef",
+      "kind": "place"
+    },
+    "69.54200,17.66500": {
+      "name": "Husøy",
+      "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb",
+      "kind": "place"
+    },
+    "69.69482,19.01004": {
+      "name": "Indie Campers Tromsø",
+      "maps": "https://maps.app.goo.gl/nNCo44E1x5iMZHy18",
+      "kind": "place"
+    },
+    "69.57600,20.21800": {
+      "name": "Lyngseidet",
+      "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f",
+      "kind": "place"
+    },
+    "69.25546,19.88342": {
+      "name": "Oteren",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Oteren%20Storfjord",
+      "kind": "search"
+    },
+    "69.67917,20.26355": {
+      "name": "Koppangen",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Koppangen%20Lyngen",
+      "kind": "search"
+    },
+    "69.57712,20.22400": {
+      "name": "Lyngseidet ferry",
+      "maps": "https://www.google.com/maps/place/Olderdalen-Lyngseidet,+Norv%C3%A8ge/@69.57712,20.224,15z/data=!4m6!3m5!1s0x45c53e59ee432c73:0x7a906669386263c4",
+      "kind": "place"
+    },
+    "69.03600,18.66000": {
+      "name": "Målselvfossen",
+      "maps": "https://www.google.com/maps/place/M%C3%A5lselvfossen/@69.036,18.66,15z/data=!4m6!3m5!1s0x45db18a0312b595d:0x703d520054b455c9",
+      "kind": "place"
+    },
+    "69.24800,15.96800": {
+      "name": "Måtinden trailhead (Baugtua)",
+      "maps": "https://www.google.com/maps/place/Parkeringsplass+Baugtua+M%C3%A5tinden/@69.235293,15.9293277,15z/data=!4m10!1m2!2m1!1sM%C3%A5tinden+trailhead+(Baugtua)!3m6!1s0x45dce9690416083b:0x1fc8c2a0523de7c8",
+      "kind": "place"
+    },
+    "69.51864,17.43821": {
+      "name": "Mefjordvær",
+      "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+      "kind": "place"
+    },
+    "69.27586,15.96603": {
+      "name": "Midnattsol Camping, Bleik",
+      "maps": "https://www.google.com/maps/place/Midnattsol+Camping+Bleik/@69.27586,15.96603,15z/data=!4m9!3m8!1s0x45dce9acb6eb28cf:0x31409882480b6406",
+      "kind": "place"
+    },
+    "69.61000,18.04000": {
+      "name": "Near Brensholmen ferry quay",
+      "maps": "https://www.google.com/maps/place/Brensholmen+fergekai/@69.6078446,18.0133376,15z/data=!4m10!1m2!2m1!1sNear+Brensholmen+ferry+quay!3m6!1s0x45c4ae0933665cb9:0x7fa6b84224433c8e",
+      "kind": "place"
+    },
+    "69.21700,19.55800": {
+      "name": "Nordkjosbotn",
+      "maps": "https://www.google.com/maps/place/9040+Nordkjosbotn,+Norv%C3%A8ge/@69.217,19.558,15z/data=!4m6!3m5!1s0x45dad18ec588cdb5:0x5ec5248632327596",
+      "kind": "place"
+    },
+    "69.67869,20.50214": {
+      "name": "Nordmannvik coast",
+      "maps": "https://www.google.com/maps/place/9146+Nordmannvik,+Norv%C3%A8ge/@69.67869,20.50214,15z/data=!4m6!3m5!1s0x45c514ff5e89d2c5:0xcf8f32faa3bc8b97",
+      "kind": "place"
+    },
+    "68.99576,15.01344": {
+      "name": "Nyksund",
+      "maps": "https://www.google.com/maps/place/8430+Nyksund,+Norv%C3%A8ge/@68.99576,15.01344,15z/data=!4m6!3m5!1s0x45ddaa63677f4cc7:0x65f65882802a084a",
+      "kind": "place"
+    },
+    "69.60166,20.53229": {
+      "name": "Olderdalen",
+      "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0",
+      "kind": "place"
+    },
+    "68.97000,15.64000": {
+      "name": "Risøyhamn",
+      "maps": "https://www.google.com/maps/place/8484+Ris%C3%B8yhamn,+Norv%C3%A8ge/@68.97,15.64,15z/data=!4m6!3m5!1s0x45dcf6375f2d8dcb:0xd638431464b4d978",
+      "kind": "place"
+    },
+    "68.69513,15.41483": {
+      "name": "Sortland",
+      "maps": "https://www.google.com/maps/place/Sortland,+Norv%C3%A8ge/@68.69513,15.41483,15z/data=!4m6!3m5!1s0x45dc45ebf6e94ec9:0x3d05ad80417fc5e6",
+      "kind": "place"
+    },
+    "69.39000,20.05000": {
+      "name": "Steindalsbreen viewpoint / trailhead",
+      "maps": "https://www.google.com/maps/place/Car+parking+for+the+glacier+walk/@69.39,20.05,15z/data=!4m6!3m5!1s0x45c5313726f35e4b:0x165f4375e5518d12",
+      "kind": "place"
+    },
+    "69.01883,15.12397": {
+      "name": "Stø",
+      "maps": "https://www.google.com/maps/place/8438+St%C3%B8,+Norv%C3%A8ge/@69.01883,15.12397,15z/data=!4m6!3m5!1s0x45dd00124d408093:0x4f8523f93d89b39c",
+      "kind": "place"
+    },
+    "68.56931,14.91255": {
+      "name": "Stokmarknes",
+      "maps": "https://www.google.com/maps/place/8450+Stokmarknes,+Norv%C3%A8ge/@68.56931,14.91255,15z/data=!4m6!3m5!1s0x45dc34f168fc7acf:0x20f0f6547c71ea1",
+      "kind": "place"
+    },
+    "69.66327,19.80893": {
+      "name": "Svensby",
+      "maps": "https://www.google.com/maps/place/9064+Svensby,+Norv%C3%A8ge/@69.66327,19.80893,15z/data=!4m6!3m5!1s0x45c5219cb48295d3:0x52730b1f30068923",
+      "kind": "place"
+    },
+    "68.63000,16.58000": {
+      "name": "Tjeldsund Bridge approach",
+      "maps": "https://www.google.com/maps/place/Pont+de+Tjeldsund/@68.63,16.58,15z/data=!4m6!3m5!1s0x45dc77fe6d783579:0xb4858feaac0a5523",
+      "kind": "place"
+    },
+    "69.48695,17.33304": {
+      "name": "Tungeneset",
+      "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+      "kind": "place"
+    },
+    "69.62000,20.05000": {
+      "name": "Western Lyngen viewpoints",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Western%20Lyngen%20viewpoints",
+      "kind": "search"
+    },
+    "69.67460,18.92090": {
+      "name": "Grocery stop (Obs / Jekta)",
+      "maps": "https://www.google.com/maps/place/Obs+Troms%C3%B8/@69.6746,18.9209,15z/data=!4m6!3m5!1s0x45c4c43c502f155d:0x535075af9fec5f5d!8m2!3d69.6746!4d18.9208999!16s%2Fg%2F1tgvc5t5",
+      "kind": "place",
+      "note": "There is no City Nord in Tromsø (that mall is Bodø). Day-1 stock-up is Coop Obs inside Jekta Storsenter, Langnes."
+    },
+    "69.51571,17.44220": {
+      "name": "Camp Mefjord, Mefjordvær",
+      "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0",
+      "kind": "place"
+    },
+    "69.64830,19.01650": {
+      "name": "Tromsø Lodge & Camping",
+      "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf",
+      "kind": "place"
+    },
+    "69.65575,20.27361": {
+      "name": "Fastdalen Grendehus",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus",
+      "kind": "search",
+      "note": "No distinct Maps place entity for Grendehus; named search"
+    },
+    "69.66787,19.80908": {
+      "name": "Svensby Tursenter",
+      "maps": "https://www.google.com/maps/place/Svensby+Tursenter+AS/@69.66787,19.80908,15z/data=!4m9!3m8!1s0x45c5219b83a01563:0x368c572f035c8777",
+      "kind": "place"
+    }
+  }
+}
