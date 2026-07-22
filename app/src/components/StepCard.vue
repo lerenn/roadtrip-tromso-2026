@@ -140,6 +140,7 @@ const hasDetails = computed(() => {
         }}</span>
         <span v-if="step.scenic" class="badge scenic">scenic</span>
         <span v-if="step.reserve" class="badge reserve">reserve</span>
+        <span v-if="step.warning" class="badge warning">warning</span>
       </span>
 
       <span
@@ -196,8 +197,12 @@ const hasDetails = computed(() => {
           <strong>Link</strong>
           <ExtLink :href="step.url" label="Open website" />
         </p>
-        <p v-if="step.notes" class="step-card__notes">
-          <strong>Notes</strong>
+        <p
+          v-if="step.notes"
+          class="step-card__notes"
+          :class="{ 'step-card__notes--warning': step.warning }"
+        >
+          <strong>{{ step.warning ? 'Warning' : 'Notes' }}</strong>
           <LinkifiedText :text="step.notes" />
         </p>
 
@@ -237,7 +242,7 @@ const hasDetails = computed(() => {
           <ul class="fallback__list">
             <li v-for="(alt, j) in step.fallback.then" :key="j">
               <ExtLink :href="alt.url" :label="alt.activity" />
-              <span v-if="alt.duration_h"> · ~{{ alt.duration_h }} h</span>
+              <span v-if="alt.duration_h"> · ~{{ fmtDuration(alt.duration_h) }}</span>
               <span v-if="alt.place" class="fallback__place"> · {{ alt.place }}</span>
               <span v-if="alt.price" class="fallback__price"> · {{ alt.price }}</span>
               <span v-if="alt.notes" class="fallback__notes">

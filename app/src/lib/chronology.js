@@ -56,15 +56,17 @@ function fmtDate(day) {
   return `${day.weekday} ${dd}/${mm}/${d.getFullYear()}`
 }
 
+/** Display-only: fractional hours → compact `2h30min` / `45min` / `1h`. */
 export function fmtDuration(hours) {
   if (hours == null) return '?'
   if (hours <= 0) return '—'
-  const totalMin = Math.round(hours * 60)
+  const totalMin = Math.round(Number(hours) * 60)
+  if (!Number.isFinite(totalMin) || totalMin <= 0) return '—'
   const h = Math.floor(totalMin / 60)
   const m = totalMin % 60
-  if (h && m) return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
-  if (h) return `${String(h).padStart(2, '0')}:00`
-  return `00:${String(m).padStart(2, '0')}`
+  if (h && m) return `${h}h${String(m).padStart(2, '0')}min`
+  if (h) return `${h}h`
+  return `${m}min`
 }
 
 export function fmtTime(t) {
@@ -76,7 +78,7 @@ function addHours(t, hours) {
   return new Date(t.getTime() + Math.round(hours * 60) * 60_000)
 }
 
-function dayStartClock(day) {
+function dayStartClock(day, driveHOverride = null) {
   if (day.day === 1) {
     // Pickup appointment — Day 1 begins at the depot (mirrors depot.pickup).
     return depotAppointment(day, 'pickup')
@@ -84,7 +86,8 @@ function dayStartClock(day) {
   if (day.day === 8) {
     // Return appointment — work back through morning drive so Return starts at
     // depot.return (11:30), same pattern as Day 1 pickup owning 15:30.
-    const driveH = Number(day.drive_h_approx || 0)
+    const driveH =
+      driveHOverride != null ? driveHOverride : Number(day.drive_h_approx || 0)
     return addHours(depotAppointment(day, 'return'), -(driveH + day8StartLingerH(day)))
   }
   const base = parseDate(day)
@@ -106,23 +109,31 @@ function dayStartClock(day) {
   return base
 }
 
-function driveLegs(day) {
-  const wps = day.waypoints
-  const nLegs = Math.max(wps.length - 1, 1)
-  const weights = []
+/**
+ * Sync fallback only when OSRM legs are unavailable.
+ * Prefer exact OSRM durations via buildDaySteps(day, osrmLegs).
+ */
+function driveLegsFallback(day) {
+  const wps = day.waypoints || []
+  if (wps.length < 2) return []
+  const hours = []
   for (let i = 0; i < wps.length - 1; i++) {
     const a = wps[i]
     const b = wps[i + 1]
-    if (a.kind === 'ferry' && b.kind === 'ferry') weights.push(0)
-    else if (a.kind === 'sleep' || (b.kind === 'sleep' && ['ferry', 'via'].includes(a.kind))) {
-      weights.push(0.15)
-    } else weights.push(1)
+    if (a.kind === 'ferry' && b.kind === 'ferry') {
+      hours.push(0)
+      continue
+    }
+    const d = haversineM(
+      Number(a.lat),
+      Number(a.lon),
+      Number(b.lat),
+      Number(b.lon),
+    )
+    // metres / 13 m/s → hours (crude; used only offline)
+    hours.push(Number.isFinite(d) && d > 0 ? d / 13 / 3600 : 0)
   }
-  const sumW = weights.reduce((a, b) => a + b, 0) || nLegs
-  const driveH = Number(day.drive_h_approx || 0)
-  const safe = sumW === 0 ? weights.map(() => 1) : weights
-  const total = safe.reduce((a, b) => a + b, 0)
-  return safe.map((w) => driveH * (w / total))
+  return hours
 }
 
 function stopDuration(day, wp, index) {
@@ -347,8 +358,57 @@ function inferNoteTarget(text) {
   return { kind: 'sleep' }
 }
 
+/** True when a day note should land on a Drive row (not a stop). */
+function wantsDriveNote(target) {
+  if (!target) return false
+  if (target.leg) return true
+  if (norm(target.during) === 'drive') return true
+  if (norm(target.kind) === 'drive') return true
+  return false
+}
+
+/** Match Drive step whose place is `From → To`. */
+function findDriveNoteStep(steps, target) {
+  if (!steps?.length) return null
+  const drives = steps.filter((s) => (s.activity || '') === 'Drive')
+  if (!drives.length) return null
+
+  if (target.leg) {
+    const leg = String(target.leg)
+    const hit = drives.find(
+      (s) => placeMatches(leg, s.place) || norm(s.place) === norm(leg),
+    )
+    if (hit) return hit
+  }
+
+  const fromKey = target.after || target.on || target.place
+  if (fromKey) {
+    const hit = drives.find((s) => {
+      const from = String(s.place || '').split('→')[0]?.trim() || ''
+      return placeMatches(fromKey, from)
+    })
+    if (hit) return hit
+  }
+
+  const toKey = target.before || null
+  if (toKey) {
+    const hit = drives.find((s) => {
+      const parts = String(s.place || '').split('→')
+      const to = parts[1]?.trim() || ''
+      return placeMatches(toKey, to)
+    })
+    if (hit) return hit
+  }
+
+  return null
+}
+
 function findNoteStep(steps, target) {
   if (!target || !steps?.length) return null
+
+  if (wantsDriveNote(target)) {
+    return findDriveNoteStep(steps, target)
+  }
 
   if (target.kind === 'shop') {
     return (
@@ -404,24 +464,31 @@ function findNoteStep(steps, target) {
 
 /**
  * Attach day.notes onto relevant steps.
- * Notes may be strings (auto-placed) or { text, kind|after|during|on|place|ferry }.
+ * Notes may be strings (auto-placed) or
+ * { text, kind|after|during|on|place|ferry|leg, warning? }.
+ * Drive legs: `{ during: "Drive", after: "Previous stop" }` or `{ leg: "A → B" }`.
+ * `kind: "warning"` (or `warning: true`) marks the step for a warning badge.
  */
 function attachDayNotes(day, steps) {
   const leftovers = []
   for (const raw of day.notes || []) {
     let text
     let target
+    let isWarning = false
     if (typeof raw === 'string') {
       text = raw.trim()
       target = inferNoteTarget(text)
     } else if (raw && typeof raw === 'object') {
       text = String(raw.text || raw.note || '').trim()
+      isWarning = Boolean(raw.warning) || norm(raw.kind) === 'warning'
       target = {
-        kind: raw.kind || null,
+        kind: isWarning ? null : raw.kind || null,
         after: raw.after || null,
         during: raw.during || null,
         on: raw.on || null,
         place: raw.place || null,
+        before: raw.before || null,
+        leg: raw.leg || null,
         ferry: Boolean(raw.ferry),
       }
       if (
@@ -430,6 +497,8 @@ function attachDayNotes(day, steps) {
         !target.during &&
         !target.on &&
         !target.place &&
+        !target.before &&
+        !target.leg &&
         !target.ferry
       ) {
         target = inferNoteTarget(text)
@@ -439,8 +508,10 @@ function attachDayNotes(day, steps) {
     }
     if (!text) continue
     const step = findNoteStep(steps, target)
-    if (step) appendStepNote(step, text)
-    else leftovers.push(text)
+    if (step) {
+      appendStepNote(step, text)
+      if (isWarning) step.warning = true
+    } else leftovers.push(text)
   }
 
   if (!leftovers.length) return
@@ -632,26 +703,44 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
   return steps
 }
 
-export function buildDaySteps(day) {
+/**
+ * @param {object} day
+ * @param {Array<{ duration_s: number, distance_m: number } | null> | null} [osrmLegs]
+ *   One entry per consecutive waypoint pair; `null` = ferry↔ferry crossing.
+ */
+export function buildDaySteps(day, osrmLegs = null) {
   const wps = day.waypoints
-  let clock = dayStartClock(day)
-  const dateLabel = fmtDate(day)
-  const steps = []
-  const legs = driveLegs(day)
   const ferry = day.ferry || {}
   const placeEndTimes = []
+
+  let legHours
+  let legKm
+  if (osrmLegs && osrmLegs.length === Math.max((wps || []).length - 1, 0)) {
+    legHours = osrmLegs.map((leg) => (leg ? leg.duration_s / 3600 : 0))
+    legKm = osrmLegs.map((leg) => (leg ? leg.distance_m / 1000 : null))
+  } else {
+    legHours = driveLegsFallback(day)
+    legKm = legHours.map(() => null)
+  }
+
+  const driveTotalH = legHours.reduce((a, b) => a + b, 0)
+  let clock = dayStartClock(day, day.day === 8 ? driveTotalH : null)
+  const dateLabel = fmtDate(day)
+  const steps = []
 
   for (let i = 0; i < wps.length; i++) {
     const wp = wps[i]
     if (i > 0) {
-      const driveH = legs[i - 1]
+      const driveH = legHours[i - 1]
       const prev = wps[i - 1]
-      if (driveH >= 0.08 && !(prev.kind === 'ferry' && wp.kind === 'ferry')) {
-        let info = ''
-        const legSum = legs.reduce((a, b) => a + b, 0)
-        if (day.drive_km_approx && legSum > 0) {
-          info = `~${Math.round(day.drive_km_approx * (driveH / legSum))} km`
-        }
+      if (driveH >= 0.02 && !(prev.kind === 'ferry' && wp.kind === 'ferry')) {
+        const km = legKm[i - 1]
+        const info =
+          km != null && km > 0
+            ? `~${km < 10 ? km.toFixed(1) : Math.round(km)} km · OSRM`
+            : day.drive_km_approx
+              ? `~${Math.round(day.drive_km_approx * (driveH / (driveTotalH || 1)))} km`
+              : ''
         steps.push({
           date: steps.length ? '' : dateLabel,
           activity: 'Drive',

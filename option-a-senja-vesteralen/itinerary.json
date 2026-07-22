@@ -21,8 +21,8 @@
       "date": "2026-08-29",
       "weekday": "Saturday",
       "title": "Pickup → Kvaløya → Brensholmen",
-      "drive_km_approx": 85,
-      "drive_h_approx": 2,
+      "drive_km_approx": 94,
+      "drive_h_approx": 1.8,
       "overnight": {
         "name": "Near Brensholmen ferry quay",
         "type": "scenic",
@@ -116,7 +116,8 @@
               "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
             },
             "waypoints": [
               {
@@ -160,7 +161,8 @@
                 "lat": 69.63327,
                 "lon": 17.97729,
                 "kind": "sleep",
-                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping"
+                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
+                "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
               }
             ],
             "notes": [
@@ -186,8 +188,8 @@
       "date": "2026-08-30",
       "weekday": "Sunday",
       "title": "Ferry to Senja → northern coast (linger)",
-      "drive_km_approx": 95,
-      "drive_h_approx": 2.5,
+      "drive_km_approx": 82,
+      "drive_h_approx": 1.5,
       "overnight": {
         "name": "Camp Mefjord, Mefjordvær",
         "type": "campsite",
@@ -415,8 +417,8 @@
       "date": "2026-08-31",
       "weekday": "Monday",
       "title": "Slow Senja Scenic Route → Gryllefjord queue",
-      "drive_km_approx": 130,
-      "drive_h_approx": 3.5,
+      "drive_km_approx": 92,
+      "drive_h_approx": 1.8,
       "overnight": {
         "name": "Gryllefjord ferry queue / harbour",
         "type": "scenic",
@@ -582,7 +584,8 @@
               "reserve": true,
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "400 NOK / night for 2 adults (incl. electricity + showers; bobilplassen.no 2026 / NorCamp)"
             },
             "waypoints": [
               {
@@ -635,7 +638,8 @@
                 "kind": "sleep",
                 "maps": "https://www.google.com/maps/search/?api=1&query=Senja+Fjordcamp+Torsken",
                 "url": "https://senjabyheart.no/overnatting/",
-                "reserve": true
+                "reserve": true,
+                "price": "400 NOK / night for 2 adults (incl. electricity + showers; bobilplassen.no 2026 / NorCamp)"
               }
             ],
             "notes": [
@@ -669,8 +673,8 @@
       "date": "2026-09-01",
       "weekday": "Tuesday",
       "title": "Ferry → whale safari → Bleik evening",
-      "drive_km_approx": 40,
-      "drive_h_approx": 0.9,
+      "drive_km_approx": 12,
+      "drive_h_approx": 0.3,
       "overnight": {
         "name": "Midnattsol Camping, Bleik",
         "type": "campsite",
@@ -874,6 +878,12 @@
                     "after": "Bleik"
                   },
                   {
+                    "text": "At Børvågen lies Andøya Spaceport. The road here (FV 7698 / Nordmelaveien) can be closed for up to 8 hours due to operational activities — check before driving: https://andoyaspace.no/spaceport/nyttig-info-spaceport/",
+                    "kind": "warning",
+                    "during": "Drive",
+                    "after": "Bleik"
+                  },
+                  {
                     "text": "Sleep Nyksund if you arrive before dusk, else Myre/Stø campsite.",
                     "kind": "sleep"
                   }
@@ -1029,6 +1039,12 @@
                     "after": "Andøya"
                   },
                   {
+                    "text": "At Børvågen lies Andøya Spaceport. The road here (FV 7698 / Nordmelaveien) can be closed for up to 8 hours due to operational activities — check before driving: https://andoyaspace.no/spaceport/nyttig-info-spaceport/",
+                    "kind": "warning",
+                    "during": "Drive",
+                    "after": "Måtinden"
+                  },
+                  {
                     "text": "Nyksund café/galleries become the afternoon.",
                     "after": "Nyksund"
                   }
@@ -1056,8 +1072,8 @@
       "date": "2026-09-02",
       "weekday": "Wednesday",
       "title": "Andøya Scenic Route → Nyksund",
-      "drive_km_approx": 150,
-      "drive_h_approx": 3.2,
+      "drive_km_approx": 156,
+      "drive_h_approx": 2.8,
       "overnight": {
         "name": "Nyksund harbour / village edge",
         "type": "scenic",
@@ -1141,6 +1157,12 @@
           "after": "Måtinden"
         },
         {
+          "text": "At Børvågen lies Andøya Spaceport. The road here (FV 7698 / Nordmelaveien) can be closed for up to 8 hours due to operational activities — check before driving: https://andoyaspace.no/spaceport/nyttig-info-spaceport/",
+          "kind": "warning",
+          "during": "Drive",
+          "after": "Måtinden"
+        },
+        {
           "text": "Bukkekjerka is the southern official rest area (Sami sacrificial site / sea views) — short stop only.",
           "after": "Bukkekjerka"
         },
@@ -1221,7 +1243,8 @@
               "maps": "https://www.google.com/maps/search/?api=1&query=St%C3%B8+Bobilcamp",
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "≈250–300 NOK / night pitch for the van (bobilplassen.no 250; Campercontact 2026 ≈300; confirm on-site)"
             },
             "waypoints": [
               {
@@ -1287,7 +1310,8 @@
                 "lat": 69.01973,
                 "lon": 15.10767,
                 "kind": "sleep",
-                "maps": "https://www.google.com/maps/search/?api=1&query=St%C3%B8+Bobilcamp"
+                "maps": "https://www.google.com/maps/search/?api=1&query=St%C3%B8+Bobilcamp",
+                "price": "≈250–300 NOK / night pitch for the van (bobilplassen.no 250; Campercontact 2026 ≈300; confirm on-site)"
               }
             ],
             "notes": [
@@ -1301,6 +1325,12 @@
               },
               {
                 "text": "Måtinden is the island’s signature short mountain walk (turn back early if tired).",
+                "after": "Måtinden"
+              },
+              {
+                "text": "At Børvågen lies Andøya Spaceport. The road here (FV 7698 / Nordmelaveien) can be closed for up to 8 hours due to operational activities — check before driving: https://andoyaspace.no/spaceport/nyttig-info-spaceport/",
+                "kind": "warning",
+                "during": "Drive",
                 "after": "Måtinden"
               },
               {
@@ -1371,8 +1401,8 @@
       "date": "2026-09-03",
       "weekday": "Thursday",
       "title": "Compressed return → Bardu corridor",
-      "drive_km_approx": 320,
-      "drive_h_approx": 5.5,
+      "drive_km_approx": 292,
+      "drive_h_approx": 5,
       "overnight": {
         "name": "Bardu Camping, Setermoen",
         "type": "campsite",
@@ -1443,8 +1473,8 @@
       "date": "2026-09-04",
       "weekday": "Friday",
       "title": "Lyngen east shore → Svensby ferry → Tromsø buffer",
-      "drive_km_approx": 220,
-      "drive_h_approx": 4,
+      "drive_km_approx": 203,
+      "drive_h_approx": 3.7,
       "overnight": {
         "name": "Tromsø Lodge & Camping (Tromsdalen)",
         "type": "campsite",
@@ -1617,8 +1647,8 @@
       "date": "2026-09-05",
       "weekday": "Saturday",
       "title": "Return camper",
-      "drive_km_approx": 15,
-      "drive_h_approx": 0.5,
+      "drive_km_approx": 8,
+      "drive_h_approx": 0.2,
       "overnight": null,
       "waypoints": [
         {

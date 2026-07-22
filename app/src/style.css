@@ -18,6 +18,8 @@
   --wild: #2f6f8f;
   --stop: #7a5330;
   --camp: #3d6b4f;
+  --warning: #b45309;
+  --warning-deep: #92400e;
   --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   --sans: "Figtree", "Avenir Next", "Segoe UI", sans-serif;
 }
@@ -1191,6 +1193,20 @@ button.linkish:disabled {
 .badge.scenic {
   background: color-mix(in srgb, var(--scenic) 14%, white);
   color: var(--scenic-deep);
+}
+
+.badge.warning {
+  background: color-mix(in srgb, var(--warning) 16%, white);
+  color: var(--warning-deep);
+}
+
+.step-card__notes--warning {
+  color: var(--warning-deep);
+  font-weight: 600;
+}
+
+.step-card__notes--warning strong {
+  color: var(--warning);
 }
 
 .notes {

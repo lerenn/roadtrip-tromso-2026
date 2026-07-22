@@ -21,8 +21,8 @@
       "date": "2026-08-29",
       "weekday": "Saturday",
       "title": "Pickup → Kvaløya → Brensholmen",
-      "drive_km_approx": 85,
-      "drive_h_approx": 2,
+      "drive_km_approx": 94,
+      "drive_h_approx": 1.8,
       "overnight": {
         "name": "Near Brensholmen ferry quay",
         "type": "scenic",
@@ -105,7 +105,8 @@
               "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
             },
             "waypoints": [
               {
@@ -142,7 +143,8 @@
                 "lat": 69.63327,
                 "lon": 17.97729,
                 "kind": "sleep",
-                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping"
+                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
+                "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
               }
             ],
             "notes": [
@@ -168,8 +170,8 @@
       "date": "2026-08-30",
       "weekday": "Sunday",
       "title": "Ferry to Senja → northern coast (linger)",
-      "drive_km_approx": 95,
-      "drive_h_approx": 2.5,
+      "drive_km_approx": 82,
+      "drive_h_approx": 1.5,
       "overnight": {
         "name": "Camp Mefjord, Mefjordvær",
         "type": "campsite",
@@ -389,8 +391,8 @@
       "date": "2026-08-31",
       "weekday": "Monday",
       "title": "Slow Senja → Hamn (no Andenes queue)",
-      "drive_km_approx": 120,
-      "drive_h_approx": 3,
+      "drive_km_approx": 80,
+      "drive_h_approx": 1.5,
       "overnight": {
         "name": "Hamn i Senja / south coast scenic",
         "type": "scenic",
@@ -525,7 +527,8 @@
               "reserve": true,
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "370 NOK / night pitch for the van (incl. electricity; feriesenter.org — no person fee published)"
             },
             "waypoints": [
               {
@@ -569,7 +572,8 @@
                 "kind": "sleep",
                 "maps": "https://www.google.com/maps/search/?api=1&query=Finnsnes+Feriesenter",
                 "url": "https://www.feriesenter.org/",
-                "reserve": true
+                "reserve": true,
+                "price": "370 NOK / night pitch for the van (incl. electricity; feriesenter.org — no person fee published)"
               }
             ],
             "notes": [
@@ -651,8 +655,8 @@
       "date": "2026-09-01",
       "weekday": "Tuesday",
       "title": "Senja → Lyngseidet (settle in)",
-      "drive_km_approx": 200,
-      "drive_h_approx": 4,
+      "drive_km_approx": 243,
+      "drive_h_approx": 4.1,
       "overnight": {
         "name": "Fastdalen Grendehus (near Lyngseidet)",
         "type": "campsite",
@@ -772,8 +776,8 @@
       "date": "2026-09-02",
       "weekday": "Wednesday",
       "title": "Hero day: Blåisvatnet → east Lyngen",
-      "drive_km_approx": 90,
-      "drive_h_approx": 2.2,
+      "drive_km_approx": 109,
+      "drive_h_approx": 2,
       "overnight": {
         "name": "Olderdalen / Kåfjord scenic overnight",
         "type": "scenic",
@@ -1044,7 +1048,8 @@
               "reserve": true,
               "alt_campsite": null,
               "alt_scenic": null,
-              "scenic": false
+              "scenic": false,
+              "price": "445 NOK / night for 2 adults (345 camper+electricity + 50×2; Park4Night — confirm on Campio)"
             },
             "waypoints": [
               {
@@ -1090,7 +1095,8 @@
                 "kind": "sleep",
                 "maps": "https://www.google.com/maps/search/?api=1&query=L%C3%B8kvollstranda+Camping",
                 "url": "https://campio.no/campsite/lokvollstranda-camping",
-                "reserve": true
+                "reserve": true,
+                "price": "445 NOK / night for 2 adults (345 camper+electricity + 50×2; Park4Night — confirm on Campio)"
               }
             ],
             "notes": [
@@ -1120,8 +1126,8 @@
       "date": "2026-09-03",
       "weekday": "Thursday",
       "title": "Hero day: Steindalsbreen angle → Svensby",
-      "drive_km_approx": 130,
-      "drive_h_approx": 3,
+      "drive_km_approx": 73,
+      "drive_h_approx": 1.5,
       "overnight": {
         "name": "Svensby Tursenter",
         "type": "campsite",
@@ -1297,8 +1303,8 @@
       "date": "2026-09-04",
       "weekday": "Friday",
       "title": "Ferry to mainland → Tromsø buffer night",
-      "drive_km_approx": 80,
-      "drive_h_approx": 1.5,
+      "drive_km_approx": 48,
+      "drive_h_approx": 0.8,
       "overnight": {
         "name": "Tromsø Lodge & Camping (Tromsdalen)",
         "type": "campsite",
@@ -1411,8 +1417,8 @@
       "date": "2026-09-05",
       "weekday": "Saturday",
       "title": "Return camper",
-      "drive_km_approx": 15,
-      "drive_h_approx": 0.5,
+      "drive_km_approx": 8,
+      "drive_h_approx": 0.2,
       "overnight": null,
       "waypoints": [
         {

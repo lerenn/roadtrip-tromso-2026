@@ -76,9 +76,13 @@ Preferred object forms:
 { "text": "Stock water.", "kind": "shop" }
 { "text": "Evening light.", "after": "Tungeneset" }
 { "text": "Crossing tip.", "ferry": true }
+{ "text": "Road may close for launches…", "kind": "warning", "during": "Drive", "after": "Måtinden" }
+{ "text": "Same warning via leg.", "kind": "warning", "leg": "Måtinden → Bukkekjerka" }
 ```
 
-`kind`: `depot` | `shop` | `sleep` | `viewpoint`. Also accepts `after` / `during` / `place` like optionals.
+`kind`: `depot` | `shop` | `sleep` | `viewpoint` | `warning`. Also accepts `after` / `during` / `place` / `leg` like optionals.
+
+Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg: "From → To"` matching the Drive step’s `place`. `kind: "warning"` (or `warning: true`) sets a **warning** badge on that Drive StepCard and labels the expanded notes as Warning.
 
 ## Optionals
 

@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import DaySection from './components/DaySection.vue'
 import RoadMap from './components/RoadMap.vue'
 import ExtLink from './components/ExtLink.vue'
-import { buildOptionChronology } from './lib/chronology'
+import { buildOptionChronology, fmtDuration } from './lib/chronology'
 import { materializeItineraryDays } from './lib/scenarios'
 import { buildOverviewRoutes, waypointsForMap } from './lib/osrm'
 import { downloadText, trackToGpx } from './lib/gpx'
@@ -213,7 +213,7 @@ watch(
           </div>
           <div class="stat">
             <dt>In the van</dt>
-            <dd>~{{ optionStats.driveH }} h</dd>
+            <dd>~{{ fmtDuration(optionStats.driveH) }}</dd>
           </div>
           <div class="stat">
             <dt>Days</dt>

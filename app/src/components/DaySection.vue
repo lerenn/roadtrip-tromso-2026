@@ -7,6 +7,7 @@ import {
   applyOptionalSelection,
   buildDaySteps,
   defaultOptionalSelection,
+  fmtDuration,
   insertMealInterlines,
   insertSunInterlines,
   routingWaypoints,
@@ -32,6 +33,10 @@ const emit = defineEmits(['toggle-scenario'])
 
 const driveTracks = ref([])
 const ferryTracks = ref([])
+/** @type {import('vue').Ref<Array<{ duration_s: number, distance_m: number } | null> | null>} */
+const osrmLegs = ref(null)
+const osrmDriveKm = ref(null)
+const osrmDriveH = ref(null)
 const loading = ref(true)
 const error = ref('')
 /** @type {import('vue').Ref<Set<string>>} */
@@ -63,15 +68,19 @@ const activeDay = computed(
 
 const appliedScenarios = computed(() => activeMaterialized.value.applied || [])
 
-const activeSteps = computed(() => buildDaySteps(activeDay.value))
+const activeSteps = computed(() =>
+  buildDaySteps(activeDay.value, osrmLegs.value),
+)
 
 const displayTitle = computed(() => activeDay.value?.title || props.day.title)
-const displayDriveKm = computed(
-  () => activeDay.value?.drive_km_approx ?? props.day.driveKm,
-)
-const displayDriveH = computed(
-  () => activeDay.value?.drive_h_approx ?? props.day.driveH,
-)
+const displayDriveKm = computed(() => {
+  if (osrmDriveKm.value != null) return osrmDriveKm.value
+  return activeDay.value?.drive_km_approx ?? props.day.driveKm
+})
+const displayDriveH = computed(() => {
+  if (osrmDriveH.value != null) return osrmDriveH.value
+  return activeDay.value?.drive_h_approx ?? props.day.driveH
+})
 const displayOvernight = computed(
   () => activeDay.value?.overnight || props.day.overnight,
 )
@@ -141,12 +150,21 @@ function toggleOptional(optId) {
 async function loadRoutes() {
   loading.value = true
   error.value = ''
+  osrmLegs.value = null
+  osrmDriveKm.value = null
+  osrmDriveH.value = null
   try {
-    const { driveTracks: d, ferryTracks: f } = await buildDayRoutes(
-      routeWaypoints.value,
-    )
-    driveTracks.value = d
-    ferryTracks.value = f
+    const dayWps = activeDay.value?.waypoints || props.day.rawDay?.waypoints || []
+    const [mapR, timeR] = await Promise.all([
+      buildDayRoutes(routeWaypoints.value),
+      // Timeline Drive rows follow the day spine (must waypoints), exact OSRM times.
+      buildDayRoutes(dayWps),
+    ])
+    driveTracks.value = mapR.driveTracks
+    ferryTracks.value = mapR.ferryTracks
+    osrmLegs.value = timeR.driveLegs
+    osrmDriveKm.value = Math.round(timeR.totalDistanceM / 1000)
+    osrmDriveH.value = Math.round((timeR.totalDurationS / 3600) * 10) / 10
   } catch (e) {
     error.value = String(e.message || e)
   } finally {
@@ -194,7 +212,14 @@ watch(
       </div>
       <h3>{{ displayTitle }}</h3>
       <div class="day-stats">
-        <span class="pill">~{{ displayDriveKm }} km · {{ displayDriveH }} h drive</span>
+        <span class="pill"
+          >~{{ displayDriveKm }} km · {{ fmtDuration(displayDriveH) }} drive<span
+            v-if="osrmLegs"
+            class="pill-osrm"
+          >
+            · OSRM</span
+          ></span
+        >
         <span
           v-if="displayOvernight"
           class="pill"
