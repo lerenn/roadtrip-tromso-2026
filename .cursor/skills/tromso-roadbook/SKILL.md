@@ -13,7 +13,7 @@ description: >-
 
 - **JSON is the trip.** Edit `option-a-senja-vesteralen/itinerary.json`, `option-b-senja-lyngen/itinerary.json`, and `shared/depot.json`.
 - **Vue app only presents.** `app/` derives chronology and maps; do not hardcode trip facts in components.
-- Key libs: `app/src/lib/chronology.js`, `scenarios.js`, `osrm.js`, `gpx.js`.
+- Key libs: `app/src/lib/chronology.js`, `scenarios.js`, `sun.js`, `osrm.js`, `gpx.js`.
 - UI: `App.vue`, `DaySection.vue`, `RoadMap.vue`.
 
 ```bash
@@ -36,6 +36,8 @@ make build    # app/dist
 3. Every ferry crossing should have a miss contingency with `"attach": "ferry_crossing"`.
 4. Day notes: structured `{ text, kind|after|during|ferry }` preferred; plain strings auto-infer.
 5. Ferry UI merges Board / Crossing / Quay into one step (`mergeFerrySteps`); miss toggles still use `step.ferry`.
+6. Sunrise/sunset are timeline markers only (`insertSunInterlines`). Meals are interlines that **consume time** (`insertMealInterlines`: breakfast ~08:00 0.3h, lunch ~12:30 0.75h, dinner ~19:00 0.85h; skip breakfast on Day 1 and lunch/dinner on Day 8) and re-slot with optionals/scenarios.
+7. Cover hero swaps by option: `app/public/hero-option-a.jpg` (Bleik / Andøya) and `hero-option-b.jpg` (Blåisvatnet / Lyngen); credits live in `App.vue` `HEROES`.
 
 ## Maps & coordinates
 
@@ -68,3 +70,7 @@ See [itinerary-schema.md](itinerary-schema.md) for field shapes.
 - Swap lat/lon when writing JSON
 - Route ferries as driving legs in OSRM
 - Dump all day notes only on the overnight step
+
+## Maintenance
+
+When this project's lasting conventions change, update this skill and/or `itinerary-schema.md` in the same change. Keep `AGENTS.md` and `.cursor/rules/tromso-roadbook.mdc` in sync if top-level pointers drift. See `AGENTS.md`.

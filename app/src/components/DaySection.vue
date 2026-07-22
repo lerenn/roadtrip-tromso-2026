@@ -6,6 +6,8 @@ import {
   buildDaySteps,
   defaultOptionalSelection,
   fmtDuration,
+  insertMealInterlines,
+  insertSunInterlines,
 } from '../lib/chronology'
 import {
   ferryScenariosForDay,
@@ -93,12 +95,21 @@ const timedSteps = computed(() =>
   applyOptionalSelection(activeSteps.value, selectedOpts.value),
 )
 
+const timelineSteps = computed(() =>
+  insertSunInterlines(
+    insertMealInterlines(timedSteps.value, activeDay.value),
+    activeDay.value,
+  ),
+)
+
 const visibleSteps = computed(() => {
-  let steps = timedSteps.value
-  if (props.mustOnly) steps = steps.filter((s) => s.must)
-  else if (!props.showOptional) {
+  let steps = timelineSteps.value
+  if (props.mustOnly) {
+    steps = steps.filter((s) => s.must || s.interline)
+  } else if (!props.showOptional) {
     steps = steps.filter(
       (s) =>
+        s.interline ||
         s.protected ||
         s.activity?.startsWith('Protected') ||
         !s.activity?.startsWith('Optional'),
@@ -278,8 +289,23 @@ watch(
           </tr>
         </thead>
         <tbody>
-          <template v-for="(step, i) in visibleSteps" :key="step.optId || i">
+          <template v-for="(step, i) in visibleSteps" :key="step.optId || step.sun || step.meal || i">
+            <tr v-if="step.interline" class="sun-row" :class="step.rowClass">
+              <td class="col-check" aria-hidden="true"></td>
+              <td class="time col-start">{{ step.start }}</td>
+              <td class="time col-duration">{{ step.duration || '—' }}</td>
+              <td class="col-step sun-row__rule" colspan="2">
+                <span class="sun-interline">
+                  <span class="sun-interline__label">{{ step.activity }}</span>
+                  <span class="sun-interline__line" aria-hidden="true"></span>
+                  <span v-if="step.place" class="sun-interline__place">{{
+                    step.place
+                  }}</span>
+                </span>
+              </td>
+            </tr>
             <tr
+              v-else
               :class="[
                 step.rowClass,
                 step.optId && step.included ? 'opt-included' : '',
@@ -308,7 +334,7 @@ watch(
                   <span class="time-shift__value">{{ step.start || '—' }}</span>
                   <span class="shift-mark" aria-hidden="true">*</span>
                   <span class="time-shift__tip" role="tooltip">
-                    <strong>+{{ fmtDuration(step.shiftH) }} from optionals</strong>
+                    <strong>+{{ fmtDuration(step.shiftH) }} from optionals / meals</strong>
                     <ul>
                       <li v-for="(src, si) in step.shiftSources" :key="src.optId || si">
                         <span class="time-shift__dur">+{{ src.duration }}</span>
@@ -378,7 +404,7 @@ watch(
                 </template>
               </td>
             </tr>
-            <tr v-if="step.fallback" class="fallback-row">
+            <tr v-if="!step.interline && step.fallback" class="fallback-row">
               <td colspan="5">
                 <details class="fallback">
                   <summary>

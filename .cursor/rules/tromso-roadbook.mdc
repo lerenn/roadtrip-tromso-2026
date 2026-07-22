@@ -1,6 +1,10 @@
 ---
-description: Tromsø 2026 roadbook — load project skill for itinerary/app work
+description: Tromsø 2026 roadbook — load project skill; keep skill/AGENTS.md updated
 alwaysApply: true
 ---
 
-This repo is the Tromsø 2026 campervan roadbook. For itinerary JSON, chronology, scenarios, optionals, maps, coordinates, or deploy work, follow `.cursor/skills/tromso-roadbook/SKILL.md` (schema: `itinerary-schema.md`). JSON is the trip; `app/` only presents it.
+This repo is the Tromsø 2026 campervan roadbook. `AGENTS.md` is the Cursor equivalent of CLAUDE.md.
+
+For itinerary JSON, chronology, scenarios, optionals, maps, coordinates, or deploy work, follow `.cursor/skills/tromso-roadbook/SKILL.md` (schema: `itinerary-schema.md`).
+
+When lasting conventions change, update that skill (and `AGENTS.md` / this rule if needed) in the same change — do not leave project knowledge only in chat.

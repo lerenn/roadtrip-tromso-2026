@@ -19,6 +19,26 @@ const options = {
 /** Respect Vite `base` (GitHub Pages project URL). */
 const baseUrl = import.meta.env.BASE_URL
 
+/** Full-bleed heroes: Option A → Andøya/Bleik; Option B → Blåisvatnet/Lyngen. */
+const HEROES = {
+  A: {
+    file: 'hero-option-a.jpg',
+    alt: 'Bleik beach and Bleiksøya on Andøya, Vesterålen — white sand and bird island from Røyken',
+    creditName: 'Wolfgang Hägele',
+    creditUrl:
+      'https://commons.wikimedia.org/wiki/File:Bleik,_Bleikstranda_og_Bleiks%C3%B8ya_sett_fra_R%C3%B8yken.jpg',
+    license: 'CC BY-SA 4.0',
+  },
+  B: {
+    file: 'hero-option-b.jpg',
+    alt: 'Blåisvatnet in the Lyngen Alps — turquoise glacial lake beneath the peaks',
+    creditName: 'Harald Groven',
+    creditUrl:
+      'https://commons.wikimedia.org/wiki/File:Bl%C3%A5isvannet_(Lyngen).jpg',
+    license: 'CC BY-SA 2.0',
+  },
+}
+
 const optionId = ref('A')
 const showOptional = ref(true)
 const mustOnly = ref(false)
@@ -26,6 +46,13 @@ const mustOnly = ref(false)
 const selectedScenarios = ref(new Set())
 
 const itinerary = computed(() => options[optionId.value])
+const coverHero = computed(() => {
+  const h = HEROES[optionId.value] || HEROES.A
+  return {
+    ...h,
+    src: `${baseUrl}${h.file}`,
+  }
+})
 const days = computed(() => buildOptionChronology(itinerary.value))
 const showScenarioHint = computed(() => hasAnyScenarios(itinerary.value))
 
@@ -152,23 +179,26 @@ watch(
   <div class="app">
     <header class="cover">
       <div class="cover-hero">
-        <img
-          :src="`${baseUrl}hero-senja.jpg`"
-          alt="Scenic Route Senja along Bergsfjorden — mountain road above the fjord"
-          width="2400"
-          height="1600"
-          fetchpriority="high"
-        />
+        <Transition name="hero-fade" mode="out-in">
+          <img
+            :key="coverHero.file"
+            :src="coverHero.src"
+            :alt="coverHero.alt"
+            width="2400"
+            height="1800"
+            fetchpriority="high"
+          />
+        </Transition>
         <div class="cover-hero__fade" aria-hidden="true"></div>
         <p class="cover-credit">
           Photo:
           <a
-            href="https://commons.wikimedia.org/wiki/File:Bergsfjordveien_Fv_862_by_Bergsfjorden,_Senja,_Troms_og_Finnmark,_Norway,_2022_August.jpg"
+            :href="coverHero.creditUrl"
             target="_blank"
             rel="noopener noreferrer"
-            >Ximonic (Simo Räsänen)</a
+            >{{ coverHero.creditName }}</a
           >
-          · CC BY-SA
+          · {{ coverHero.license }}
         </p>
       </div>
       <div class="cover-panel wrap">
@@ -235,16 +265,12 @@ watch(
             Must-only
           </label>
         </div>
-
-        <div class="cover-actions">
-          <a class="btn" href="#overview">Overview map</a>
-          <a class="btn secondary" href="#day-01">Start Day 1</a>
-        </div>
       </div>
     </header>
 
     <nav class="day-nav" aria-label="Days">
       <div class="wrap day-nav-inner">
+        <a class="day-nav__overview" href="#overview">Overview</a>
         <a
           v-for="day in days"
           :key="day.number"
@@ -314,15 +340,17 @@ watch(
       />
     </div>
 
-    <footer class="footer wrap">
-      <p>
-        <strong>Camper logistics</strong> — campsite nights for water/dump/showers;
-        scenic nights only where legal (allemannsretten). Fuel when you see a station.
-      </p>
-      <p>
-        Depot: {{ depot.name }} · {{ depot.vehicle }}
-      </p>
-      <p>Source: <code>itinerary.json</code> · presentation only (Vue + MapLibre)</p>
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <p>
+          <strong>Camper logistics</strong> — campsite nights for water/dump/showers;
+          scenic nights only where legal (allemannsretten). Fuel when you see a station.
+        </p>
+        <p>
+          Depot: {{ depot.name }} · {{ depot.vehicle }}
+        </p>
+        <p>Source: <code>itinerary.json</code> · presentation only (Vue + MapLibre)</p>
+      </div>
     </footer>
   </div>
 </template>

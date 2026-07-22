@@ -107,9 +107,10 @@ Preferred object forms:
 ## Chronology behaviour
 
 - Mandatory path sets the baseline clock; unselected optionals do not shift later steps.
-- Selecting optionals piles duration onto following starts (`applyOptionalSelection`).
+- Selecting optionals piles duration onto following starts (`applyOptionalSelection` also updates `startMs`).
 - Ferry miss retimes via `ferry.target_departure`; crossing starts at departure; queue fills wait.
 - Board / Crossing / Quay collapse to one `Ferry — [route]` step with summed duration.
+- After timing, `insertMealInterlines` drops Breakfast/Lunch/Dinner (with duration; shifts later `startMs`), then `insertSunInterlines` drops Sunrise/Sunset markers (no duration) ordered by `startMs`.
 
 ## Coordinate checklist
 

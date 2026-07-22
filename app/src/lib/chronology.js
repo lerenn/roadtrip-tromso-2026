@@ -3,7 +3,11 @@
  * Mandatory steps own the baseline clock; optionals are inserted at anchor times
  * without shifting later steps. Selecting optionals in the UI piles their
  * durations onto following start times.
+ * Meals (breakfast/lunch/dinner) are interlines that consume time; sunrise/sunset
+ * are markers only (see insertMealInterlines / insertSunInterlines).
  */
+
+import { sunMarkerDates } from './sun.js'
 
 const STOP_DURATION_H = {
   depot: 0.75,
@@ -697,6 +701,7 @@ export function applyOptionalSelection(steps, selectedOptIds) {
     const out = {
       ...step,
       start: shifted ? fmtTime(shifted) : step.start,
+      startMs: shifted ? shifted.getTime() : baseMs,
       timeShifted: delayH > 0,
       shiftH: delayH,
       shiftSources,
@@ -727,6 +732,190 @@ export function defaultOptionalSelection(steps) {
     if (s.optId && s.protected) ids.push(s.optId)
   }
   return ids
+}
+
+/** Cook-in-van meal slots (Europe/Oslo wall clock on the day). */
+const MEAL_DEFS = [
+  {
+    id: 'breakfast',
+    label: 'Breakfast',
+    hm: '08:00',
+    duration_h: 0.3,
+    place: 'In the van',
+  },
+  {
+    id: 'lunch',
+    label: 'Lunch',
+    hm: '12:30',
+    duration_h: 0.75,
+    place: 'In the van / picnic',
+  },
+  {
+    id: 'dinner',
+    label: 'Dinner',
+    hm: '19:00',
+    duration_h: 0.85,
+    place: 'In the van',
+  },
+]
+
+function mealDate(day, hm) {
+  const [y, m, d] = String(day.date).split('-').map(Number)
+  const [hh, mm] = String(hm).split(':').map(Number)
+  return new Date(y, m - 1, d, hh, mm || 0, 0, 0)
+}
+
+function mealsForDay(day, steps) {
+  const firstStart = (steps || []).find((s) => s.startMs != null)?.startMs ?? null
+  const lastStart = [...(steps || [])].reverse().find((s) => s.startMs != null)?.startMs ?? null
+
+  return MEAL_DEFS.filter((def) => {
+    if (def.id === 'breakfast' && day.day === 1) return false
+    if (def.id === 'dinner' && day.day === 8) return false
+    if (def.id === 'lunch' && day.day === 8) return false
+
+    const at = mealDate(day, def.hm).getTime()
+    // Skip meals that fall entirely before the day clock starts (e.g. lunch on late Day 1),
+    // but allow breakfast just before departure.
+    if (firstStart != null && at < firstStart) {
+      return def.id === 'breakfast'
+    }
+    // Skip meals long after the last step (nothing left to schedule around).
+    if (lastStart != null && at > lastStart + 3 * 3600000 && def.id !== 'dinner') {
+      return false
+    }
+    return true
+  }).map((def) => {
+    const at = mealDate(day, def.hm)
+    return {
+      ...def,
+      startMs: at.getTime(),
+    }
+  })
+}
+
+/**
+ * Insert breakfast / lunch / dinner as interlines that consume time and shift
+ * later steps (same clock effect as selecting an optional). Preferred times are
+ * Europe/Oslo wall clock; if the day already runs past a mealtime, the meal is
+ * inserted before the next step and everything after slides.
+ */
+export function insertMealInterlines(steps, day) {
+  const list = steps || []
+  const meals = mealsForDay(day, list)
+  if (!meals.length) return list
+
+  const out = []
+  let delayMs = 0
+  let mi = 0
+  /** @type {{ optId: string, activity: string, duration_h: number, duration: string }[]} */
+  const appliedMeals = []
+
+  const pushMeal = (meal) => {
+    const durMs = Math.round(meal.duration_h * 60) * 60_000
+    out.push({
+      meal: meal.id,
+      activity: meal.label,
+      start: fmtTime(new Date(meal.startMs)),
+      startMs: meal.startMs,
+      duration: fmtDuration(meal.duration_h),
+      duration_h: meal.duration_h,
+      place: meal.place,
+      notes: '',
+      must: false,
+      interline: true,
+      rowClass: `sun-row meal-row meal-row--${meal.id}`,
+    })
+    delayMs += durMs
+    appliedMeals.push({
+      optId: `meal-${meal.id}`,
+      activity: meal.label,
+      duration_h: meal.duration_h,
+      duration: fmtDuration(meal.duration_h),
+    })
+  }
+
+  const flushDueMeals = (effectiveMs) => {
+    while (mi < meals.length && meals[mi].startMs <= effectiveMs) {
+      pushMeal(meals[mi++])
+    }
+  }
+
+  for (const step of list) {
+    const base = step.startMs
+    if (base != null) flushDueMeals(base + delayMs)
+
+    const shifted = base != null ? new Date(base + delayMs) : null
+    const mealH = delayMs / 3600000
+    const shiftH = Number(step.shiftH || 0) + mealH
+    const shiftSources = [...(step.shiftSources || []), ...appliedMeals]
+    out.push({
+      ...step,
+      start: shifted ? fmtTime(shifted) : step.start,
+      startMs: shifted ? shifted.getTime() : step.startMs,
+      timeShifted: shiftH > 0.001,
+      shiftH,
+      shiftSources,
+    })
+  }
+
+  // Dinner (etc.) after an early overnight arrival
+  while (mi < meals.length) pushMeal(meals[mi++])
+
+  return out
+}
+
+/**
+ * Insert sunrise / sunset as timeline interlines among timed steps.
+ * Markers only — they do not consume time. Run after insertMealInterlines
+ * so sun sits correctly on the meal-shifted clock.
+ */
+export function insertSunInterlines(steps, day) {
+  const sun = sunMarkerDates(day)
+  const markers = []
+  if (sun.sunriseAt) {
+    markers.push({
+      sun: 'sunrise',
+      activity: 'Sunrise',
+      start: sun.sunrise,
+      startMs: sun.sunriseAt.getTime(),
+      duration: '—',
+      place: sun.label,
+      notes: '',
+      must: false,
+      rowClass: 'sun-row sun-row--rise',
+      interline: true,
+    })
+  }
+  if (sun.sunsetAt) {
+    markers.push({
+      sun: 'sunset',
+      activity: 'Sunset',
+      start: sun.sunset,
+      startMs: sun.sunsetAt.getTime(),
+      duration: '—',
+      place: sun.label,
+      notes: '',
+      must: false,
+      rowClass: 'sun-row sun-row--set',
+      interline: true,
+    })
+  }
+  markers.sort((a, b) => a.startMs - b.startMs)
+
+  if (!markers.length) return steps || []
+
+  const out = []
+  let mi = 0
+  for (const step of steps || []) {
+    const t = step.startMs
+    while (mi < markers.length && (t == null || markers[mi].startMs <= t)) {
+      out.push(markers[mi++])
+    }
+    out.push(step)
+  }
+  while (mi < markers.length) out.push(markers[mi++])
+  return out
 }
 
 export function buildOptionChronology(itinerary) {
