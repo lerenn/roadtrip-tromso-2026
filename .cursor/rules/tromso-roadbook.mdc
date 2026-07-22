@@ -1,0 +1,6 @@
+---
+description: Tromsø 2026 roadbook — load project skill for itinerary/app work
+alwaysApply: true
+---
+
+This repo is the Tromsø 2026 campervan roadbook. For itinerary JSON, chronology, scenarios, optionals, maps, coordinates, or deploy work, follow `.cursor/skills/tromso-roadbook/SKILL.md` (schema: `itinerary-schema.md`). JSON is the trip; `app/` only presents it.
