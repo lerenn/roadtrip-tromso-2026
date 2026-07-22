@@ -19,6 +19,8 @@ Source of truth: `option-*/itinerary.json`. Shared depot: `shared/depot.json`.
     "lon": 17.4,
     "url": "https://…",
     "reserve": true,
+    "scenic": true,
+    "price": "550 NOK / night pitch for the van",
     "image": "https://…",
     "imageAlt": "…",
     "imageCredit": "…",
@@ -35,6 +37,7 @@ Source of truth: `option-*/itinerary.json`. Shared depot: `shared/depot.json`.
       "url": "https://…",
       "maps": "https://maps.app.goo.gl/…",
       "reserve": true,
+      "scenic": true,
       "image": "https://…"
     }
   ],
@@ -44,7 +47,8 @@ Source of truth: `option-*/itinerary.json`. Shared depot: `shared/depot.json`.
     "target_departure": "10:15",
     "backup": ["12:15"],
     "note": "…",
-    "source": "https://…"
+    "source": "https://…",
+    "price": "247 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
   },
   "notes": [],
   "optional": [],
@@ -57,6 +61,10 @@ Waypoint `kind` drives map styling and chronology. Consecutive ferry quays (`kin
 `maps` (optional): prefer a real Google Maps place page (`/maps/place/…`) or short link (`maps.app.goo.gl/…`). For vague non-POI stops, use named search `https://www.google.com/maps/search/?api=1&query=…` (no GPS) or omit for lat/lon fallback. Same field on overnight / optionals. See `app/src/lib/maps-places.json`.
 
 `reserve` (optional boolean): set `true` when a reservation/booking is typically needed or strongly recommended (named campsites with booking, whale safari, guided kayak, bookable sauna). StepCard shows a `reserve` badge alongside must/optional/protect/sleep. Omit for scenic allemannsretten nights, first-come ferries, and campsites that do not accept motorhome/tent pitch reservations (e.g. Midnattsol Camping, Bleik — keep their info URL, just no `reserve`). Depot pickup/return are already locked appointments — leave unmarked.
+
+`scenic` (optional boolean): set `true` when the stop is on an official Nasjonale turistveger / Norwegian Scenic Route (Senja, Andøya, …) — viewpoints, NTV-listed villages/quays on the spine, and NTV-listed detours (e.g. Bøvær). StepCard shows a purple `scenic` badge (CSS `--scenic`). Do **not** mark campsites or operator hubs that only sit near the route (Midnattsol, Hamn) unless the stop itself is an NTV-listed Scenic Route point. Overnight `type: "scenic"` is separate (wild camping vs campsite); the UI displays that type as **wild**.
+
+`price` (optional string): short human-readable tariff for the step (campsite pitch/night, ferry vehicle crossing, activity adult ticket, etc.). Always say **what** is priced. Trip baseline: **2 adults** + van **5.99 m** (≤6 m ferry bracket) in `shared/depot.json` — prefer party totals for tickets (`2×…`) and exact ≤6 m van ferry fares; mark year/tariff uncertainty in the string (e.g. `(2025 tariff)`, `(guest-reported)`). Never invent exact figures — omit the field if no credible public source. StepCard shows a compact **NOK** (or range) on the **right** of the summary with a smaller approx **EUR** (`app/src/lib/money.js`); full text under **Price** when expanded. Same field on overnight, ferry, optionals, and optional `fallback.then[]` items.
 
 ## Notes
 
@@ -81,6 +89,9 @@ Preferred object forms:
   "duration_h": 0.75,
   "url": "https://…",
   "protected": false,
+  "scenic": true,
+  "reserve": true,
+  "price": "2×1690 NOK ≈ 3380 NOK for 2 adults",
   "notes": "…",
   "after": "Tungeneset",
   "fallback": {
@@ -95,6 +106,8 @@ Preferred object forms:
 - Detours that should reshape the day map when selected need `lat` / `lon` (and usually `after`). Plain same-place activities may omit coords or include them — the router skips near-duplicates (under ~400 m). **Protected / `reserve` activities** with coords still get a map pin even at an existing stop (labelled with the activity name).
 - `protected: true` → selected by default in the UI.
 - `reserve: true` → StepCard `reserve` badge (book ahead when possible). Same field on overnight / waypoints.
+- `scenic: true` → StepCard purple `scenic` badge (official Scenic Route stop). Same field on overnight / waypoints.
+- `price` → short tariff string shown on the timeline (see `price` above). Same field on overnight / ferry / fallbacks.
 - `after` / `during` / `place` anchors insertion into the step list.
 - `fallback` is line-level only (shown under the step), not a day swap.
 
@@ -125,8 +138,51 @@ Preferred object forms:
 
 - Omit `attach` (or anything other than `ferry_crossing`) → checkbox at top of day.
 - `attach: "ferry_crossing"` → toggle on the merged ferry step.
-- Scenario `id` is shared across anchor + ripples for multi-select state.
+- Scenario `id` is shared across anchor + ripples for multi-select state. Keep ids unique within an itinerary (e.g. one `campsite_alt_*` per scenic night).
 - Nested `replace` keys deep-merge; arrays (`waypoints`, `notes`, `optional`) replace entirely.
+
+### Wild overnight → campsite contingency
+
+For each day with `overnight.type: "scenic"`, add a **top-of-day** scenario (no `attach`) so the default stays wild and checking the box switches to a bookable campsite — same UX as weather fails / other day pickers:
+
+```json
+{
+  "id": "campsite_alt_brensholmen",
+  "when": "Prefer a campsite instead of wild overnight",
+  "summary": "Sleep at the named campsite; showers/power; still reach tomorrow’s start.",
+  "banner": "Campsite alt — …",
+  "replace": {
+    "overnight": {
+      "name": "…",
+      "type": "campsite",
+      "lat": 69.63,
+      "lon": 17.98,
+      "url": "https://…",
+      "maps": "https://www.google.com/maps/search/?api=1&query=…",
+      "reserve": true,
+      "alt_campsite": null,
+      "alt_scenic": null,
+      "scenic": false
+    },
+    "waypoints": [],
+    "notes": []
+  },
+  "ripple": [
+    {
+      "day": 6,
+      "banner": "Campsite alt — start from …",
+      "replace": { "waypoints": [] }
+    }
+  ]
+}
+```
+
+- Prefer the campsite hinted in `alt_campsite` (upgrade free text to a real POI). If the hint is vague (“roadside pull-offs”), pick the best named campsite near that night and say so in notes.
+- Geocode with Nominatim (`User-Agent: roadtrip-tromso-2026/1.0`); never invent coords. Reuse campsites already on the trip when they match.
+- `replace.waypoints` must update the final `kind: "sleep"` pin to the campsite (and add a via if the campsite is a meaningful detour off the must spine).
+- Set `reserve: true` only when the site takes pitch bookings; omit for walk-up / VIPPS-only motorhome pitches.
+- Because `replace.overnight` **deep-merges**, clear wild leftovers explicitly: `"alt_campsite": null`, `"alt_scenic": null`, `"scenic": false` (otherwise the scenic night’s fields linger).
+- Ripple the next day when the new overnight makes the default start waypoint wrong.
 
 ## Chronology behaviour
 

@@ -75,6 +75,11 @@ const displayDriveH = computed(
 const displayOvernight = computed(
   () => activeDay.value?.overnight || props.day.overnight,
 )
+/** JSON keeps overnight.type `scenic`; UI label is `wild`. */
+const overnightTypeLabel = computed(() => {
+  const t = displayOvernight.value?.type
+  return t === 'scenic' ? 'wild' : t
+})
 const routeWaypoints = computed(() =>
   routingWaypoints(activeDay.value || props.day.rawDay, selectedOpts.value),
 )
@@ -195,7 +200,7 @@ watch(
           class="pill"
           :class="displayOvernight.type"
         >
-          {{ displayOvernight.type }} ·
+          {{ overnightTypeLabel }} ·
           <ExtLink
             :href="displayOvernight.url"
             :label="displayOvernight.name"

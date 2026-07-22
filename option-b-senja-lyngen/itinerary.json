@@ -28,7 +28,7 @@
         "type": "scenic",
         "lat": 69.61,
         "lon": 18.04,
-        "alt_campsite": "Kvaløya pull-offs / small campsite if preferred",
+        "alt_campsite": "Utsikten Bobil Camping (near Brensholmen / Sommarøy road)",
         "maps": "https://www.google.com/maps/place/Brensholmen+fergekai/@69.6078446,18.0133376,15z/data=!4m10!1m2!2m1!1sNear+Brensholmen+ferry+quay!3m6!1s0x45c4ae0933665cb9:0x7fa6b84224433c8e"
       },
       "waypoints": [
@@ -89,6 +89,78 @@
           "during": "Grøtfjord",
           "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6"
         }
+      ],
+      "scenarios": [
+        {
+          "id": "campsite_alt_brensholmen",
+          "when": "Prefer a bookable / facilities campsite instead of wild overnight",
+          "summary": "Sleep Utsikten Bobil Camping (showers/power) near Brensholmen — still an easy morning run to the ferry quay.",
+          "banner": "Campsite alt — Utsikten Bobil Camping",
+          "replace": {
+            "overnight": {
+              "name": "Utsikten Bobil Camping",
+              "type": "campsite",
+              "lat": 69.63327,
+              "lon": 17.97729,
+              "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
+              "alt_campsite": null,
+              "alt_scenic": null,
+              "scenic": false
+            },
+            "waypoints": [
+              {
+                "name": "Indie Campers Tromsø",
+                "lat": 69.694817,
+                "lon": 19.010038,
+                "kind": "depot",
+                "url": "https://indiecampers.com/",
+                "maps": "https://maps.app.goo.gl/nNCo44E1x5iMZHy18"
+              },
+              {
+                "name": "Grocery stop (Obs / Jekta)",
+                "lat": 69.6746,
+                "lon": 18.9209,
+                "kind": "shop",
+                "maps": "https://www.google.com/maps/place/Obs+Troms%C3%B8/@69.6746,18.9209,15z/data=!4m6!3m5!1s0x45c4c43c502f155d:0x535075af9fec5f5d!8m2!3d69.6746!4d18.9208999!16s%2Fg%2F1tgvc5t5"
+              },
+              {
+                "name": "Ersfjordbotn",
+                "lat": 69.69441,
+                "lon": 18.62083,
+                "kind": "viewpoint",
+                "maps": "https://www.google.com/maps/place/9107+Ersfjordbotn,+Norv%C3%A8ge/@69.69441,18.62083,15z/data=!4m6!3m5!1s0x45c4b888660da56d:0xd7a32a72843fe1f8"
+              },
+              {
+                "name": "Grøtfjord beach",
+                "lat": 69.77701,
+                "lon": 18.52,
+                "kind": "viewpoint",
+                "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6"
+              },
+              {
+                "name": "Overnight Utsikten Bobil Camping",
+                "lat": 69.63327,
+                "lon": 17.97729,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping"
+              }
+            ],
+            "notes": [
+              {
+                "text": "Same soft start as Option A.",
+                "kind": "depot"
+              },
+              {
+                "text": "Stock up in Tromsø — Senja shops are fewer on Sunday.",
+                "kind": "shop"
+              },
+              {
+                "text": "Utsikten Bobil Camping is the named motorhome pitch north of the quay (VIPPS / on-site pay; no online booking). ~5–10 min to Brensholmen in the morning.",
+                "kind": "sleep"
+              }
+            ]
+          }
+        }
       ]
     },
     {
@@ -106,7 +178,8 @@
         "alt_scenic": "Viewpoint pull-off near Tungeneset",
         "url": "https://campmefjord.no/",
         "reserve": true,
-        "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
+        "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0",
+        "price": "≈325–440 NOK / night pitch for the van (2026 reports; confirm on booking)"
       },
       "waypoints": [
         {
@@ -122,7 +195,8 @@
           "lon": 17.90873,
           "kind": "ferry",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818"
+          "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818",
+          "scenic": true
         },
         {
           "name": "Husøy",
@@ -130,7 +204,8 @@
           "lon": 17.665,
           "kind": "viewpoint",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb"
+          "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb",
+          "scenic": true
         },
         {
           "name": "Mefjordvær",
@@ -138,7 +213,8 @@
           "lon": 17.43821,
           "kind": "viewpoint",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869"
+          "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+          "scenic": true
         },
         {
           "name": "Tungeneset",
@@ -146,7 +222,8 @@
           "lon": 17.33304,
           "kind": "viewpoint",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
+          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+          "scenic": true
         },
         {
           "name": "Overnight Camp Mefjord (Mefjordvær)",
@@ -173,7 +250,8 @@
           "20:45",
           "22:15"
         ],
-        "source": "https://havspor.no/rute/botnhamn-brensholmen"
+        "source": "https://havspor.no/rute/botnhamn-brensholmen",
+        "price": "247 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
       },
       "notes": [
         {
@@ -194,7 +272,8 @@
           "notes": "Clear evening priority",
           "after": "Tungeneset",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
+          "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+          "scenic": true
         },
         {
           "activity": "Sea kayak (guided)",
@@ -246,7 +325,8 @@
                 "notes": "Short version — only if you arrive with daylight",
                 "after": "Tungeneset",
                 "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-                "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070"
+                "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+                "scenic": true
               }
             ]
           },
@@ -316,7 +396,7 @@
         "type": "scenic",
         "lat": 69.41736,
         "lon": 17.16489,
-        "alt_campsite": "Finnsnes camping if you want showers before Lyngen",
+        "alt_campsite": "Finnsnes Feriesenter (showers before the Lyngen transfer)",
         "url": "https://hamnisenja.no/",
         "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
       },
@@ -335,7 +415,8 @@
           "lon": 17.50384,
           "kind": "viewpoint",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/Bergsbotn+Viewing+Platform/@69.42307,17.50384,15z/data=!4m6!3m5!1s0x45db565a7d0aaecd:0xd3f186268d751557"
+          "maps": "https://www.google.com/maps/place/Bergsbotn+Viewing+Platform/@69.42307,17.50384,15z/data=!4m6!3m5!1s0x45db565a7d0aaecd:0xd3f186268d751557",
+          "scenic": true
         },
         {
           "name": "Ersfjordstranda",
@@ -343,7 +424,8 @@
           "lon": 17.39482,
           "kind": "viewpoint",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/Ersfjord+Beach/@69.47882,17.39482,15z/data=!4m6!3m5!1s0x45dcaa22f67731b5:0x1e5f06865184b49d"
+          "maps": "https://www.google.com/maps/place/Ersfjord+Beach/@69.47882,17.39482,15z/data=!4m6!3m5!1s0x45dcaa22f67731b5:0x1e5f06865184b49d",
+          "scenic": true
         },
         {
           "name": "Hamn i Senja",
@@ -382,7 +464,8 @@
           "notes": "NTV lists Bøvær as a detour off the Scenic Route — white sand / fishing village; easy to add without a ferry queue today",
           "after": "Ersfjordstranda",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
-          "maps": "https://www.google.com/maps/place/B%C3%B8stranda/@69.468857,17.2127457,15z/data=!4m10!1m2!2m1!1zQsO4dsOmciBiZWFjaA!3m6!1s0x45dca9492b7a30c7:0x1c850dabb44a5d04"
+          "maps": "https://www.google.com/maps/place/B%C3%B8stranda/@69.468857,17.2127457,15z/data=!4m10!1m2!2m1!1zQsO4dsOmciBiZWFjaA!3m6!1s0x45dca9492b7a30c7:0x1c850dabb44a5d04",
+          "scenic": true
         },
         {
           "activity": "Kayak or SUP at Hamn",
@@ -421,6 +504,146 @@
           "reserve": true,
           "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
         }
+      ],
+      "scenarios": [
+        {
+          "id": "campsite_alt_finnsnes",
+          "when": "Prefer a campsite instead of wild overnight near Hamn",
+          "summary": "After Hamn, continue to Finnsnes Feriesenter for showers/power — already on tomorrow’s transfer spine.",
+          "banner": "Campsite alt — Finnsnes Feriesenter",
+          "replace": {
+            "title": "Slow Senja → Finnsnes Feriesenter",
+            "drive_km_approx": 160,
+            "drive_h_approx": 4,
+            "overnight": {
+              "name": "Finnsnes Feriesenter",
+              "type": "campsite",
+              "lat": 69.23966,
+              "lon": 18.12376,
+              "url": "https://www.feriesenter.org/",
+              "maps": "https://www.google.com/maps/search/?api=1&query=Finnsnes+Feriesenter",
+              "reserve": true,
+              "alt_campsite": null,
+              "alt_scenic": null,
+              "scenic": false
+            },
+            "waypoints": [
+              {
+                "name": "Mefjordvær (Camp Mefjord)",
+                "lat": 69.51571,
+                "lon": 17.4422,
+                "kind": "start",
+                "url": "https://campmefjord.no/",
+                "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
+              },
+              {
+                "name": "Bergsbotn viewpoint",
+                "lat": 69.42307,
+                "lon": 17.50384,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Bergsbotn+Viewing+Platform/@69.42307,17.50384,15z/data=!4m6!3m5!1s0x45db565a7d0aaecd:0xd3f186268d751557",
+                "scenic": true
+              },
+              {
+                "name": "Ersfjordstranda",
+                "lat": 69.47882,
+                "lon": 17.39482,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Ersfjord+Beach/@69.47882,17.39482,15z/data=!4m6!3m5!1s0x45dcaa22f67731b5:0x1e5f06865184b49d",
+                "scenic": true
+              },
+              {
+                "name": "Hamn i Senja",
+                "lat": 69.41736,
+                "lon": 17.16489,
+                "kind": "viewpoint",
+                "url": "https://hamnisenja.no/",
+                "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
+              },
+              {
+                "name": "Overnight Finnsnes Feriesenter",
+                "lat": 69.23966,
+                "lon": 18.12376,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Finnsnes+Feriesenter",
+                "url": "https://www.feriesenter.org/",
+                "reserve": true
+              }
+            ],
+            "notes": [
+              {
+                "text": "Linger on the Scenic Route spine — Bergsbotn, Ersfjordstranda, then Hamn. Bøvær is an optional fishing-village beach detour (no ferry-queue pressure today).",
+                "after": "Mefjordvær"
+              },
+              {
+                "text": "Enjoy Hamn, then drive on to Finnsnes Feriesenter (~45–60 min) for showers before the Lyngen transfer.",
+                "kind": "sleep"
+              }
+            ]
+          },
+          "ripple": [
+            {
+              "day": 4,
+              "banner": "Campsite alt — start from Finnsnes Feriesenter",
+              "replace": {
+                "drive_km_approx": 170,
+                "drive_h_approx": 3.5,
+                "waypoints": [
+                  {
+                    "name": "Finnsnes Feriesenter",
+                    "lat": 69.23966,
+                    "lon": 18.12376,
+                    "kind": "start",
+                    "url": "https://www.feriesenter.org/",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Finnsnes+Feriesenter",
+                    "reserve": true
+                  },
+                  {
+                    "name": "Finnsnes",
+                    "lat": 69.229,
+                    "lon": 17.981,
+                    "kind": "shop",
+                    "maps": "https://www.google.com/maps/place/9300+Finnsnes,+Norv%C3%A8ge/@69.229,17.981,15z/data=!4m6!3m5!1s0x45db46f390c68fd9:0x6cfbfb4e6aad3dd8"
+                  },
+                  {
+                    "name": "Breivikeidet ferry",
+                    "lat": 69.66992,
+                    "lon": 19.65118,
+                    "kind": "ferry",
+                    "maps": "https://www.google.com/maps/place/9027+Breivikeidet,+Norv%C3%A8ge/@69.66992,19.65118,15z/data=!4m6!3m5!1s0x45c4df69b7c1d8a9:0xb9b0bcaf56ed25c3"
+                  },
+                  {
+                    "name": "Svensby",
+                    "lat": 69.66327,
+                    "lon": 19.80893,
+                    "kind": "ferry",
+                    "maps": "https://www.google.com/maps/place/9064+Svensby,+Norv%C3%A8ge/@69.66327,19.80893,15z/data=!4m6!3m5!1s0x45c5219cb48295d3:0x52730b1f30068923"
+                  },
+                  {
+                    "name": "Overnight Fastdalen Grendehus",
+                    "lat": 69.65575,
+                    "lon": 20.27361,
+                    "kind": "sleep",
+                    "url": "https://campio.no/campsite/fastdalen-grendehus",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
+                  }
+                ],
+                "notes": [
+                  {
+                    "text": "Already near Finnsnes — grocery in town, then Breivikeidet ferry toward Lyngen.",
+                    "kind": "shop"
+                  },
+                  {
+                    "text": "Evening: short coastal walk near Lyngseidet, early night before hero hike.",
+                    "kind": "sleep"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       ]
     },
     {
@@ -438,7 +661,8 @@
         "alt_scenic": "Fjellveggen / fjord pull-offs west of Lyngseidet",
         "url": "https://campio.no/campsite/fastdalen-grendehus",
         "reserve": true,
-        "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
+        "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus",
+        "price": "≈250 NOK / night pitch with electricity (guest-reported; confirm for 2)"
       },
       "waypoints": [
         {
@@ -488,7 +712,8 @@
           "17:00"
         ],
         "note": "Frequent sailings (~hourly daytime). No booking needed for cars/campers usually.",
-        "source": "https://havspor.no/stopp/breivikeidet-ferjekai"
+        "source": "https://havspor.no/stopp/breivikeidet-ferjekai",
+        "price": "104 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
       },
       "notes": [
         {
@@ -554,7 +779,7 @@
         "type": "scenic",
         "lat": 69.60166,
         "lon": 20.53229,
-        "alt_campsite": "Olderdalen camping / motorhome area",
+        "alt_campsite": "Løkvollstranda Camping in Manndalen (~10 min south of Olderdalen)",
         "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
       },
       "waypoints": [
@@ -612,7 +837,8 @@
           "18:00"
         ],
         "note": "Cross after the morning hero walk. Frequent daytime sailings.",
-        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen"
+        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen",
+        "price": "152 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
       },
       "notes": [
         {
@@ -798,6 +1024,94 @@
               }
             }
           ]
+        },
+        {
+          "id": "campsite_alt_olderdalen",
+          "when": "Prefer a campsite instead of wild overnight near Olderdalen",
+          "summary": "After Nordmannvik, sleep Løkvollstranda Camping (Manndalen) — showers/power; bookable via Campio.",
+          "banner": "Campsite alt — Løkvollstranda Camping",
+          "replace": {
+            "title": "Blåisvatnet → east Lyngen → Løkvollstranda Camping",
+            "drive_km_approx": 105,
+            "drive_h_approx": 2.5,
+            "overnight": {
+              "name": "Løkvollstranda Camping (Manndalen)",
+              "type": "campsite",
+              "lat": 69.54253,
+              "lon": 20.54736,
+              "url": "https://campio.no/campsite/lokvollstranda-camping",
+              "maps": "https://www.google.com/maps/search/?api=1&query=L%C3%B8kvollstranda+Camping",
+              "reserve": true,
+              "alt_campsite": null,
+              "alt_scenic": null,
+              "scenic": false
+            },
+            "waypoints": [
+              {
+                "name": "Fastdalen Grendehus (near Lyngseidet)",
+                "lat": 69.65575,
+                "lon": 20.27361,
+                "kind": "start",
+                "url": "https://campio.no/campsite/fastdalen-grendehus",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Fastdalen%20Grendehus"
+              },
+              {
+                "name": "Blåisvatnet trailhead",
+                "lat": 69.75814,
+                "lon": 19.95418,
+                "kind": "viewpoint",
+                "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa"
+              },
+              {
+                "name": "Lyngseidet ferry",
+                "lat": 69.57712,
+                "lon": 20.224,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/Olderdalen-Lyngseidet,+Norv%C3%A8ge/@69.57712,20.224,15z/data=!4m6!3m5!1s0x45c53e59ee432c73:0x7a906669386263c4"
+              },
+              {
+                "name": "Olderdalen",
+                "lat": 69.60166,
+                "lon": 20.53229,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
+              },
+              {
+                "name": "Nordmannvik coast",
+                "lat": 69.67869,
+                "lon": 20.50214,
+                "kind": "viewpoint",
+                "maps": "https://www.google.com/maps/place/9146+Nordmannvik,+Norv%C3%A8ge/@69.67869,20.50214,15z/data=!4m6!3m5!1s0x45c514ff5e89d2c5:0xcf8f32faa3bc8b97"
+              },
+              {
+                "name": "Overnight Løkvollstranda Camping (Manndalen)",
+                "lat": 69.54253,
+                "lon": 20.54736,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/search/?api=1&query=L%C3%B8kvollstranda+Camping",
+                "url": "https://campio.no/campsite/lokvollstranda-camping",
+                "reserve": true
+              }
+            ],
+            "notes": [
+              {
+                "text": "HERO #1: Blåisvatnet short walk in clear weather (turn back early — stay under ~5 km).",
+                "after": "Blåisvatnet"
+              },
+              {
+                "text": "Afternoon ferry to the east shore for a different angle on the Alps.",
+                "ferry": true
+              },
+              {
+                "text": "Nordmannvik / roadside glacier views, then south to Løkvollstranda Camping in Manndalen (named campsite near the Olderdalen night — alt was vague “Olderdalen camping”).",
+                "after": "Nordmannvik"
+              },
+              {
+                "text": "Showers and power at Løkvollstranda — reserve when you can.",
+                "kind": "sleep"
+              }
+            ]
+          }
         }
       ]
     },
@@ -873,7 +1187,8 @@
           "12:00"
         ],
         "note": "Back to the west shore for glacier approach + easy Friday ferry staging.",
-        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen"
+        "source": "https://www.fergeruter.info/timetable/lyngseidet-olderdalen",
+        "price": "152 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
       },
       "notes": [
         {
@@ -992,7 +1307,8 @@
         "alt_scenic": "Only within ~30 min of depot after showers elsewhere",
         "url": "https://tromsolodgeandcamping.no/",
         "reserve": true,
-        "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf"
+        "maps": "https://www.google.com/maps/place/Tromso+Camping/@69.6483,19.0165,15z/data=!4m9!3m8!1s0x45c4c4e382e8632b:0x186f18c65bbac4cf",
+        "price": "550 NOK / night pitch for the van (low season from 1 Sep 2026; confirm if person fees)"
       },
       "waypoints": [
         {
@@ -1028,7 +1344,8 @@
           "13:00"
         ],
         "note": "Easy morning crossing, then short drive to Tromsø.",
-        "source": "https://havspor.no/stopp/breivikeidet-ferjekai"
+        "source": "https://havspor.no/stopp/breivikeidet-ferjekai",
+        "price": "104 NOK / van ≤6 m (our 5.99 m; 2026; AutoPASS/FerryPay; passengers free)"
       },
       "notes": [
         {

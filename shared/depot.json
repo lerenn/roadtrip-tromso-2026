@@ -5,9 +5,15 @@
   "lon": 19.010038,
   "pickup": "2026-08-29T15:30:00+02:00",
   "return": "2026-09-05T11:30:00+02:00",
-  "vehicle": "Active Pop Top",
+  "vehicle": "Dethleffs Globetrail Active Plus 600 DS",
+  "vehicle_length_m": 5.99,
+  "vehicle_length_cm": 599,
+  "vehicle_url": "https://www.dethleffs.fr/camper-van/globetrail-active-plus",
+  "party": 2,
   "notes": [
     "Unlimited kilometres included.",
+    "Van is 5.99 m (599 cm) — AutoPASS ferry bracket 0–6 m unless bike rack/cargo tips measured length over 6.00 m.",
+    "Party of 2 adults — timeline prices are for this van + two people.",
     "Second week after the camper stays in Tromsø — keep local day trips for then."
   ],
   "url": "https://indiecampers.com/",

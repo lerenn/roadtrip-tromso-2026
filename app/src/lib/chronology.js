@@ -139,6 +139,12 @@ function stopDuration(day, wp, index) {
   return Number(STOP_DURATION_H[kind] ?? 0.3)
 }
 
+/** Overnight JSON keeps type `scenic` (vs campsite); timeline UI shows `wild`. */
+function overnightTypeLabel(type) {
+  const t = type || 'scenic'
+  return t === 'scenic' ? 'wild' : t
+}
+
 function activityFor(day, wp) {
   const kind = wp.kind || 'via'
   const name = wp.name
@@ -146,7 +152,7 @@ function activityFor(day, wp) {
   if (kind === 'depot' && day.day === 8) return 'Return camper'
   if (kind === 'sleep') {
     const ov = day.overnight || {}
-    return `Overnight (${ov.type || 'scenic'})`
+    return `Overnight (${overnightTypeLabel(ov.type)})`
   }
   if (kind === 'ferry') return `Ferry quay — ${name}`
   if (kind === 'viewpoint') return `Stop — ${name}`
@@ -482,6 +488,11 @@ function collapseFerryCluster(cluster) {
     }
   }
 
+  let price = first.price || null
+  for (const s of cluster) {
+    if (s.price && !price) price = s.price
+  }
+
   return {
     ...first,
     activity: route ? `Ferry — ${route}` : 'Ferry',
@@ -494,8 +505,10 @@ function collapseFerryCluster(cluster) {
     wpKind: 'ferry',
     // Norwegian vehicle ferries on this trip are first-come; only keep if JSON set it.
     reserve: Boolean(first.reserve) || cluster.some((s) => s.reserve),
+    scenic: Boolean(first.scenic) || cluster.some((s) => s.scenic),
     url: url || first.url || null,
     maps: maps || first.maps || null,
+    price: price || null,
   }
 }
 
@@ -580,8 +593,10 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
         optId: `d${day.day}-o${oi}`,
         optLabel: activity,
         reserve: Boolean(item.reserve),
+        scenic: Boolean(item.scenic),
         url: item.url || null,
         maps: item.maps || null,
+        price: item.price || null,
         image: item.image || null,
         imageAlt: item.imageAlt || null,
         imageCredit: item.imageCredit || null,
@@ -671,6 +686,8 @@ export function buildDaySteps(day) {
           ferry: true,
           url: ferry.source || ferry.url || wp.url || null,
           maps: wp.maps || null,
+          scenic: Boolean(prev.scenic || wp.scenic),
+          price: ferry.price || null,
         })
         clock = addHours(clock, crossH)
       }
@@ -735,8 +752,10 @@ export function buildDaySteps(day) {
         overnight_type: ov.type || 'scenic',
         wpKind: wp.kind,
         reserve: Boolean(ov.reserve || wp.reserve),
+        scenic: Boolean(ov.scenic || wp.scenic),
         url: ov.url || wp.url || null,
         maps: ov.maps || wp.maps || null,
+        price: ov.price || wp.price || null,
         fallback: wp.fallback || ov.fallback || null,
         image: ov.image || wp.image || null,
         imageAlt: ov.imageAlt || wp.imageAlt || null,
@@ -762,11 +781,13 @@ export function buildDaySteps(day) {
         wpKind: wp.kind,
         ferry: isBoardFerry ? true : undefined,
         reserve: Boolean(wp.reserve),
+        scenic: Boolean(wp.scenic),
         url:
           (isBoardFerry ? ferry.source || ferry.url : null) ||
           wp.url ||
           null,
         maps: wp.maps || null,
+        price: (isBoardFerry ? ferry.price : null) || wp.price || null,
         fallback: wp.fallback || null,
         image: wp.image || null,
         imageAlt: wp.imageAlt || null,

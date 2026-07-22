@@ -8,11 +8,14 @@
   --fjord: #0d6e74;
   --fjord-deep: #0a4f54;
   --ice: #d9e8ec;
-  --must: #0d6e74;
+  --must: #1f9d55;
+  --must-deep: #0f6b38;
   --protect: #b86a2b;
   --protect-deep: #8a4a18;
   --opt: #8a6a3a;
-  --scenic: #2f6f8f;
+  --scenic: #7b2cbf;
+  --scenic-deep: #5a189a;
+  --wild: #2f6f8f;
   --stop: #7a5330;
   --camp: #3d6b4f;
   --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
@@ -409,7 +412,7 @@ button.linkish:disabled {
   background: var(--opt);
 }
 .legend .sleep::before {
-  background: var(--scenic);
+  background: var(--wild);
 }
 
 .day {
@@ -672,9 +675,9 @@ button.linkish:disabled {
 }
 
 .pill.scenic {
-  border-color: color-mix(in srgb, var(--scenic) 35%, var(--line));
-  color: var(--scenic);
-  background: color-mix(in srgb, var(--scenic) 8%, white);
+  border-color: color-mix(in srgb, var(--wild) 35%, var(--line));
+  color: var(--wild);
+  background: color-mix(in srgb, var(--wild) 8%, white);
 }
 
 .pill.campsite {
@@ -726,7 +729,7 @@ button.linkish:disabled {
 
 .step-card__summary {
   display: grid;
-  grid-template-columns: 2.4rem auto auto minmax(0, 1fr) 1.25rem;
+  grid-template-columns: 2.4rem auto auto minmax(0, 1fr) auto 1.25rem;
   align-items: center;
   gap: 0.45rem 0.65rem;
   padding: 0.55rem 0.65rem;
@@ -750,6 +753,47 @@ button.linkish:disabled {
 
 .step-card__name {
   min-width: 0;
+}
+
+.step-card__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.05rem;
+  text-align: right;
+  line-height: 1.15;
+  white-space: nowrap;
+  justify-self: end;
+}
+
+.step-card__price--empty {
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.step-card__price-nok {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink, #1a1a1a);
+  letter-spacing: 0.01em;
+}
+
+.step-card__price-eur {
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.step-card__price-meta-eur {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.step-card__fx-note {
+  font-size: 0.78em;
+  opacity: 0.85;
 }
 
 .step-card__chev {
@@ -1116,7 +1160,7 @@ button.linkish:disabled {
 
 .badge.must {
   background: color-mix(in srgb, var(--must) 14%, white);
-  color: var(--fjord-deep);
+  color: var(--must-deep);
 }
 
 .badge.opt {
@@ -1142,6 +1186,11 @@ button.linkish:disabled {
 .badge.stop {
   background: color-mix(in srgb, var(--stop) 15%, white);
   color: #5a3a1c;
+}
+
+.badge.scenic {
+  background: color-mix(in srgb, var(--scenic) 14%, white);
+  color: var(--scenic-deep);
 }
 
 .notes {
@@ -1342,10 +1391,10 @@ button.linkish:disabled {
   }
 
   .step-card__summary {
-    grid-template-columns: 2.6rem auto auto minmax(0, 1fr) 1.25rem;
+    grid-template-columns: 2.6rem minmax(0, 1fr) auto 1.25rem;
     grid-template-areas:
-      "check title title title chev"
-      "check start dur . chev";
+      "check title price chev"
+      "check start dur chev";
     gap: 0.2rem 0.55rem;
     padding: 0.75rem 0.7rem;
   }
@@ -1374,6 +1423,12 @@ button.linkish:disabled {
   .step-card__title {
     grid-area: title;
     font-size: 0.95rem;
+  }
+
+  .step-card__price {
+    grid-area: price;
+    align-self: start;
+    margin-top: 0.1rem;
   }
 
   .step-card__chev {

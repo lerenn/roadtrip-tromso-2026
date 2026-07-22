@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import ExtLink from './ExtLink.vue'
 import LinkifiedText from './LinkifiedText.vue'
 import { fmtDuration } from '../lib/chronology'
+import { formatPriceChip, RATE_NOTE } from '../lib/money'
 import { imageForStep } from '../lib/places'
 
 const props = defineProps({
@@ -59,12 +60,15 @@ const mapsUrl = computed(() => {
   return `https://www.google.com/maps?q=${encodeURIComponent(q)}`
 })
 
+const priceChip = computed(() => formatPriceChip(props.step.price))
+
 const hasDetails = computed(() => {
   const s = props.step
   return Boolean(
     s.notes ||
       s.place ||
       s.url ||
+      s.price ||
       s.fallback ||
       photo.value ||
       mapsUrl.value ||
@@ -134,8 +138,19 @@ const hasDetails = computed(() => {
         <span v-if="kindLabel" class="badge" :class="badgeClass">{{
           kindLabel === 'protect' ? 'protect' : kindLabel
         }}</span>
+        <span v-if="step.scenic" class="badge scenic">scenic</span>
         <span v-if="step.reserve" class="badge reserve">reserve</span>
       </span>
+
+      <span
+        v-if="priceChip"
+        class="step-card__price"
+        :title="`${priceChip.full} · ${RATE_NOTE}`"
+      >
+        <span class="step-card__price-nok">{{ priceChip.nok }}</span>
+        <span class="step-card__price-eur">{{ priceChip.eur }}</span>
+      </span>
+      <span v-else class="step-card__price step-card__price--empty" aria-hidden="true"></span>
 
       <span class="step-card__chev" aria-hidden="true"></span>
     </summary>
@@ -169,6 +184,13 @@ const hasDetails = computed(() => {
       <div class="step-card__meta">
         <p v-if="step.place" class="step-card__place">
           <strong>Where</strong> {{ step.place }}
+        </p>
+        <p v-if="step.price" class="step-card__price-meta">
+          <strong>Price</strong> {{ step.price }}
+          <span v-if="priceChip" class="step-card__price-meta-eur">
+            · {{ priceChip.eur }}
+            <span class="step-card__fx-note">({{ RATE_NOTE }})</span>
+          </span>
         </p>
         <p v-if="step.url" class="step-card__link">
           <strong>Link</strong>
@@ -217,6 +239,7 @@ const hasDetails = computed(() => {
               <ExtLink :href="alt.url" :label="alt.activity" />
               <span v-if="alt.duration_h"> · ~{{ alt.duration_h }} h</span>
               <span v-if="alt.place" class="fallback__place"> · {{ alt.place }}</span>
+              <span v-if="alt.price" class="fallback__price"> · {{ alt.price }}</span>
               <span v-if="alt.notes" class="fallback__notes">
                 — <LinkifiedText :text="alt.notes" />
               </span>
