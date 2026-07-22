@@ -17,8 +17,12 @@ Campervan roadbook for **Louis + girlfriend** — Indie Campers Active Pop Top.
 The trip lives in JSON. The Vue app only presents it (live chronology + MapLibre maps):
 
 ```bash
-cd app && npm install && npm run dev
+make start    # http://127.0.0.1:5173/
+make stop
+make status
 ```
+
+Or manually: `cd app && npm install && npm run dev`.
 
 See [`app/README.md`](app/README.md).
 

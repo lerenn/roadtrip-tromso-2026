@@ -4,13 +4,20 @@ Presentation layer for the campervan itinerary. **JSON is the trip** (`../option
 
 ## Run
 
+From the repo root:
+
 ```bash
-cd app
+make start    # http://127.0.0.1:5173/
+make stop
+make status
+```
+
+Or from this folder:
+
+```bash
 npm install
 npm run dev
 ```
-
-Open the printed local URL (usually `http://localhost:5173`).
 
 ## Build
 

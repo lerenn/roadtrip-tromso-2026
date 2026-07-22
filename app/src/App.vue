@@ -22,6 +22,45 @@ const mustOnly = ref(false)
 const itinerary = computed(() => options[optionId.value])
 const days = computed(() => buildOptionChronology(itinerary.value))
 
+const optionStats = computed(() => {
+  const daysRaw = itinerary.value.days || []
+  let km = 0
+  let driveH = 0
+  let ferryCrossings = 0
+  let overnightNights = 0
+  let scenic = 0
+  let campsite = 0
+
+  for (const day of daysRaw) {
+    km += Number(day.drive_km_approx || 0)
+    driveH += Number(day.drive_h_approx || 0)
+    if (day.overnight) {
+      overnightNights += 1
+      if (day.overnight.type === 'campsite') campsite += 1
+      else scenic += 1
+    }
+    const wps = day.waypoints || []
+    for (let i = 0; i < wps.length - 1; i++) {
+      if (wps[i].kind === 'ferry' && wps[i + 1].kind === 'ferry') ferryCrossings += 1
+    }
+  }
+
+  const ns = itinerary.value.nights_summary || {}
+  if (ns.scenic != null) scenic = ns.scenic
+  if (ns.campsite != null) campsite = ns.campsite
+
+  return {
+    km: Math.round(km),
+    driveH: Math.round(driveH * 10) / 10,
+    days: daysRaw.length,
+    nights: overnightNights || scenic + campsite,
+    scenic,
+    campsite,
+    ferryCrossings,
+    avgKmPerDay: daysRaw.length ? Math.round(km / daysRaw.length) : 0,
+  }
+})
+
 const overviewDrive = ref([])
 const overviewFerry = ref([])
 const overviewLoading = ref(true)
@@ -86,8 +125,36 @@ watch(optionId, loadOverview, { immediate: true })
     <header class="cover">
       <div class="wrap">
         <p class="eyebrow">Tromsø campervan · 29 Aug – 5 Sep 2026</p>
-        <h1>Option {{ itinerary.id }} — {{ itinerary.title }}</h1>
+        <h1>Option {{ itinerary.id }}: {{ itinerary.title }}</h1>
         <p class="tagline">{{ itinerary.tagline }}</p>
+
+        <dl class="stats" aria-label="Option summary">
+          <div class="stat">
+            <dt>Distance</dt>
+            <dd>~{{ optionStats.km }} km</dd>
+          </div>
+          <div class="stat">
+            <dt>In the van</dt>
+            <dd>~{{ optionStats.driveH }} h</dd>
+          </div>
+          <div class="stat">
+            <dt>Days</dt>
+            <dd>{{ optionStats.days }} · {{ optionStats.nights }} nights</dd>
+          </div>
+          <div class="stat">
+            <dt>Overnights</dt>
+            <dd>{{ optionStats.scenic }} scenic · {{ optionStats.campsite }} campsite</dd>
+          </div>
+          <div class="stat">
+            <dt>Ferries</dt>
+            <dd>{{ optionStats.ferryCrossings }} crossings</dd>
+          </div>
+          <div class="stat">
+            <dt>Avg / day</dt>
+            <dd>~{{ optionStats.avgKmPerDay }} km</dd>
+          </div>
+        </dl>
+
         <ul class="meta">
           <li><strong>Vehicle</strong> {{ depot.vehicle }}</li>
           <li><strong>Pickup</strong> {{ pickupLabel }}</li>

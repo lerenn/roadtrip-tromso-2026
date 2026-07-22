@@ -3,6 +3,10 @@ app/node_modules/
 app/dist/
 app/*.local
 
+# Dev server control files (Makefile)
+.app.pid
+.app.log
+
 # Python leftovers (if any)
 __pycache__/
 *.py[cod]
