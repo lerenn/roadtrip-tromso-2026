@@ -23,6 +23,8 @@ make status
 
 Or manually: `cd app && npm install && npm run dev`.
 
+**Live:** [lerenn.github.io/roadtrip-tromso-2026](https://lerenn.github.io/roadtrip-tromso-2026/) (GitHub Pages — deploys from `main` via Actions).
+
 See [`app/README.md`](app/README.md).
 
 ## Alternatives (data)

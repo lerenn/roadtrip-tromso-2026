@@ -16,6 +16,9 @@ const options = {
   B: itineraryB,
 }
 
+/** Respect Vite `base` (GitHub Pages project URL). */
+const baseUrl = import.meta.env.BASE_URL
+
 const optionId = ref('A')
 const showOptional = ref(true)
 const mustOnly = ref(false)
@@ -150,7 +153,7 @@ watch(
     <header class="cover">
       <div class="cover-hero">
         <img
-          src="/hero-senja.jpg"
+          :src="`${baseUrl}hero-senja.jpg`"
           alt="Scenic Route Senja along Bergsfjorden — mountain road above the fjord"
           width="2400"
           height="1600"

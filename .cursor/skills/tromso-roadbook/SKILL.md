@@ -56,8 +56,11 @@ See [itinerary-schema.md](itinerary-schema.md) for field shapes.
 ## Deploy notes
 
 - Static site = Vite build of `app/` (`make build` → `app/dist`).
-- For GitHub Pages under a project URL, set Vite `base` to the repo path and wire a workflow that builds `app/` and publishes `app/dist`.
-- OSRM uses a public server (dev proxy `/osrm`); production needs a working OSRM URL or proxy — do not assume localhost proxy on Pages.
+- GitHub Pages: `.github/workflows/pages.yml` builds on `main` and deploys `app/dist`.
+- Vite `base` comes from `GITHUB_REPOSITORY` in CI (`/roadtrip-tromso-2026/`); local stays `/`. Override with `VITE_BASE`.
+- Public assets in templates must use `import.meta.env.BASE_URL` (see hero in `App.vue`).
+- OSRM: dev uses `/osrm` proxy; production calls `https://router.project-osrm.org` directly (CORS-tolerant; falls back to straight lines if blocked).
+- Repo Settings → Pages → Source must be **GitHub Actions** (one-time).
 
 ## Do not
 
