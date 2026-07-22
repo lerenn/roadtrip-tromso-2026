@@ -36,3 +36,16 @@ npm run preview
 ## Edit the trip
 
 Change waypoints / optionals / ferries in the option `itinerary.json` files, then refresh the app.
+
+Day notes (`day.notes`) can be plain strings (auto-placed on depot / shop / ferry / sleep) or objects:
+
+```json
+{ "text": "Stock groceries + water before leaving Tromsø.", "kind": "shop" }
+```
+
+`kind` may be `depot`, `shop`, `sleep`, `viewpoint`; or use `after` / `during` / `place` like optionals. Set `"ferry": true` to pin a note on the ferry crossing.
+
+Fail scripts are integrated in the JSON (no global switch):
+
+- **Day-level** — `day.scenarios[]` with `when`, `replace` for that day, optional `ripple` for later days. In the UI these appear as checkboxes at the top of each day; selecting one (or several) swaps the roadbook for that contingency. Use `"attach": "ferry_crossing"` to put the toggle on the ferry crossing line instead. Nested `replace` fields (e.g. `ferry.target_departure`) deep-merge into the day.
+- **Line-level** — `optional[].fallback` with `when` + `then` alternate activities under a step.

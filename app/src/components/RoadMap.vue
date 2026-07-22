@@ -197,4 +197,15 @@ watch(
   width: 100%;
   height: 100%;
 }
+
+@media (max-width: 720px) {
+  :deep(.maplibregl-ctrl-top-right) {
+    top: 4px;
+    right: 4px;
+  }
+  :deep(.maplibregl-ctrl button) {
+    width: 32px;
+    height: 32px;
+  }
+}
 </style>

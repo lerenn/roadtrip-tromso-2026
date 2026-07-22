@@ -1,19 +1,14 @@
 # Option B — Senja + Lyngen
 
-Plan B / alpine alternative — no Gryllefjord ferry dependency. Fjords, peaks, glaciers.
+Senja then Lyngen without the Andenes ferry. Hero days: Blåisvatnet + Steindalsbreen approach.
 
 **Data:** [`itinerary.json`](itinerary.json)  
-**Presentation:** run the Vue app from [`../app`](../app) and pick option B.
+**Presentation:** `make start` → pick option B. Fail scripts live on the day/line they change (`scenarios` / `fallback`).
 
 ## Anchors
 
 - Pickup Sat 29 Aug 15:30 Tromsø
 - Ferry Brensholmen → Botnhamn (Sun 30 Aug)
-- Leave Senja via Finnsnes (bridge) — no Andenes ferry
-- Ferries Breivikeidet↔Svensby and Lyngseidet↔Olderdalen (frequent)
+- Leave Senja via Finnsnes — no Gryllefjord→Andenes ferry
+- Heroes: Blåisvatnet, Steindalsbreen / west-coast views
 - Return Sat 5 Sep before 11:30 Tromsø
-
-## Overnight mix
-
-- Scenic / campsite ~50/50
-- Last night near Tromsø

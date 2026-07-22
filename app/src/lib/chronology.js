@@ -1,6 +1,8 @@
 /**
  * Build day chronology steps from itinerary.json.
- * Mandatory steps own the clock; optionals are inserted without shifting must times.
+ * Mandatory steps own the baseline clock; optionals are inserted at anchor times
+ * without shifting later steps. Selecting optionals in the UI piles their
+ * durations onto following start times.
  */
 
 const STOP_DURATION_H = {
@@ -53,15 +55,17 @@ function dayStartClock(day) {
   }
   const ferry = day.ferry || {}
   const target = ferry.target_departure
-  if (target && (ferry.route || '').includes('Brensholmen')) {
-    const [hh, mm] = target.split(':').map(Number)
-    base.setHours(hh, mm, 0, 0)
-    return addHours(base, -0.5)
-  }
-  if (target && (ferry.route || '').includes('Gryllefjord')) {
-    const [hh, mm] = target.split(':').map(Number)
-    base.setHours(Math.max(0, hh - 2), mm, 0, 0)
-    return base
+  const firstWp = (day.waypoints || [])[0]
+  // Only lead the day clock from the ferry when the day begins at the quay.
+  if (target && firstWp?.kind === 'ferry') {
+    const [hh, mm] = String(target).split(':').map(Number)
+    if (Number.isFinite(hh)) {
+      base.setHours(hh, mm || 0, 0, 0)
+      const route = ferry.route || ''
+      // Gryllefjord→Andenes needs a long camper queue; other crossings ~30 min.
+      const leadH = route.includes('Gryllefjord') ? 2 : 0.5
+      return addHours(base, -leadH)
+    }
   }
   if (day.day === 8) {
     base.setHours(9, 0, 0, 0)
@@ -191,13 +195,217 @@ function eveningLimit(day) {
   return base
 }
 
+function appendStepNote(step, text) {
+  if (!step || !text) return
+  step.notes = step.notes ? `${step.notes} · ${text}` : text
+}
+
+/** Infer which step a free-text day note belongs on. */
+function inferNoteTarget(text) {
+  const t = (text || '').toLowerCase()
+  if (/grocery|groceries|stock up|stock groceries|shop\b|coop|city nord/.test(t)) {
+    return { kind: 'shop' }
+  }
+  if (/pickup|pick up|late pickup|depot|indie campers|soft start/.test(t)) {
+    return { kind: 'depot' }
+  }
+  if (/return before|return camper/.test(t)) {
+    return { kind: 'depot' }
+  }
+  if (
+    /sleep |overnight|quay so|close to the quay|buffer night|early night|sleep\b/.test(
+      t,
+    )
+  ) {
+    return { kind: 'sleep' }
+  }
+  if (
+    /board ferry|ferry crossing|sailing|miss(ed)? the|queue for|join the camper queue/.test(
+      t,
+    )
+  ) {
+    return { ferry: true }
+  }
+  return { kind: 'sleep' }
+}
+
+function findNoteStep(steps, target) {
+  if (!target || !steps?.length) return null
+
+  if (target.kind === 'shop') {
+    return (
+      steps.find((s) => s.wpKind === 'shop') ||
+      steps.find((s) => (s.activity || '').startsWith('Grocery'))
+    )
+  }
+  if (target.kind === 'depot') {
+    return (
+      steps.find((s) => s.wpKind === 'depot') ||
+      steps.find(
+        (s) =>
+          (s.activity || '').startsWith('Pick up') ||
+          (s.activity || '').startsWith('Return'),
+      )
+    )
+  }
+  if (target.kind === 'sleep') {
+    return (
+      [...steps]
+        .reverse()
+        .find((s) => s.overnight || (s.activity || '').startsWith('Overnight')) ||
+      [...steps].reverse().find((s) => s.wpKind === 'sleep')
+    )
+  }
+  if (target.kind === 'viewpoint') {
+    return steps.find((s) => s.wpKind === 'viewpoint')
+  }
+  if (target.ferry) {
+    return (
+      steps.find((s) => s.ferry) ||
+      steps.find((s) => (s.activity || '').startsWith('Board ferry')) ||
+      steps.find((s) => (s.activity || '').startsWith('Ferry crossing'))
+    )
+  }
+
+  const keys = []
+  if (target.during) keys.push(['during', String(target.during)])
+  if (target.after) keys.push(['after', String(target.after)])
+  if (target.on) keys.push(['after', String(target.on)])
+  if (target.place) keys.push(['after', String(target.place)])
+
+  for (const [mode, key] of keys) {
+    for (const step of steps) {
+      if (!placeMatches(key, step.place) && !placeMatches(key, step.activity)) continue
+      if ((step.activity || '') === 'Drive') continue
+      if (mode === 'during') return step
+      return step
+    }
+  }
+  return null
+}
+
+/**
+ * Attach day.notes onto relevant steps.
+ * Notes may be strings (auto-placed) or { text, kind|after|during|on|place|ferry }.
+ */
+function attachDayNotes(day, steps) {
+  const leftovers = []
+  for (const raw of day.notes || []) {
+    let text
+    let target
+    if (typeof raw === 'string') {
+      text = raw.trim()
+      target = inferNoteTarget(text)
+    } else if (raw && typeof raw === 'object') {
+      text = String(raw.text || raw.note || '').trim()
+      target = {
+        kind: raw.kind || null,
+        after: raw.after || null,
+        during: raw.during || null,
+        on: raw.on || null,
+        place: raw.place || null,
+        ferry: Boolean(raw.ferry),
+      }
+      if (
+        !target.kind &&
+        !target.after &&
+        !target.during &&
+        !target.on &&
+        !target.place &&
+        !target.ferry
+      ) {
+        target = inferNoteTarget(text)
+      }
+    } else {
+      continue
+    }
+    if (!text) continue
+    const step = findNoteStep(steps, target)
+    if (step) appendStepNote(step, text)
+    else leftovers.push(text)
+  }
+
+  if (!leftovers.length) return
+  const sink =
+    findNoteStep(steps, { kind: 'sleep' }) ||
+    [...steps].reverse().find((s) => s.must && s.activity)
+  if (sink) appendStepNote(sink, leftovers.join(' · '))
+}
+
+function isFerryLegStep(step) {
+  const a = step.activity || ''
+  return (
+    Boolean(step.ferry) ||
+    step.wpKind === 'ferry' ||
+    a.startsWith('Board ferry') ||
+    a.startsWith('Ferry crossing') ||
+    a.startsWith('Ferry quay')
+  )
+}
+
+function collapseFerryCluster(cluster) {
+  if (cluster.length === 1) return cluster[0]
+
+  const first = cluster[0]
+  let durationH = 0
+  const noteParts = []
+  let route = ''
+  let place = first.place || ''
+
+  for (const s of cluster) {
+    durationH += Number(s.duration_h || 0)
+    const a = s.activity || ''
+    if (a.startsWith('Board ferry — ')) route = a.slice('Board ferry — '.length)
+    else if (a.startsWith('Ferry crossing — ')) route = a.slice('Ferry crossing — '.length)
+    if (a.startsWith('Ferry crossing') && s.place) place = s.place
+    if (s.notes) {
+      for (const part of String(s.notes).split(' · ')) {
+        const p = part.trim()
+        if (p && !noteParts.includes(p)) noteParts.push(p)
+      }
+    }
+  }
+
+  return {
+    ...first,
+    activity: route ? `Ferry — ${route}` : 'Ferry',
+    place,
+    duration: fmtDuration(durationH),
+    duration_h: durationH,
+    notes: noteParts.join(' · '),
+    must: true,
+    ferry: true,
+    wpKind: 'ferry',
+  }
+}
+
+/** Collapse Board / Crossing / Quay into one ferry step with summed duration. */
+function mergeFerrySteps(steps) {
+  const out = []
+  let i = 0
+  while (i < steps.length) {
+    if (!isFerryLegStep(steps[i])) {
+      out.push(steps[i])
+      i += 1
+      continue
+    }
+    const cluster = []
+    while (i < steps.length && isFerryLegStep(steps[i])) {
+      cluster.push(steps[i])
+      i += 1
+    }
+    out.push(collapseFerryCluster(cluster))
+  }
+  return out
+}
+
 function insertOptionals(day, steps, placeEndTimes, overnightDt) {
   if (!day.optional?.length) return steps
 
   const pending = []
   const limit = eveningLimit(day)
 
-  for (let raw of day.optional) {
+  day.optional.forEach((raw, oi) => {
     let item = raw
     if (typeof item === 'string') {
       item = {
@@ -211,6 +419,7 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
     const place = item.place || '—'
     const durationH = Number(item.duration_h || 1)
     const notes = item.notes || 'Skip if tired / weather is poor'
+    const isProtected = Boolean(item.protected)
 
     const anchor = findAnchor(item, placeEndTimes, steps)
     let startDt
@@ -235,7 +444,7 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
       insertAfter,
       {
         date: '',
-        activity: `Optional — ${activity}`,
+        activity: isProtected ? `Protected — ${activity}` : `Optional — ${activity}`,
         place,
         start: fmtTime(startDt),
         duration: fmtDuration(durationH),
@@ -246,9 +455,13 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
         lon: item.lon ?? null,
         _dt: startDt,
         optional: true,
+        protected: isProtected,
+        fallback: item.fallback || null,
+        optId: `d${day.day}-o${oi}`,
+        optLabel: activity,
       },
     ])
-  }
+  })
 
   pending.sort((a, b) => b[0] - a[0])
   for (const [insertAfter, optStep] of pending) {
@@ -262,8 +475,14 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
     const ma = a.must ? 0 : 1
     const mb = b.must ? 0 : 1
     if (ma !== mb) return ma - mb
-    const oa = (a.activity || '').startsWith('Optional') ? 1 : 0
-    const ob = (b.activity || '').startsWith('Optional') ? 1 : 0
+    const oa =
+      (a.activity || '').startsWith('Optional') || (a.activity || '').startsWith('Protected')
+        ? 1
+        : 0
+    const ob =
+      (b.activity || '').startsWith('Optional') || (b.activity || '').startsWith('Protected')
+        ? 1
+        : 0
     if (oa !== ob) return oa - ob
     return (a.activity || '').localeCompare(b.activity || '')
   })
@@ -334,7 +553,17 @@ export function buildDaySteps(day) {
     let notes = ''
     if (wp.kind === 'ferry' && nextWp?.kind === 'sleep') dur = 0.1
     if (wp.kind === 'ferry' && nextWp?.kind === 'ferry') {
+      // Queue / board until the published departure so the crossing starts on time.
       dur = 0.25
+      if (ferry.target_departure) {
+        const [hh, mm] = String(ferry.target_departure).split(':').map(Number)
+        if (Number.isFinite(hh)) {
+          const depart = parseDate(day)
+          depart.setHours(hh, mm || 0, 0, 0)
+          const waitH = (depart.getTime() - clock.getTime()) / 3_600_000
+          if (waitH > 0.05) dur = waitH
+        }
+      }
       activity = `Board ferry — ${ferry.route || wp.name}`
       if (ferry.target_departure) notes = `Target departure ${ferry.target_departure}`
       if (ferry.backup?.length) notes += `${notes ? ' · ' : ''}backup ${ferry.backup.join(', ')}`
@@ -370,6 +599,7 @@ export function buildDaySteps(day) {
         _dt: new Date(clock),
         overnight: true,
         overnight_type: (day.overnight || {}).type || 'scenic',
+        wpKind: wp.kind,
       })
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
     } else if (dur > 0 || ['depot', 'ferry', 'shop', 'via', 'start'].includes(wp.kind)) {
@@ -386,6 +616,8 @@ export function buildDaySteps(day) {
         lat: wp.lat,
         lon: wp.lon,
         _dt: new Date(clock),
+        wpKind: wp.kind,
+        ferry: wp.kind === 'ferry' && nextWp?.kind === 'ferry' ? true : undefined,
       })
       clock = addHours(clock, dur)
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
@@ -407,26 +639,28 @@ export function buildDaySteps(day) {
   }
 
   let out = insertOptionals(day, steps, placeEndTimes, overnightDt)
-
-  const dayNotes = (day.notes || []).map((n) => n.trim()).filter(Boolean)
-  if (dayNotes.length) {
-    const merged = dayNotes.join(' · ')
-    let target =
-      [...out].reverse().find(
-        (s) => s.must && (s.activity?.startsWith('Overnight') || s.activity?.startsWith('Return')),
-      ) || [...out].reverse().find((s) => s.must && s.activity)
-    if (target) target.notes = target.notes ? `${target.notes} · ${merged}` : merged
-  }
+  attachDayNotes(day, out)
+  out = mergeFerrySteps(out)
 
   out = out.map((s, idx) => {
     const { _dt, ...rest } = s
+    const isProtected = Boolean(s.protected) || (s.activity || '').startsWith('Protected')
+    const isOptional =
+      Boolean(s.optional) ||
+      (s.activity || '').startsWith('Optional') ||
+      isProtected
     return {
       ...rest,
       date: idx === 0 ? dateLabel : '',
+      protected: isProtected,
+      optional: isOptional,
+      startMs: _dt instanceof Date ? _dt.getTime() : null,
+      baseStart: rest.start,
       rowClass: [
-        s.optional || s.activity?.startsWith('Optional') ? 'optional' : '',
+        isProtected ? 'protected' : '',
+        isOptional && !isProtected ? 'optional' : '',
         s.overnight || s.activity?.startsWith('Overnight') ? 'overnight' : '',
-        s.must && !(s.optional || s.activity?.startsWith('Optional')) ? 'must' : '',
+        s.must && !isOptional ? 'must' : '',
       ]
         .filter(Boolean)
         .join(' '),
@@ -434,6 +668,65 @@ export function buildDaySteps(day) {
   })
 
   return out
+}
+
+/**
+ * Apply selected optional durations onto following steps.
+ * @param {object[]} steps baseline steps from buildDaySteps
+ * @param {Set<string>|string[]} selectedOptIds selected optional optIds
+ */
+export function applyOptionalSelection(steps, selectedOptIds) {
+  const selected =
+    selectedOptIds instanceof Set
+      ? selectedOptIds
+      : new Set(selectedOptIds || [])
+
+  let delayH = 0
+  const sources = []
+
+  return (steps || []).map((step) => {
+    const baseMs = step.startMs
+    const shifted =
+      baseMs != null && delayH > 0
+        ? new Date(baseMs + Math.round(delayH * 60) * 60_000)
+        : baseMs != null
+          ? new Date(baseMs)
+          : null
+
+    const shiftSources = sources.map((s) => ({ ...s }))
+    const out = {
+      ...step,
+      start: shifted ? fmtTime(shifted) : step.start,
+      timeShifted: delayH > 0,
+      shiftH: delayH,
+      shiftSources,
+      included: step.optId ? selected.has(step.optId) : false,
+    }
+
+    if (step.optId && selected.has(step.optId)) {
+      const dur = Number(step.duration_h || 0)
+      if (dur > 0) {
+        delayH += dur
+        sources.push({
+          optId: step.optId,
+          activity: step.optLabel || step.activity,
+          duration_h: dur,
+          duration: fmtDuration(dur),
+        })
+      }
+    }
+
+    return out
+  })
+}
+
+/** Default selection: protected blocks on, plain optionals off. */
+export function defaultOptionalSelection(steps) {
+  const ids = []
+  for (const s of steps || []) {
+    if (s.optId && s.protected) ids.push(s.optId)
+  }
+  return ids
 }
 
 export function buildOptionChronology(itinerary) {
@@ -450,6 +743,8 @@ export function buildOptionChronology(itinerary) {
     waypoints: day.waypoints || [],
     notes: day.notes || [],
     optional: day.optional || [],
+    scenarios: day.scenarios || [],
+    rawDay: day,
     steps: buildDaySteps(day),
   }))
 }

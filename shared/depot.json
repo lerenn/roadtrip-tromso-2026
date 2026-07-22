@@ -1,14 +1,12 @@
 {
   "name": "Indie Campers Tromsø",
   "address": "Håndverkervegen 6, 9018 Tromsø, Norway",
-  "lat": 69.6730,
-  "lon": 18.9865,
+  "lat": 69.694817,
+  "lon": 19.010038,
   "pickup": "2026-08-29T15:30:00+02:00",
   "return": "2026-09-05T11:30:00+02:00",
   "vehicle": "Active Pop Top",
-  "booking_code": "NOWJ60",
   "notes": [
-    "Pickup updated to 15:30 (was originally 14:30 on confirmation email).",
     "Unlimited kilometres included.",
     "Second week after the camper stays in Tromsø — keep local day trips for then."
   ]

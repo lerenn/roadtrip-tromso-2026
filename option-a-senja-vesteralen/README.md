@@ -1,18 +1,14 @@
 # Option A — Senja + Vesterålen
 
-Coastal loop via the Gryllefjord–Andenes ferry. Best wow-per-km if the ferry cooperates.
+Coastal loop via Gryllefjord→Andenes. Slow Senja, protected whale/Bleik day, compressed return.
 
 **Data:** [`itinerary.json`](itinerary.json)  
-**Presentation:** run the Vue app from [`../app`](../app) and pick option A.
+**Presentation:** `make start` → pick option A. Fail scripts live on the day/line they change (`scenarios` / `fallback`).
 
 ## Anchors
 
 - Pickup Sat 29 Aug 15:30 Tromsø
 - Ferry Brensholmen → Botnhamn (Sun 30 Aug)
-- Ferry Gryllefjord → Andenes (Tue 1 Sep) — queue early, no booking
+- Ferry Gryllefjord → Andenes (Tue 1 Sep) — queue early / overnight if needed
+- Protected: whale safari + Bleik evening
 - Return Sat 5 Sep before 11:30 Tromsø
-
-## Overnight mix
-
-- Scenic / campsite ~50/50
-- Last night near Tromsø

@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import DaySection from './components/DaySection.vue'
 import RoadMap from './components/RoadMap.vue'
 import { buildOptionChronology } from './lib/chronology'
+import { hasAnyScenarios, materializeItineraryDays } from './lib/scenarios'
 import { buildOverviewRoutes, waypointsForMap } from './lib/osrm'
 import { downloadText, trackToGpx } from './lib/gpx'
 
@@ -18,9 +19,29 @@ const options = {
 const optionId = ref('A')
 const showOptional = ref(true)
 const mustOnly = ref(false)
+/** @type {import('vue').Ref<Set<string>>} */
+const selectedScenarios = ref(new Set())
 
 const itinerary = computed(() => options[optionId.value])
 const days = computed(() => buildOptionChronology(itinerary.value))
+const showScenarioHint = computed(() => hasAnyScenarios(itinerary.value))
+
+const effectiveDays = computed(() =>
+  materializeItineraryDays(itinerary.value, selectedScenarios.value).map(
+    ({ day }) => day,
+  ),
+)
+
+function toggleScenario(id) {
+  const next = new Set(selectedScenarios.value)
+  if (next.has(id)) next.delete(id)
+  else next.add(id)
+  selectedScenarios.value = next
+}
+
+watch(optionId, () => {
+  selectedScenarios.value = new Set()
+})
 
 const optionStats = computed(() => {
   const daysRaw = itinerary.value.days || []
@@ -67,7 +88,7 @@ const overviewLoading = ref(true)
 
 const overviewWaypoints = computed(() => {
   const wps = []
-  for (const day of days.value) {
+  for (const day of effectiveDays.value) {
     for (const wp of day.waypoints || []) wps.push(wp)
   }
   return waypointsForMap(wps)
@@ -98,7 +119,7 @@ async function loadOverview() {
   overviewLoading.value = true
   try {
     const { driveTracks, ferryTracks } = await buildOverviewRoutes(
-      itinerary.value.days.map((d) => ({ waypoints: d.waypoints })),
+      effectiveDays.value.map((d) => ({ waypoints: d.waypoints })),
     )
     overviewDrive.value = driveTracks
     overviewFerry.value = ferryTracks
@@ -117,13 +138,37 @@ function downloadOverviewGpx() {
   downloadText(`option-${itinerary.value.id.toLowerCase()}-overview.gpx`, gpx)
 }
 
-watch(optionId, loadOverview, { immediate: true })
+watch(
+  () => [optionId.value, [...selectedScenarios.value].sort().join(',')],
+  loadOverview,
+  { immediate: true },
+)
 </script>
 
 <template>
   <div class="app">
     <header class="cover">
-      <div class="wrap">
+      <div class="cover-hero">
+        <img
+          src="/hero-senja.jpg"
+          alt="Scenic Route Senja along Bergsfjorden — mountain road above the fjord"
+          width="2400"
+          height="1600"
+          fetchpriority="high"
+        />
+        <div class="cover-hero__fade" aria-hidden="true"></div>
+        <p class="cover-credit">
+          Photo:
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Bergsfjordveien_Fv_862_by_Bergsfjorden,_Senja,_Troms_og_Finnmark,_Norway,_2022_August.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ximonic (Simo Räsänen)</a
+          >
+          · CC BY-SA
+        </p>
+      </div>
+      <div class="cover-panel wrap">
         <p class="eyebrow">Tromsø campervan · 29 Aug – 5 Sep 2026</p>
         <h1>Option {{ itinerary.id }}: {{ itinerary.title }}</h1>
         <p class="tagline">{{ itinerary.tagline }}</p>
@@ -159,7 +204,6 @@ watch(optionId, loadOverview, { immediate: true })
           <li><strong>Vehicle</strong> {{ depot.vehicle }}</li>
           <li><strong>Pickup</strong> {{ pickupLabel }}</li>
           <li><strong>Return</strong> {{ returnLabel }}</li>
-          <li><strong>Booking</strong> {{ depot.booking_code }}</li>
         </ul>
 
         <div class="toolbar">
@@ -213,8 +257,10 @@ watch(optionId, loadOverview, { immediate: true })
         <div class="section-head">
           <h2>The loop</h2>
           <p>
-            JSON is the trip. This app only presents it — times are derived live;
-            maps are routed live (OSRM). Optional rows don’t shift must-do hours.
+            The chronology below is the expected plan. Tick optionals to fold them into the clock.
+            <template v-if="showScenarioHint">
+              Program What-ifs sit at the top of each day — tick one or more to swap in the contingency roadbook (linked days update too). Line-level fails stay under a step.
+            </template>
           </p>
         </div>
         <ul class="anchors">
@@ -245,6 +291,7 @@ watch(optionId, loadOverview, { immediate: true })
 
         <ul class="legend">
           <li class="must">Must-do</li>
+          <li class="protect">Protected</li>
           <li class="opt">Optional</li>
           <li class="sleep">Overnight</li>
         </ul>
@@ -256,8 +303,11 @@ watch(optionId, loadOverview, { immediate: true })
         v-for="day in days"
         :key="`${optionId}-${day.number}`"
         :day="day"
+        :itinerary="itinerary"
+        :selected-scenarios="selectedScenarios"
         :show-optional="showOptional"
         :must-only="mustOnly"
+        @toggle-scenario="toggleScenario"
       />
     </div>
 
@@ -267,8 +317,7 @@ watch(optionId, loadOverview, { immediate: true })
         scenic nights only where legal (allemannsretten). Fuel when you see a station.
       </p>
       <p>
-        Depot: {{ depot.name }} · {{ depot.address }} · {{ depot.vehicle }} ·
-        {{ depot.booking_code }}
+        Depot: {{ depot.name }} · {{ depot.vehicle }}
       </p>
       <p>Source: <code>itinerary.json</code> · presentation only (Vue + MapLibre)</p>
     </footer>

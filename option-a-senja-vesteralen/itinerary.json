@@ -1,7 +1,7 @@
 {
   "id": "A",
   "title": "Senja + Vesterålen",
-  "tagline": "Coastal loop via the Gryllefjord–Andenes ferry. Best wow-per-km if the ferry cooperates.",
+  "tagline": "Coastal loop via Gryllefjord→Andenes. Slow Senja + a protected whale/Bleik day; return is compressed so the islands get the hours.",
   "nights_summary": {
     "scenic": 3,
     "campsite": 4,
@@ -10,7 +10,8 @@
   "anchors": [
     "Pickup Sat 29 Aug 15:30 Tromsø",
     "Ferry Brensholmen → Botnhamn (Sun 30 Aug)",
-    "Ferry Gryllefjord → Andenes (Tue 1 Sep) — queue early, no booking",
+    "Ferry Gryllefjord → Andenes (Tue 1 Sep) — queue overnight if needed, no booking",
+    "Protected block: whale safari + Bleik evening (Tue 1 Sep)",
     "Return Sat 5 Sep before 11:30 Tromsø"
   ],
   "days": [
@@ -20,19 +21,19 @@
       "weekday": "Saturday",
       "title": "Pickup → Kvaløya → Brensholmen",
       "drive_km_approx": 85,
-      "drive_h_approx": 2.0,
+      "drive_h_approx": 2,
       "overnight": {
         "name": "Near Brensholmen ferry quay",
         "type": "scenic",
-        "lat": 69.6225,
-        "lon": 18.09,
+        "lat": 69.61,
+        "lon": 18.04,
         "alt_campsite": "Brensholmen / Kvaløya roadside pull-offs; confirm allemannsretten rules"
       },
       "waypoints": [
         {
           "name": "Indie Campers Tromsø",
-          "lat": 69.673,
-          "lon": 18.9865,
+          "lat": 69.694817,
+          "lon": 19.010038,
           "kind": "depot"
         },
         {
@@ -43,34 +44,43 @@
         },
         {
           "name": "Ersfjordbotn",
-          "lat": 69.7005,
-          "lon": 18.615,
+          "lat": 69.69441,
+          "lon": 18.62083,
           "kind": "viewpoint"
         },
         {
           "name": "Grøtfjord beach",
-          "lat": 69.775,
-          "lon": 18.495,
+          "lat": 69.77701,
+          "lon": 18.52,
           "kind": "viewpoint"
         },
         {
           "name": "Brensholmen ferry",
-          "lat": 69.622,
-          "lon": 18.088,
+          "lat": 69.60785,
+          "lon": 18.03186,
           "kind": "ferry"
         },
         {
           "name": "Overnight near Brensholmen",
-          "lat": 69.6225,
-          "lon": 18.09,
+          "lat": 69.61,
+          "lon": 18.04,
           "kind": "sleep"
         }
       ],
       "ferry": null,
       "notes": [
-        "Late pickup — keep the day short.",
-        "Stock groceries + water before leaving Tromsø.",
-        "Sleep close to the quay so Sunday morning ferry is relaxed."
+        {
+          "text": "Late pickup — keep the day short.",
+          "kind": "depot"
+        },
+        {
+          "text": "Stock groceries + water before leaving Tromsø.",
+          "kind": "shop"
+        },
+        {
+          "text": "Sleep close to the quay so Sunday morning ferry is relaxed.",
+          "kind": "sleep"
+        }
       ],
       "optional": [
         {
@@ -86,27 +96,27 @@
       "day": 2,
       "date": "2026-08-30",
       "weekday": "Sunday",
-      "title": "Ferry to Senja → northern coast",
+      "title": "Ferry to Senja → northern coast (linger)",
       "drive_km_approx": 95,
       "drive_h_approx": 2.5,
       "overnight": {
         "name": "Senja Fjordcamp / Mefjordvær area",
         "type": "campsite",
-        "lat": 69.52,
-        "lon": 17.58,
+        "lat": 69.51864,
+        "lon": 17.43821,
         "alt_scenic": "Pull-off above Mefjordvær if campsite full"
       },
       "waypoints": [
         {
           "name": "Brensholmen ferry",
-          "lat": 69.622,
-          "lon": 18.088,
+          "lat": 69.60785,
+          "lon": 18.03186,
           "kind": "ferry"
         },
         {
           "name": "Botnhamn",
-          "lat": 69.5055,
-          "lon": 17.885,
+          "lat": 69.50694,
+          "lon": 17.90873,
           "kind": "ferry"
         },
         {
@@ -117,20 +127,20 @@
         },
         {
           "name": "Mefjordvær",
-          "lat": 69.515,
-          "lon": 17.585,
+          "lat": 69.51864,
+          "lon": 17.43821,
           "kind": "viewpoint"
         },
         {
           "name": "Tungeneset",
-          "lat": 69.478,
-          "lon": 17.448,
+          "lat": 69.48695,
+          "lon": 17.33304,
           "kind": "viewpoint"
         },
         {
           "name": "Overnight Mefjordvær area",
-          "lat": 69.52,
-          "lon": 17.58,
+          "lat": 69.51864,
+          "lon": 17.43821,
           "kind": "sleep"
         }
       ],
@@ -153,24 +163,129 @@
         "source": "https://havspor.no/rute/botnhamn-brensholmen"
       },
       "notes": [
-        "Sunday timetable — first useful sailing 10:15.",
-        "National Scenic Route Senja starts here — stop often.",
-        "Short walks only: Tungeneset boardwalk / viewpoints."
+        {
+          "text": "Sunday 10:15 sailing — first useful departure.",
+          "ferry": true
+        },
+        {
+          "text": "Scenic Route starts here — stop often; empty the afternoon.",
+          "after": "Husøy"
+        },
+        {
+          "text": "Aim for Tungeneset in good evening light (Devil’s Teeth).",
+          "after": "Tungeneset"
+        }
       ],
       "optional": [
         {
-          "activity": "Tungeneset boardwalk loop",
+          "activity": "Tungeneset boardwalk (evening light)",
           "place": "Tungeneset",
-          "duration_h": 0.75,
-          "notes": "Short coastal walk — pick this OR kayak, not both; skip if rain/wind is nasty",
+          "duration_h": 1,
+          "protected": true,
+          "notes": "Best light late afternoon/evening — protect this if weather is clear; skip kayak if you do this",
           "after": "Tungeneset"
         },
         {
           "activity": "Sea kayak (guided)",
           "place": "Mefjordvær / northern Senja",
-          "duration_h": 2.0,
-          "notes": "Calm sea only; book same day — pick kayak OR Tungeneset boardwalk, not both",
+          "duration_h": 2,
+          "notes": "Calm sea only — pick kayak OR evening Tungeneset, not both",
           "after": "Mefjordvær"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "ferry_missed_brensholmen",
+          "when": "Miss the 10:15 Brensholmen ferry",
+          "summary": "Take the next Sunday sailing (12:15). Senja afternoon compresses — keep Tungeneset light if you can.",
+          "attach": "ferry_crossing",
+          "replace": {
+            "title": "Late ferry to Senja → northern coast (compressed)",
+            "ferry": {
+              "target_departure": "12:15",
+              "backup": [
+                "17:00",
+                "19:00"
+              ],
+              "season_note": "Missed 10:15 — next useful Sunday departure from Brensholmen is 12:15 (~35 min)."
+            },
+            "notes": [
+              {
+                "text": "Sunday backup after 10:15 is 12:15 (then 17:00).",
+                "ferry": true
+              },
+              {
+                "text": "Skip kayak; protect a shorter Tungeneset stop if light remains.",
+                "after": "Tungeneset"
+              },
+              {
+                "text": "Still sleep Mefjordvær — Day 3 is unchanged.",
+                "kind": "sleep"
+              }
+            ],
+            "optional": [
+              {
+                "activity": "Tungeneset boardwalk (evening light)",
+                "place": "Tungeneset",
+                "duration_h": 0.75,
+                "protected": true,
+                "notes": "Short version — only if you arrive with daylight",
+                "after": "Tungeneset"
+              }
+            ]
+          },
+          "banner": "Ferry fail — 12:15 Brensholmen → Botnhamn"
+        },
+        {
+          "id": "weather_senja",
+          "when": "Bad weather on Senja (rain / gale)",
+          "summary": "Skip kayak and long boardwalk linger; still sleep Mefjordvær.",
+          "replace": {
+            "notes": [
+              {
+                "text": "Skip kayak and long boardwalk linger if horizontal rain.",
+                "after": "Mefjordvær"
+              },
+              {
+                "text": "Still sleep Mefjordvær — tomorrow can improve.",
+                "kind": "sleep"
+              }
+            ],
+            "optional": []
+          },
+          "ripple": [
+            {
+              "day": 3,
+              "banner": "Same weather system — Hamn sauna, early queue",
+              "replace": {
+                "title": "Damp Senja → Hamn sauna → early Gryllefjord queue",
+                "notes": [
+                  {
+                    "text": "Photo stops only from the van.",
+                    "after": "Husøy"
+                  },
+                  {
+                    "text": "Sauna at Hamn if open — then go straight to the queue.",
+                    "ferry": true
+                  },
+                  {
+                    "text": "Earlier queue is fine in bad weather (fewer day-trippers).",
+                    "ferry": true
+                  }
+                ],
+                "optional": [
+                  {
+                    "activity": "Sauna / fjord dip",
+                    "place": "Hamn i Senja",
+                    "duration_h": 1.5,
+                    "protected": true,
+                    "notes": "Best use of a grey day",
+                    "after": "Hamn i Senja"
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
     },
@@ -178,61 +293,111 @@
       "day": 3,
       "date": "2026-08-31",
       "weekday": "Monday",
-      "title": "Senja Scenic Route → Gryllefjord",
-      "drive_km_approx": 110,
-      "drive_h_approx": 3.0,
+      "title": "Slow Senja Scenic Route → Gryllefjord queue",
+      "drive_km_approx": 130,
+      "drive_h_approx": 3.5,
       "overnight": {
         "name": "Gryllefjord ferry queue / harbour",
         "type": "scenic",
-        "lat": 69.362,
-        "lon": 17.053,
+        "lat": 69.36347,
+        "lon": 17.0529,
         "alt_campsite": "Hamn i Senja or Gryllefjord camping if available"
       },
       "waypoints": [
         {
           "name": "Mefjordvær",
-          "lat": 69.515,
-          "lon": 17.585,
+          "lat": 69.51864,
+          "lon": 17.43821,
           "kind": "start"
         },
         {
           "name": "Bergsbotn viewpoint",
-          "lat": 69.455,
-          "lon": 17.385,
+          "lat": 69.42307,
+          "lon": 17.50384,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Ersfjordstranda",
+          "lat": 69.47882,
+          "lon": 17.39482,
+          "kind": "viewpoint"
+        },
+        {
+          "name": "Bøvær beach",
+          "lat": 69.46626,
+          "lon": 17.22925,
           "kind": "viewpoint"
         },
         {
           "name": "Hamn i Senja",
-          "lat": 69.41,
-          "lon": 17.17,
+          "lat": 69.41736,
+          "lon": 17.16489,
           "kind": "viewpoint"
         },
         {
           "name": "Gryllefjord ferry",
-          "lat": 69.3615,
-          "lon": 17.052,
+          "lat": 69.36347,
+          "lon": 17.0529,
           "kind": "ferry"
         },
         {
           "name": "Overnight Gryllefjord",
-          "lat": 69.362,
-          "lon": 17.053,
+          "lat": 69.36347,
+          "lon": 17.0529,
           "kind": "sleep"
         }
       ],
       "ferry": null,
       "notes": [
-        "Aim to arrive Gryllefjord late afternoon and join the queue for tomorrow's 11:00 ferry.",
-        "Campervans often sleep in/near the ferry queue — arrive early evening.",
-        "Skip Segla hike (steep); Bergsbotn viewpoint is enough."
+        {
+          "text": "This is a linger day — Ersfjordstranda + Bøvær are the Senja beach icons.",
+          "after": "Mefjordvær"
+        },
+        {
+          "text": "Hamn is the calm-water hub (kayak/SUP/sauna) before the queue.",
+          "after": "Hamn i Senja"
+        },
+        {
+          "text": "Arrive Gryllefjord late afternoon / early evening and join the camper queue for 11:00.",
+          "after": "Gryllefjord"
+        },
+        {
+          "text": "Skip Segla; Hesten is a better short alternative if you want a peak view (optional).",
+          "after": "Bergsbotn"
+        }
       ],
       "optional": [
+        {
+          "activity": "Kayak or SUP at Hamn",
+          "place": "Hamn i Senja",
+          "duration_h": 2,
+          "notes": "Turquoise sheltered water — only if calm; still leave time for the ferry queue",
+          "after": "Hamn i Senja",
+          "fallback": {
+            "when": "Sea too rough for kayak / SUP",
+            "then": [
+              {
+                "activity": "Sauna / fjord dip",
+                "place": "Hamn i Senja",
+                "duration_h": 1.5,
+                "notes": "Indoor/warm alternative at Hamn"
+              }
+            ]
+          }
+        },
         {
           "activity": "Sauna / fjord dip",
           "place": "Hamn i Senja",
           "duration_h": 1.5,
-          "notes": "Paid experience — still leaves time for Gryllefjord queue by evening if you skip later photo stops",
+          "notes": "Paid — good rain Plan B at Hamn; pick kayak OR sauna if short on time",
           "after": "Hamn i Senja"
+        },
+        {
+          "activity": "Hesten viewpoint walk",
+          "place": "Near Fjordgård / Segla area",
+          "duration_h": 2.5,
+          "notes": "Short-ish peak view of Segla without the full Segla grind — clear weather only; skip if it risks the queue",
+          "after": "Bergsbotn viewpoint"
         }
       ]
     },
@@ -240,9 +405,9 @@
       "day": 4,
       "date": "2026-09-01",
       "weekday": "Tuesday",
-      "title": "Ferry to Andenes → Bleik",
-      "drive_km_approx": 35,
-      "drive_h_approx": 0.8,
+      "title": "Ferry → whale safari → Bleik evening",
+      "drive_km_approx": 40,
+      "drive_h_approx": 0.9,
       "overnight": {
         "name": "Andenes / Bleik campsite",
         "type": "campsite",
@@ -253,20 +418,20 @@
       "waypoints": [
         {
           "name": "Gryllefjord ferry",
-          "lat": 69.3615,
-          "lon": 17.052,
+          "lat": 69.36347,
+          "lon": 17.0529,
           "kind": "ferry"
         },
         {
           "name": "Andenes ferry",
-          "lat": 69.324,
-          "lon": 16.135,
+          "lat": 69.32681,
+          "lon": 16.13402,
           "kind": "ferry"
         },
         {
-          "name": "Andenes lighthouse",
-          "lat": 69.3275,
-          "lon": 16.115,
+          "name": "Andenes harbour",
+          "lat": 69.32681,
+          "lon": 16.13402,
           "kind": "viewpoint"
         },
         {
@@ -296,35 +461,265 @@
         {
           "activity": "Whale safari",
           "place": "Andenes harbour",
-          "duration_h": 3.0,
-          "notes": "Book same-day/morning if weather & seats look good — skip Bleik stops if you do this (still fine for campsite night)",
-          "after": "Andenes ferry"
+          "duration_h": 3.5,
+          "protected": true,
+          "notes": "Protected block — book ahead if possible; skip other Andenes sightseeing if you do this",
+          "after": "Andenes ferry",
+          "fallback": {
+            "when": "Safari cancelled, full, or seas too rough",
+            "then": [
+              {
+                "activity": "Whales Centre / museum",
+                "place": "Andenes",
+                "duration_h": 1.5,
+                "notes": "Primary indoor Plan B"
+              },
+              {
+                "activity": "Spaceship Aurora",
+                "place": "Andøya Space",
+                "duration_h": 1.5,
+                "notes": "Second indoor block if you want more"
+              },
+              {
+                "activity": "Andenes lighthouse climb",
+                "place": "Andenes",
+                "duration_h": 0.75,
+                "notes": "Only if wind allows"
+              }
+            ]
+          }
         },
         {
-          "activity": "Whales Centre / museum",
-          "place": "Andenes",
-          "duration_h": 1.0,
-          "notes": "Rainy-day / no-safari alternative — pick this OR the whale safari, not both",
-          "after": "Andenes lighthouse"
+          "activity": "Bleik beach evening (walk + photos)",
+          "place": "Bleik",
+          "duration_h": 1.5,
+          "protected": true,
+          "notes": "Protected evening — golden hour on white sand; drone only if wind + bird rules allow",
+          "after": "Bleik beach"
         }
       ],
       "notes": [
-        "If you miss 11:00, use Day 6 flexibility and take 19:00.",
-        "Bleik at golden hour is a highlight — drone: check wind + bird cliffs restrictions."
+        {
+          "text": "PROTECTED DAY: keep the afternoon for whale safari; keep evening for Bleik.",
+          "after": "Whale safari"
+        },
+        {
+          "text": "Do not stack museums/lighthouse tours on top of the safari — those are weather Plan B.",
+          "after": "Whale safari"
+        },
+        {
+          "text": "Book whale safari the evening before or early morning if seats look good.",
+          "after": "Whale safari"
+        },
+        {
+          "text": "Campsite near Andenes/Bleik — cook dinner after the beach.",
+          "kind": "sleep"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "ferry_missed_11",
+          "when": "Miss the 11:00 Gryllefjord ferry",
+          "summary": "Take the 19:00 sailing. Whale moves to Wednesday morning; Andøya + return compress.",
+          "attach": "ferry_crossing",
+          "replace": {
+            "title": "Queue day → 19:00 ferry → Andenes late",
+            "drive_km_approx": 20,
+            "drive_h_approx": 0.5,
+            "ferry": {
+              "target_departure": "19:00",
+              "backup": [],
+              "season_note": "Missed the 11:00 — taking the 19:00 Gryllefjord→Andenes (~100 min). Stay near the quay; do not day-trip Senja."
+            },
+            "notes": [
+              {
+                "text": "Stay near the quay; do not day-trip Senja and risk missing 19:00.",
+                "ferry": true
+              },
+              {
+                "text": "On arrival: groceries, campsite, early night — whale is tomorrow.",
+                "after": "Whale safari"
+              }
+            ],
+            "optional": [
+              {
+                "activity": "Harbour walk / early sleep",
+                "place": "Andenes",
+                "duration_h": 1,
+                "notes": "No safari tonight — protect Wednesday morning",
+                "after": "Andenes ferry"
+              }
+            ]
+          },
+          "banner": "Ferry fail — wait for 19:00, sleep Andenes late",
+          "ripple": [
+            {
+              "day": 5,
+              "banner": "Ferry fail — whale morning, then race south",
+              "replace": {
+                "title": "Whale morning → Bleik → hard push toward Nyksund/Myre",
+                "drive_km_approx": 140,
+                "drive_h_approx": 3,
+                "notes": [
+                  {
+                    "text": "Book the earliest whale departure you can.",
+                    "after": "Whale safari"
+                  },
+                  {
+                    "text": "Skip Måtinden; Bleik is a short stop only.",
+                    "after": "Bleik"
+                  },
+                  {
+                    "text": "Sleep Nyksund if you arrive before dusk, else Myre/Stø campsite.",
+                    "kind": "sleep"
+                  }
+                ],
+                "waypoints": [
+                  {
+                    "name": "Andenes harbour",
+                    "lat": 69.32681,
+                    "lon": 16.13402,
+                    "kind": "start"
+                  },
+                  {
+                    "name": "Bleik beach",
+                    "lat": 69.273,
+                    "lon": 15.955,
+                    "kind": "viewpoint"
+                  },
+                  {
+                    "name": "Andøya scenic coast",
+                    "lat": 69.12,
+                    "lon": 15.88,
+                    "kind": "via"
+                  },
+                  {
+                    "name": "Nyksund",
+                    "lat": 68.99576,
+                    "lon": 15.01344,
+                    "kind": "sleep"
+                  }
+                ],
+                "optional": [
+                  {
+                    "activity": "Whale safari (morning)",
+                    "place": "Andenes harbour",
+                    "duration_h": 3.5,
+                    "protected": true,
+                    "notes": "Do this first — everything else yields",
+                    "after": "Andenes harbour"
+                  }
+                ]
+              }
+            },
+            {
+              "day": 6,
+              "banner": "Ferry fail — even more compressed mainland hop",
+              "replace": {
+                "title": "Early start → Bardu corridor (no stops)",
+                "drive_km_approx": 340,
+                "drive_h_approx": 6,
+                "notes": [
+                  {
+                    "text": "Leave at first light. Sortland fuel/food only.",
+                    "kind": "shop"
+                  },
+                  {
+                    "text": "Accept a long van day — islands already got the ferry delay tax.",
+                    "ferry": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "weather_andoya",
+          "when": "Bad weather on Andøya (wind / rain)",
+          "summary": "Swap outdoor icons for indoor Plan B; keep driving legs short and safe.",
+          "replace": {
+            "title": "Ferry → indoor Andenes → early campsite",
+            "notes": [
+              {
+                "text": "Cancel/skip whale if cancelled for weather — do not force the boat.",
+                "after": "Whales Centre"
+              },
+              {
+                "text": "Whales Centre + Spaceship Aurora + early dinner.",
+                "after": "Whales Centre"
+              },
+              {
+                "text": "Bleik only if wind allows standing upright.",
+                "after": "Bleik"
+              }
+            ],
+            "optional": [
+              {
+                "activity": "Whales Centre / museum",
+                "place": "Andenes",
+                "duration_h": 1.5,
+                "protected": true,
+                "notes": "Primary Plan B",
+                "after": "Andenes ferry"
+              },
+              {
+                "activity": "Spaceship Aurora",
+                "place": "Andøya Space",
+                "duration_h": 1.5,
+                "notes": "Fun indoor block if museum is short",
+                "after": "Andenes ferry"
+              }
+            ]
+          },
+          "banner": "Weather fail — no boat, indoor Andenes",
+          "ripple": [
+            {
+              "day": 5,
+              "banner": "Weather fail — skip Måtinden, village days",
+              "replace": {
+                "title": "Low-cloud Andøya drive → Nyksund indoors",
+                "notes": [
+                  {
+                    "text": "No Måtinden in cloud/gale.",
+                    "after": "Andøya"
+                  },
+                  {
+                    "text": "Scenic route still pretty in storm light — short stops only.",
+                    "after": "Andøya"
+                  },
+                  {
+                    "text": "Nyksund café/galleries become the afternoon.",
+                    "after": "Nyksund"
+                  }
+                ],
+                "optional": [
+                  {
+                    "activity": "Nyksund café / galleries",
+                    "place": "Nyksund",
+                    "duration_h": 2,
+                    "protected": true,
+                    "notes": "Rain day anchor",
+                    "after": "Nyksund"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       ]
     },
     {
       "day": 5,
       "date": "2026-09-02",
       "weekday": "Wednesday",
-      "title": "Andøya Scenic Route → Nyksund",
-      "drive_km_approx": 160,
-      "drive_h_approx": 3.5,
+      "title": "Andøya Scenic Route (Måtinden) → Nyksund",
+      "drive_km_approx": 150,
+      "drive_h_approx": 3.2,
       "overnight": {
         "name": "Nyksund harbour / village edge",
         "type": "scenic",
-        "lat": 68.9955,
-        "lon": 15.185,
+        "lat": 68.99576,
+        "lon": 15.01344,
         "alt_campsite": "Stø or Myre camping"
       },
       "waypoints": [
@@ -333,6 +728,12 @@
           "lat": 69.273,
           "lon": 15.955,
           "kind": "start"
+        },
+        {
+          "name": "Måtinden trailhead (Baugtua)",
+          "lat": 69.248,
+          "lon": 15.968,
+          "kind": "viewpoint"
         },
         {
           "name": "Bukkekjerka",
@@ -354,30 +755,64 @@
         },
         {
           "name": "Nyksund",
-          "lat": 68.9955,
-          "lon": 15.185,
+          "lat": 68.99576,
+          "lon": 15.01344,
           "kind": "sleep"
         }
       ],
       "ferry": null,
       "notes": [
-        "Slow day — beaches, rest areas, fishing villages.",
-        "Spend real time in Nyksund (not a 20-minute stop).",
-        "Cook dinner with a harbour view."
+        {
+          "text": "Stolen return-hours live here — this is an Andøya day, not a transit day.",
+          "after": "Bleik"
+        },
+        {
+          "text": "Måtinden is the island’s signature short mountain walk (turn back early if tired).",
+          "after": "Måtinden"
+        },
+        {
+          "text": "Arrive Nyksund with afternoon left to linger — cook with harbour view.",
+          "kind": "sleep"
+        }
       ],
       "optional": [
+        {
+          "activity": "Måtinden short hike",
+          "place": "Baugtua / Måtinden",
+          "duration_h": 3,
+          "protected": true,
+          "notes": "Protected clear-weather walk — turn around at the plateau if legs/time say so; skip Stø if you do the full hike",
+          "after": "Måtinden trailhead (Baugtua)",
+          "fallback": {
+            "when": "Cloud, gale, or tired legs",
+            "then": [
+              {
+                "activity": "Spaceship Aurora (Andøya Space)",
+                "place": "Andenes area",
+                "duration_h": 1.5,
+                "notes": "Do before leaving the north tip"
+              },
+              {
+                "activity": "Detour to Stø harbour",
+                "place": "Stø",
+                "duration_h": 1.5,
+                "notes": "Lower-effort coast stop instead of the hike"
+              }
+            ]
+          }
+        },
         {
           "activity": "Detour to Stø harbour",
           "place": "Stø",
           "duration_h": 1.5,
-          "notes": "Sea-eagle coast / fishing village — skip if behind schedule for Nyksund",
+          "notes": "Sea eagles / fishing village — only if you skipped a long Måtinden",
           "after": "Andøya scenic coast"
         },
         {
           "activity": "Nyksund café / galleries",
           "place": "Nyksund",
-          "duration_h": 1.0,
-          "notes": "Linger in the village — this is the highlight of the afternoon",
+          "duration_h": 1,
+          "notes": "Village linger — highlight of the evening",
           "after": "Nyksund"
         }
       ]
@@ -386,34 +821,28 @@
       "day": 6,
       "date": "2026-09-03",
       "weekday": "Thursday",
-      "title": "Vesterålen coast → mainland (flexible)",
-      "drive_km_approx": 280,
+      "title": "Compressed return → Bardu corridor",
+      "drive_km_approx": 320,
       "drive_h_approx": 5.5,
       "overnight": {
-        "name": "Finnsnes / Midt-Troms camping",
+        "name": "Bardu / Setermoen campsite area",
         "type": "campsite",
-        "lat": 69.229,
-        "lon": 17.981,
-        "alt_scenic": "Quiet fjord pull-off south of Finnsnes if weather is perfect"
+        "lat": 69,
+        "lon": 18.52,
+        "alt_scenic": "E6 pull-off only if you already have water/showers"
       },
       "waypoints": [
         {
           "name": "Nyksund",
-          "lat": 68.9955,
-          "lon": 15.185,
+          "lat": 68.99576,
+          "lon": 15.01344,
           "kind": "start"
         },
         {
           "name": "Sortland",
-          "lat": 68.696,
-          "lon": 15.412,
+          "lat": 68.7673,
+          "lon": 15.36792,
           "kind": "shop"
-        },
-        {
-          "name": "Stokmarknes",
-          "lat": 68.568,
-          "lon": 14.91,
-          "kind": "viewpoint"
         },
         {
           "name": "Gullesfjordbotn (E10)",
@@ -422,25 +851,40 @@
           "kind": "via"
         },
         {
-          "name": "Finnsnes",
-          "lat": 69.229,
-          "lon": 17.981,
+          "name": "Tjeldsund Bridge approach",
+          "lat": 68.63,
+          "lon": 16.58,
+          "kind": "via"
+        },
+        {
+          "name": "Bardu / Setermoen",
+          "lat": 69,
+          "lon": 18.52,
           "kind": "sleep"
         }
       ],
       "ferry": null,
       "notes": [
-        "Explorer day — longest drive. Cut Stokmarknes if weather is poor.",
-        "If Gryllefjord ferry slipped to Day 5 evening, compress this day and sleep farther north.",
-        "Fuel + big grocery stop in Sortland."
+        {
+          "text": "Transit day by design — hours were spent on Senja/Andøya instead.",
+          "after": "Nyksund"
+        },
+        {
+          "text": "Fuel + groceries in Sortland; skip sightseeing stops.",
+          "kind": "shop"
+        },
+        {
+          "text": "Sleep on the E6 corridor so Friday into Tromsø stays short.",
+          "kind": "sleep"
+        }
       ],
       "optional": [
         {
-          "activity": "Hurtigruten Museum",
+          "activity": "Hurtigruten Museum (only if weather is foul)",
           "place": "Stokmarknes",
-          "duration_h": 1.0,
-          "notes": "Indoor option if weather is poor; cut it if you need driving buffer",
-          "after": "Stokmarknes"
+          "duration_h": 1,
+          "notes": "Detour — skip unless you need an indoor break; adds time",
+          "after": "Sortland"
         }
       ]
     },
@@ -448,9 +892,9 @@
       "day": 7,
       "date": "2026-09-04",
       "weekday": "Friday",
-      "title": "Return toward Tromsø (buffer night)",
-      "drive_km_approx": 160,
-      "drive_h_approx": 2.5,
+      "title": "E6 → Tromsø buffer night",
+      "drive_km_approx": 120,
+      "drive_h_approx": 2,
       "overnight": {
         "name": "Tromsø area campsite (near depot)",
         "type": "campsite",
@@ -460,16 +904,16 @@
       },
       "waypoints": [
         {
-          "name": "Finnsnes",
-          "lat": 69.229,
-          "lon": 17.981,
+          "name": "Bardu / Setermoen",
+          "lat": 69,
+          "lon": 18.52,
           "kind": "start"
         },
         {
-          "name": "Bardu / E6 corridor",
-          "lat": 69.05,
-          "lon": 18.52,
-          "kind": "via"
+          "name": "Målselvfossen",
+          "lat": 69.036,
+          "lon": 18.66,
+          "kind": "viewpoint"
         },
         {
           "name": "Nordkjosbotn",
@@ -486,16 +930,22 @@
       ],
       "ferry": null,
       "notes": [
-        "Mandatory buffer night near Tromsø — no long drive on return morning.",
-        "Empty grey water / refill water / showers tonight."
+        {
+          "text": "Short day on purpose — buffer before 11:30 return.",
+          "kind": "sleep"
+        },
+        {
+          "text": "Empty grey water / refill / showers / fuel tonight.",
+          "kind": "sleep"
+        }
       ],
       "optional": [
         {
-          "activity": "Målselvfossen viewpoint",
+          "activity": "Målselvfossen + salmon ladder stop",
           "place": "Målselv",
-          "duration_h": 0.5,
-          "notes": "Short waterfall stop on the E6 corridor if ahead of schedule",
-          "after": "Bardu / E6 corridor"
+          "duration_h": 0.75,
+          "notes": "Worth 45 minutes if the river is lively — otherwise drive past",
+          "during": "Målselvfossen"
         }
       ]
     },
@@ -516,15 +966,21 @@
         },
         {
           "name": "Indie Campers Tromsø",
-          "lat": 69.673,
-          "lon": 18.9865,
+          "lat": 69.694817,
+          "lon": 19.010038,
           "kind": "depot"
         }
       ],
       "ferry": null,
       "notes": [
-        "Return before 11:30.",
-        "Leave fuel / cleaning per Indie Campers checklist."
+        {
+          "text": "Return before 11:30.",
+          "kind": "depot"
+        },
+        {
+          "text": "Leave fuel / cleaning per Indie Campers checklist.",
+          "kind": "depot"
+        }
       ]
     }
   ]

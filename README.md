@@ -1,12 +1,11 @@
 # Roadtrip Tromsø 2026
 
-Campervan roadbook for **Louis + girlfriend** — Indie Campers Active Pop Top.
+Campervan roadbook — Indie Campers Active Pop Top.
 
 | | |
 | --- | --- |
-| Pickup | **Sat 29 Aug 2026, 15:30** — Håndverkervegen 6, 9018 Tromsø |
+| Pickup | **Sat 29 Aug 2026, 15:30** — Indie Campers Tromsø |
 | Return | **Sat 5 Sep 2026, 11:30** — same depot |
-| Booking | `NOWJ60` |
 | Nights | 7 (last night **near Tromsø**) |
 | Mix | ~50/50 scenic overnight / campsite |
 | Language | English |
