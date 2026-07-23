@@ -10,8 +10,6 @@
   --ice: #d9e8ec;
   --must: #1f9d55;
   --must-deep: #0f6b38;
-  --protect: #b86a2b;
-  --protect-deep: #8a4a18;
   --opt: #8a6a3a;
   --scenic: #7b2cbf;
   --scenic-deep: #5a189a;
@@ -407,9 +405,6 @@ button.linkish:disabled {
 .legend .must::before {
   background: var(--must);
 }
-.legend .protect::before {
-  background: var(--protect);
-}
 .legend .opt::before {
   background: var(--opt);
 }
@@ -710,11 +705,6 @@ button.linkish:disabled {
 .step-card.optional {
   background: color-mix(in srgb, #f7f0e4 65%, white);
   box-shadow: inset 3px 0 0 var(--opt);
-}
-
-.step-card.protected {
-  background: color-mix(in srgb, #f5ebe0 70%, white);
-  box-shadow: inset 3px 0 0 var(--protect);
 }
 
 .step-card.overnight {
@@ -1192,11 +1182,6 @@ button.linkish:disabled {
 .badge.opt {
   background: color-mix(in srgb, var(--opt) 16%, white);
   color: #6a4e24;
-}
-
-.badge.protected {
-  background: color-mix(in srgb, var(--protect) 15%, white);
-  color: var(--protect-deep);
 }
 
 .badge.sleep {

@@ -208,8 +208,8 @@ function haversineM(lat1, lon1, lat2, lon2) {
 /**
  * Day waypoints plus selected optionals that have lat/lon.
  * Real detours (not already on the must route) reshape the day map / GPX.
- * Protected / reserve activities at an existing stop still get a pin (activity
- * name) so bookable same-quay stops like whale safari stay visible.
+ * `reserve` activities at an existing stop still get a pin (activity name) so
+ * bookable same-quay stops like whale safari stay visible.
  * @param {object} day
  * @param {Set<string>|string[]} selectedOptIds
  */
@@ -237,8 +237,8 @@ export function routingWaypoints(day, selectedOptIds) {
         haversineM(w.lat, w.lon, item.lat, item.lon) < 400,
     )
     // Plain same-stop optionals (e.g. Hamn kayak) stay off the route pin list;
-    // protected / reserve activities still need a labelled pin at the quay.
-    if (alreadyOnRoute && !(item.protected || item.reserve)) return
+    // `reserve` activities still need a labelled pin at the quay.
+    if (alreadyOnRoute && !item.reserve) return
 
     const anchor = item.after || item.during || item.on || item.place
     let insertAt = Math.max(0, wps.length - 1)
@@ -639,7 +639,6 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
     const place = item.place || '—'
     const durationH = Number(item.duration_h || 1)
     const notes = item.notes || 'Skip if tired / weather is poor'
-    const isProtected = Boolean(item.protected)
 
     const anchor = findAnchor(item, placeEndTimes, steps)
     let startDt
@@ -664,7 +663,7 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
       insertAfter,
       {
         date: '',
-        activity: isProtected ? `Protected — ${activity}` : `Optional — ${activity}`,
+        activity: `Optional — ${activity}`,
         place,
         start: fmtTime(startDt),
         duration: fmtDuration(durationH),
@@ -675,7 +674,6 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
         lon: item.lon ?? null,
         _dt: startDt,
         optional: true,
-        protected: isProtected,
         fallback: item.fallback || null,
         optId: `d${day.day}-o${oi}`,
         optLabel: activity,
@@ -704,14 +702,8 @@ function insertOptionals(day, steps, placeEndTimes, overnightDt) {
     const ma = a.must ? 0 : 1
     const mb = b.must ? 0 : 1
     if (ma !== mb) return ma - mb
-    const oa =
-      (a.activity || '').startsWith('Optional') || (a.activity || '').startsWith('Protected')
-        ? 1
-        : 0
-    const ob =
-      (b.activity || '').startsWith('Optional') || (b.activity || '').startsWith('Protected')
-        ? 1
-        : 0
+    const oa = (a.activity || '').startsWith('Optional') ? 1 : 0
+    const ob = (b.activity || '').startsWith('Optional') ? 1 : 0
     if (oa !== ob) return oa - ob
     return (a.activity || '').localeCompare(b.activity || '')
   })
@@ -979,21 +971,16 @@ export function buildDaySteps(day, osrmLegs = null) {
 
   out = out.map((s, idx) => {
     const { _dt, ...rest } = s
-    const isProtected = Boolean(s.protected) || (s.activity || '').startsWith('Protected')
     const isOptional =
-      Boolean(s.optional) ||
-      (s.activity || '').startsWith('Optional') ||
-      isProtected
+      Boolean(s.optional) || (s.activity || '').startsWith('Optional')
     return {
       ...rest,
       date: idx === 0 ? dateLabel : '',
-      protected: isProtected,
       optional: isOptional,
       startMs: _dt instanceof Date ? _dt.getTime() : null,
       baseStart: rest.start,
       rowClass: [
-        isProtected ? 'protected' : '',
-        isOptional && !isProtected ? 'optional' : '',
+        isOptional ? 'optional' : '',
         s.overnight || s.activity?.startsWith('Overnight') ? 'overnight' : '',
         s.must && !isOptional ? 'must' : '',
       ]
@@ -1056,13 +1043,9 @@ export function applyOptionalSelection(steps, selectedOptIds) {
   })
 }
 
-/** Default selection: protected blocks on, plain optionals off. */
-export function defaultOptionalSelection(steps) {
-  const ids = []
-  for (const s of steps || []) {
-    if (s.optId && s.protected) ids.push(s.optId)
-  }
-  return ids
+/** Default selection: all optionals off (user opts in). */
+export function defaultOptionalSelection(_steps) {
+  return []
 }
 
 /** Cook-in-van meal slots (Europe/Oslo wall clock on the day). */

@@ -154,6 +154,15 @@ export const PLACE_IMAGES = {
     ),
     match: [/bleik|midnattsol/i],
   },
+  royken: {
+    ...commons(
+      'thumb/1/1b/Bleik%2C_Bleikstranda_og_Bleiks%C3%B8ya_sett_fra_R%C3%B8yken.jpg/1280px-Bleik%2C_Bleikstranda_og_Bleiks%C3%B8ya_sett_fra_R%C3%B8yken.jpg',
+      'Bleik,_Bleikstranda_og_Bleiksøya_sett_fra_Røyken.jpg',
+      'Wolfgang Hägele / Wikimedia',
+      'Bleikstranda from Røyken, Andøya',
+    ),
+    match: [/røyken|royken/i],
+  },
   kleivodden: {
     ...commons(
       'thumb/e/ea/Bleiks%C3%B8ya_sett_fra_Kleivodden.jpg/1280px-Bleiks%C3%B8ya_sett_fra_Kleivodden.jpg',

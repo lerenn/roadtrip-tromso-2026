@@ -1,7 +1,7 @@
 {
   "id": "A",
   "title": "Senja + Vesterålen",
-  "tagline": "Coastal loop via Gryllefjord→Andenes. Slow Senja + a protected whale/Bleik day; return is compressed so the islands get the hours.",
+  "tagline": "Coastal loop via Gryllefjord→Andenes. Slow Senja + a whale/Bleik day; return is compressed so the islands get the hours.",
   "nights_summary": {
     "scenic": 3,
     "campsite": 4,
@@ -11,7 +11,7 @@
     "Pickup Sat 29 Aug 15:30 Tromsø",
     "Ferry Brensholmen → Botnhamn (Sun 30 Aug)",
     "Ferry Gryllefjord → Andenes (Tue 1 Sep) — queue overnight if needed, no booking",
-    "Protected block: whale safari + Bleik evening (Tue 1 Sep)",
+    "Whale safari + Bleik evening (Tue 1 Sep)",
     "Fri 4 Sep: Lyngen east shore → Svensby ferry → Tromsø buffer night",
     "Return Sat 5 Sep before 11:30 Tromsø"
   ],
@@ -290,10 +290,21 @@
       ],
       "optional": [
         {
+          "activity": "Husøy lighthouse walk",
+          "place": "Husøy",
+          "duration_h": 0.75,
+          "lat": 69.5472295,
+          "lon": 17.653647,
+          "notes": "Short boardwalk / shore path to the light at the north tip — easy village linger after the ferry; park before the bridge if the island is tight.",
+          "after": "Husøy",
+          "url": "https://www.mefjordbrygge.no/self-guided-activities/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Hus%C3%B8y+fyr+Senja",
+          "scenic": true
+        },
+        {
           "activity": "Tungeneset boardwalk (evening light)",
           "place": "Tungeneset",
           "duration_h": 1,
-          "protected": true,
           "notes": "Best light late afternoon/evening — protect this if weather is clear; skip kayak if you do this",
           "after": "Tungeneset",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
@@ -309,6 +320,17 @@
           "url": "https://www.mefjordbrygge.no/guided-activities/",
           "reserve": true,
           "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869"
+        },
+        {
+          "activity": "Knuten viewpoint walk",
+          "place": "Mefjordvær / Knuten",
+          "duration_h": 0.75,
+          "lat": 69.521139,
+          "lon": 17.429943,
+          "notes": "Easy ~30–45 min hill from the football-field / trail parking — fjord and village panorama; good evening walk from Camp Mefjord.",
+          "after": "Mefjordvær",
+          "url": "https://www.mefjordbrygge.no/self-guided-activities/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Knuten+Mefjordv%C3%A6r"
         }
       ],
       "scenarios": [
@@ -346,7 +368,6 @@
                 "activity": "Tungeneset boardwalk (evening light)",
                 "place": "Tungeneset",
                 "duration_h": 0.75,
-                "protected": true,
                 "notes": "Short version — only if you arrive with daylight",
                 "after": "Tungeneset",
                 "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
@@ -399,7 +420,6 @@
                     "activity": "Sauna / fjord dip",
                     "place": "Hamn i Senja",
                     "duration_h": 1.5,
-                    "protected": true,
                     "notes": "Best use of a grey day",
                     "after": "Hamn i Senja",
                     "url": "https://hamnisenja.no/",
@@ -592,7 +612,7 @@
           "after": "Gryllefjord"
         },
         {
-          "text": "Skip Segla; Hesten is a better short alternative if you want a peak view (optional).",
+          "text": "Peak options at Fjordgård: Hesten (shorter view of Segla) or Segla summit — pick one; skip both if the Gryllefjord queue is tight.",
           "after": "Bergsbotn"
         }
       ],
@@ -650,12 +670,36 @@
           "activity": "Hesten viewpoint walk",
           "place": "Fjordgård / Hesten",
           "duration_h": 2.5,
-          "lat": 69.48557,
-          "lon": 17.65889,
-          "notes": "Short-ish peak view of Segla without the full Segla grind — clear weather only; skip if it risks the queue",
+          "lat": 69.5048307,
+          "lon": 17.6274432,
+          "notes": "Best classic Segla photo angle — steep near the top; clear weather only. Pick Hesten OR Segla, not both.",
           "after": "Bergsbotn viewpoint",
-          "url": "https://ut.no/turforslag/1113454/hesten-senja",
-          "maps": "https://www.google.com/maps/place/Hesten+trail+head/@69.48557,17.65889,15z/data=!4m6!3m5!1s0x45db557bb7ef7c39:0xee4508609dba2c44"
+          "url": "https://ut.no/kart/tur/112336088/fottur-til-hesten-og-stavelitippen-i-fjordgard",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fjordg%C3%A5rd+skole+Senja",
+          "scenic": true
+        },
+        {
+          "activity": "Segla summit hike",
+          "place": "Fjordgård / Segla",
+          "duration_h": 3.5,
+          "lat": 69.5048307,
+          "lon": 17.6274432,
+          "notes": "Iconic Senja peak (~3.5 h / steep ridge) — harder than Hesten; clear dry weather only. Pick Segla OR Hesten, not both.",
+          "after": "Bergsbotn viewpoint",
+          "url": "https://ut.no/turforslag/1110112/segla-639-moh",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fjordg%C3%A5rd+skole+Senja",
+          "scenic": true
+        },
+        {
+          "activity": "Sukkertoppen short hike",
+          "place": "Hamn / Sukkertoppen",
+          "duration_h": 2.5,
+          "lat": 69.41263,
+          "lon": 17.15366,
+          "notes": "Steep ~2–2.5 h above Hamn with coast views — skip if wet/slippery on the final scramble; chain section near the top.",
+          "after": "Hamn i Senja",
+          "url": "https://www.outdooractive.com/en/route/hiking-trail/senja/sukkertoppen/56037067/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Sukkertoppen+Hamn+Senja"
         }
       ],
       "scenarios": [
@@ -754,7 +798,7 @@
                 "kind": "sleep"
               },
               {
-                "text": "Skip Segla; Hesten is a better short alternative if you want a peak view (optional).",
+                "text": "Peak options at Fjordgård: Hesten (shorter view of Segla) or Segla summit — pick one; skip both if the Gryllefjord queue is tight.",
                 "after": "Bergsbotn"
               }
             ]
@@ -852,8 +896,7 @@
           "activity": "Whale safari",
           "place": "Andenes harbour",
           "duration_h": 3.5,
-          "protected": true,
-          "notes": "Protected block — book ahead if possible; skip other Andenes sightseeing if you do this",
+          "notes": "Book ahead if possible; skip other Andenes sightseeing if you do this",
           "after": "Andenes ferry",
           "lat": 69.32681,
           "lon": 16.13402,
@@ -895,8 +938,7 @@
           "activity": "Bleik beach evening (walk + photos)",
           "place": "Bleik",
           "duration_h": 1.5,
-          "protected": true,
-          "notes": "Protected evening — golden hour on white sand; drone only if wind + bird rules allow",
+          "notes": "Golden-hour evening on white sand; drone only if wind + bird rules allow",
           "after": "Bleik beach",
           "scenic": true
         }
@@ -1042,7 +1084,6 @@
                     "activity": "Whale safari (morning)",
                     "place": "Andenes harbour",
                     "duration_h": 3.5,
-                    "protected": true,
                     "notes": "Do this first — everything else yields",
                     "after": "Andenes harbour",
                     "lat": 69.32681,
@@ -1100,7 +1141,6 @@
                 "activity": "Whales Centre / museum",
                 "place": "Andenes",
                 "duration_h": 1.5,
-                "protected": true,
                 "notes": "Primary Plan B",
                 "after": "Andenes ferry",
                 "url": "https://www.whalesafari.no/whale-centre/",
@@ -1149,7 +1189,6 @@
                     "activity": "Nyksund café / galleries",
                     "place": "Nyksund",
                     "duration_h": 2,
-                    "protected": true,
                     "notes": "Rain day anchor",
                     "after": "Nyksund",
                     "url": "https://www.nyksund.com/",
@@ -1438,8 +1477,7 @@
           "activity": "Måtinden short hike",
           "place": "Baugtua / Måtinden",
           "duration_h": 3,
-          "protected": true,
-          "notes": "Protected clear-weather walk — turn around at the plateau if legs/time say so; skip Stø if you do the full hike",
+          "notes": "Clear-weather walk — turn around at the plateau if legs/time say so; skip Stø if you do the full hike · Røyken is the shorter Andøya alternative if legs/time are short",
           "after": "Måtinden trailhead (Baugtua)",
           "fallback": {
             "when": "Cloud, gale, or tired legs",
@@ -1461,6 +1499,18 @@
             ]
           },
           "url": "https://ut.no/turforslag/1112137/matinden",
+          "scenic": true
+        },
+        {
+          "activity": "Røyken short hike",
+          "place": "Andøya Space / Røyken",
+          "duration_h": 2,
+          "lat": 69.2945434,
+          "lon": 16.0232952,
+          "notes": "Easier Andøya peak (~1.5–2 h) with Bleikstranda views — good if you skip or shorten Måtinden; trail from the Space Center gravel road.",
+          "after": "Kleivodden",
+          "url": "https://thephotohikes.com/hike-to-royken/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=And%C3%B8ya+Space+Bleiksveien",
           "scenic": true
         },
         {
@@ -1891,6 +1941,17 @@
           "duration_h": 0.75,
           "notes": "Worth 45 minutes if the river is lively — otherwise drive past",
           "during": "Målselvfossen"
+        },
+        {
+          "activity": "Steindalsbreen short walk / viewpoint",
+          "place": "Steindalen",
+          "duration_h": 2,
+          "lat": 69.39,
+          "lon": 20.05,
+          "notes": "West-shore glacier approach between Lyngseidet and Svensby — short marked walk / viewpoint only (no glacier travel); skip if ferry timing is tight.",
+          "after": "Lyngseidet",
+          "url": "https://ut.no/turforslag/1112135/steindalsbreen",
+          "maps": "https://www.google.com/maps/place/Car+parking+for+the+glacier+walk/@69.39,20.05,15z/data=!4m6!3m5!1s0x45c5313726f35e4b:0x165f4375e5518d12"
         },
         {
           "activity": "Koppangen spur",

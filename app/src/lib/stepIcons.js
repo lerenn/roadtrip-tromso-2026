@@ -1,9 +1,62 @@
 /**
- * Bootstrap Icons for timeline steps — one glyph per activity family.
+ * Bootstrap Icons for timeline steps.
+ * Structural kinds (drive, ferry, overnight, …) first; optionals then match by
+ * activity text (hike, kayak, café, …).
  * Classes are `bi bi-*` (see https://icons.getbootstrap.com/).
  */
 
 /** @typedef {{ icon: string, label: string }} StepIcon */
+
+/**
+ * Classify optional / free-form activity labels.
+ * Prefers `optLabel` (raw optional name) when present.
+ * @param {object} step
+ * @returns {StepIcon}
+ */
+function iconForActivity(step) {
+  const raw = `${step?.optLabel || ''} ${step?.activity || ''} ${step?.place || ''}`
+  const t = raw
+    .replace(/^Optional\s*[—–-]\s*/i, '')
+    .toLowerCase()
+
+  if (/whale\s*safari|\bwhales?\b/.test(t) && !/centre|center|museum/.test(t)) {
+    return { icon: 'bi-eye', label: 'Wildlife' }
+  }
+  if (/kayak|\bsup\b/.test(t)) {
+    return { icon: 'bi-life-preserver', label: 'Kayak' }
+  }
+  if (/sauna|fjord dip/.test(t)) {
+    return { icon: 'bi-thermometer-sun', label: 'Sauna' }
+  }
+  if (/café|cafe|galleries/.test(t)) {
+    return { icon: 'bi-cup-straw', label: 'Café' }
+  }
+  if (/museum|whales centre|whales center|spaceship aurora/.test(t)) {
+    return { icon: 'bi-building', label: 'Museum' }
+  }
+  if (/beach/.test(t)) {
+    return { icon: 'bi-umbrella', label: 'Beach' }
+  }
+  if (/drone|photography|photo stop|\bphotos\b/.test(t)) {
+    return { icon: 'bi-camera', label: 'Photo' }
+  }
+  if (/grocery|van service/.test(t)) {
+    return { icon: 'bi-cart3', label: 'Shop' }
+  }
+  if (
+    /\b(detour|spur|harbour|harbor|roadside|village walk|early sleep)\b/.test(t)
+  ) {
+    return { icon: 'bi-signpost-2', label: 'Detour' }
+  }
+  if (
+    /hike|summit|climb|short walk|viewpoint walk|boardwalk|foss|breen|bridge short walk|lighthouse/.test(
+      t,
+    )
+  ) {
+    return { icon: 'bi-person-walking', label: 'Hike' }
+  }
+  return { icon: 'bi-stars', label: 'Activity' }
+}
 
 /**
  * @param {object} step
@@ -54,12 +107,11 @@ export function iconForStep(step) {
     return { icon: 'bi-binoculars', label: 'Stop' }
   }
   if (
-    step?.protected ||
     step?.optId ||
-    a.startsWith('Optional') ||
-    a.startsWith('Protected')
+    step?.optional ||
+    a.startsWith('Optional')
   ) {
-    return { icon: 'bi-stars', label: 'Activity' }
+    return iconForActivity(step)
   }
   if (kind === 'via' || kind === 'start') {
     return { icon: 'bi-geo-alt', label: 'Place' }

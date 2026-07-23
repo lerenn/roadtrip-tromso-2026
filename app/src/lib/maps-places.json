@@ -248,6 +248,36 @@
       "name": "Svensby Tursenter",
       "maps": "https://www.google.com/maps/place/Svensby+Tursenter+AS/@69.66787,19.80908,15z/data=!4m9!3m8!1s0x45c5219b83a01563:0x368c572f035c8777",
       "kind": "place"
+    },
+    "69.50483,17.62744": {
+      "name": "Fjordgård skole / Segla–Hesten parking",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Fjordg%C3%A5rd+skole+Senja",
+      "kind": "search"
+    },
+    "69.41263,17.15366": {
+      "name": "Sukkertoppen trailhead (Hamn)",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Sukkertoppen+Hamn+Senja",
+      "kind": "search"
+    },
+    "69.29454,16.02330": {
+      "name": "Andøya Space / Røyken trailhead",
+      "maps": "https://www.google.com/maps/search/?api=1&query=And%C3%B8ya+Space+Bleiksveien",
+      "kind": "search"
+    },
+    "69.42100,20.96916": {
+      "name": "Ankerlia / Gorsa Bridge access",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Gorsabrua+K%C3%A5fjord",
+      "kind": "search"
+    },
+    "69.54723,17.65365": {
+      "name": "Husøy lighthouse (Øyfjord light)",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Hus%C3%B8y+fyr+Senja",
+      "kind": "search"
+    },
+    "69.52114,17.42994": {
+      "name": "Knuten trail parking (Mefjordvær)",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Knuten+Mefjordv%C3%A6r",
+      "kind": "search"
     }
   }
 }

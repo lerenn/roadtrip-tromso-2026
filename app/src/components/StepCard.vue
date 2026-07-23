@@ -24,14 +24,12 @@ const title = computed(() => {
   const a = props.step.activity || ''
   return a
     .replace(/^Optional — /, '')
-    .replace(/^Protected — /, '')
     .replace(/^Stop — /, '')
     .replace(/^Stop - /, '')
 })
 
 const kindLabel = computed(() => {
-  if (props.step.protected || props.step.activity?.startsWith('Protected')) return 'protect'
-  if (props.step.activity?.startsWith('Optional')) return 'optional'
+  if (props.step.optId || props.step.activity?.startsWith('Optional')) return 'optional'
   if (props.step.overnight) return 'sleep'
   if (props.step.ferry) return 'ferry'
   if (
@@ -47,7 +45,6 @@ const kindLabel = computed(() => {
 
 const badgeClass = computed(() => {
   const k = kindLabel.value
-  if (k === 'protect') return 'protected'
   if (k === 'optional') return 'opt'
   if (k === 'sleep') return 'sleep'
   if (k === 'stop') return 'stop'
@@ -147,9 +144,7 @@ const hasDetails = computed(() => {
 
       <span class="step-card__title">
         <span class="step-card__name">{{ title }}</span>
-        <span v-if="kindLabel" class="badge" :class="badgeClass">{{
-          kindLabel === 'protect' ? 'protect' : kindLabel
-        }}</span>
+        <span v-if="kindLabel" class="badge" :class="badgeClass">{{ kindLabel }}</span>
         <span v-if="step.scenic" class="badge scenic">scenic</span>
         <span v-if="step.reserve" class="badge reserve">reserve</span>
         <span v-if="step.warning" class="badge warning">warning</span>

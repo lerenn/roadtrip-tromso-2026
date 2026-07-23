@@ -268,10 +268,21 @@
       ],
       "optional": [
         {
+          "activity": "Husøy lighthouse walk",
+          "place": "Husøy",
+          "duration_h": 0.75,
+          "lat": 69.5472295,
+          "lon": 17.653647,
+          "notes": "Short boardwalk / shore path to the light at the north tip — easy village linger after the ferry; park before the bridge if the island is tight.",
+          "after": "Husøy",
+          "url": "https://www.mefjordbrygge.no/self-guided-activities/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Hus%C3%B8y+fyr+Senja",
+          "scenic": true
+        },
+        {
           "activity": "Tungeneset boardwalk (evening light)",
           "place": "Tungeneset",
           "duration_h": 1,
-          "protected": true,
           "notes": "Clear evening priority",
           "after": "Tungeneset",
           "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
@@ -287,6 +298,17 @@
           "url": "https://www.mefjordbrygge.no/guided-activities/",
           "reserve": true,
           "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869"
+        },
+        {
+          "activity": "Knuten viewpoint walk",
+          "place": "Mefjordvær / Knuten",
+          "duration_h": 0.75,
+          "lat": 69.521139,
+          "lon": 17.429943,
+          "notes": "Easy ~30–45 min hill from the football-field / trail parking — fjord and village panorama; good evening walk from Camp Mefjord.",
+          "after": "Mefjordvær",
+          "url": "https://www.mefjordbrygge.no/self-guided-activities/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Knuten+Mefjordv%C3%A6r"
         }
       ],
       "scenarios": [
@@ -324,7 +346,6 @@
                 "activity": "Tungeneset boardwalk (evening light)",
                 "place": "Tungeneset",
                 "duration_h": 0.75,
-                "protected": true,
                 "notes": "Short version — only if you arrive with daylight",
                 "after": "Tungeneset",
                 "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
@@ -363,7 +384,6 @@
                     "activity": "Sauna / fjord dip",
                     "place": "Hamn i Senja",
                     "duration_h": 1.5,
-                    "protected": true,
                     "notes": "Best grey-day use of Senja",
                     "after": "Hamn i Senja",
                     "url": "https://hamnisenja.no/",
@@ -613,6 +633,30 @@
           "scenic": true
         },
         {
+          "activity": "Segla summit hike",
+          "place": "Fjordgård / Segla",
+          "duration_h": 3.5,
+          "lat": 69.5048307,
+          "lon": 17.6274432,
+          "notes": "Iconic Senja peak (~3.5 h / steep ridge) — harder than Hesten; clear dry weather only. Pick Segla OR Hesten, not both.",
+          "after": "Bergsbotn viewpoint",
+          "url": "https://ut.no/turforslag/1110112/segla-639-moh",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fjordg%C3%A5rd+skole+Senja",
+          "scenic": true
+        },
+        {
+          "activity": "Hesten viewpoint walk",
+          "place": "Fjordgård / Hesten",
+          "duration_h": 2.5,
+          "lat": 69.5048307,
+          "lon": 17.6274432,
+          "notes": "Best classic Segla photo angle — steep near the top; clear weather only. Pick Hesten OR Segla, not both.",
+          "after": "Bergsbotn viewpoint",
+          "url": "https://ut.no/kart/tur/112336088/fottur-til-hesten-og-stavelitippen-i-fjordgard",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fjordg%C3%A5rd+skole+Senja",
+          "scenic": true
+        },
+        {
           "activity": "Kayak or SUP at Hamn",
           "place": "Hamn i Senja",
           "duration_h": 2,
@@ -648,6 +692,17 @@
           "url": "https://hamnisenja.no/",
           "reserve": true,
           "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
+        },
+        {
+          "activity": "Sukkertoppen short hike",
+          "place": "Hamn / Sukkertoppen",
+          "duration_h": 2.5,
+          "lat": 69.41263,
+          "lon": 17.15366,
+          "notes": "Steep ~2–2.5 h above Hamn with coast views — skip if wet/slippery on the final scramble; chain section near the top.",
+          "after": "Hamn i Senja",
+          "url": "https://www.outdooractive.com/en/route/hiking-trail/senja/sukkertoppen/56037067/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Sukkertoppen+Hamn+Senja"
         }
       ],
       "scenarios": [
@@ -1128,8 +1183,7 @@
           "activity": "Blåisvatnet short walk",
           "place": "Blåisvatnet trailhead",
           "duration_h": 3,
-          "protected": true,
-          "notes": "Protected clear-weather hero — keep it short; full circuit is optional, not required",
+          "notes": "Clear-weather hero — keep it short; full circuit is optional, not required",
           "after": "Blåisvatnet trailhead",
           "fallback": {
             "when": "Cloud on the lake / rain",
@@ -1155,6 +1209,17 @@
           "after": "Lyngseidet",
           "url": "https://www.visitlyngenfjord.com/",
           "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
+        },
+        {
+          "activity": "Gorsa Bridge short walk",
+          "place": "Kåfjorddalen / Gorsa",
+          "duration_h": 1.5,
+          "lat": 69.4209984,
+          "lon": 20.9691552,
+          "notes": "Easy ~1–1.5 h to the canyon bridge (from upper valley parking shorter) — east of Olderdalen toward Birtavarre; gravel road; clear weather preferred.",
+          "after": "Nordmannvik",
+          "url": "https://www.visit-lyngenfjord.com/index.php/activities/hiking/top-10-in-lyngen/gorsabridge",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Gorsabrua+K%C3%A5fjord"
         }
       ],
       "scenarios": [
@@ -1188,7 +1253,6 @@
                 "activity": "Blåisvatnet short walk",
                 "place": "Blåisvatnet trailhead",
                 "duration_h": 3,
-                "protected": true,
                 "notes": "Still do this if weather is clear — ferry wait comes after",
                 "after": "Blåisvatnet trailhead",
                 "url": "https://ut.no/turforslag/1113458/blaisvatnet",
@@ -1253,7 +1317,6 @@
                 "activity": "Café in Lyngseidet",
                 "place": "Lyngseidet",
                 "duration_h": 1,
-                "protected": true,
                 "notes": "Wait out a shower before boarding",
                 "after": "Lyngseidet",
                 "url": "https://www.visitlyngenfjord.com/",
@@ -1283,7 +1346,6 @@
                     "activity": "Café stop",
                     "place": "Lyngseidet",
                     "duration_h": 1,
-                    "protected": true,
                     "notes": "Rain day anchor",
                     "after": "Lyngseidet",
                     "url": "https://www.visitlyngenfjord.com/",
@@ -1481,8 +1543,7 @@
           "activity": "Steindalsbreen short walk / viewpoint",
           "place": "Steindalen",
           "duration_h": 2.5,
-          "protected": true,
-          "notes": "Protected clear-weather hero — stay on marked easy paths; turn around early",
+          "notes": "Clear-weather hero — stay on marked easy paths; turn around early",
           "after": "Steindalsbreen viewpoint / trailhead",
           "fallback": {
             "when": "Cloud / tired after Blåisvatnet",
@@ -1553,7 +1614,6 @@
                 "activity": "Steindalsbreen short walk / viewpoint",
                 "place": "Steindalen",
                 "duration_h": 1.5,
-                "protected": true,
                 "notes": "Compressed — viewpoint only if time is tight",
                 "after": "Steindalsbreen viewpoint / trailhead",
                 "url": "https://ut.no/turforslag/1112135/steindalsbreen"

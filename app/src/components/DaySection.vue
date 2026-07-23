@@ -131,13 +131,7 @@ const visibleSteps = computed(() => {
   if (props.mustOnly) {
     steps = steps.filter((s) => s.must || s.interline)
   } else if (!props.showOptional) {
-    steps = steps.filter(
-      (s) =>
-        s.interline ||
-        s.protected ||
-        s.activity?.startsWith('Protected') ||
-        !s.activity?.startsWith('Optional'),
-    )
+    steps = steps.filter((s) => s.interline || !s.optional)
   }
   return steps
 })

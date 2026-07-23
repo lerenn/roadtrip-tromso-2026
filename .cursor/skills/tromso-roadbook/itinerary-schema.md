@@ -62,7 +62,7 @@ Waypoint `kind` drives map styling and chronology. Consecutive ferry quays (`kin
 
 `maps` (optional): prefer a real Google Maps place page (`/maps/place/…`) or short link (`maps.app.goo.gl/…`). For vague non-POI stops, use named search `https://www.google.com/maps/search/?api=1&query=…` (no GPS) or omit for lat/lon fallback. Same field on overnight / optionals. See `app/src/lib/maps-places.json`.
 
-`reserve` (optional boolean): set `true` when a reservation/booking is typically needed or strongly recommended (named campsites with booking, whale safari, guided kayak, bookable sauna). StepCard shows a `reserve` badge alongside must/optional/protect/sleep. Omit for scenic allemannsretten nights, first-come ferries, and campsites that do not accept motorhome/tent pitch reservations (e.g. Midnattsol Camping, Bleik — keep their info URL, just no `reserve`). Depot pickup/return are already locked appointments — leave unmarked.
+`reserve` (optional boolean): set `true` when a reservation/booking is typically needed or strongly recommended (named campsites with booking, whale safari, guided kayak, bookable sauna). StepCard shows a `reserve` badge alongside must/optional/sleep. Omit for scenic allemannsretten nights, first-come ferries, and campsites that do not accept motorhome/tent pitch reservations (e.g. Midnattsol Camping, Bleik — keep their info URL, just no `reserve`). Depot pickup/return are already locked appointments — leave unmarked.
 
 `scenic` (optional boolean): set `true` when the stop is on an official Nasjonale turistveger / Norwegian Scenic Route (Senja, Andøya, …) — viewpoints, NTV-listed villages/quays on the spine, and NTV-listed detours (e.g. Bøvær). StepCard shows a purple `scenic` badge (CSS `--scenic`). Do **not** mark campsites or operator hubs that only sit near the route (Midnattsol, Hamn) unless the stop itself is an NTV-listed Scenic Route point. Overnight `type: "scenic"` is separate (wild camping vs campsite); the UI displays that type as **wild**.
 
@@ -94,7 +94,6 @@ Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg
   "place": "Tungeneset",
   "duration_h": 0.75,
   "url": "https://…",
-  "protected": false,
   "scenic": true,
   "reserve": true,
   "price": "2×1690 NOK ≈ 3380 NOK for 2 adults",
@@ -109,8 +108,8 @@ Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg
 
 - `url` / ferry `source` → clickable new-tab links in the UI (`ExtLink`).
 - Photo: registry match in `app/src/lib/places.js`, or override with `image` / `imageAlt` / `imageCredit` / `imagePage` (same fields on waypoints / overnight). Must be the real place; omit if none.
-- Detours that should reshape the day map when selected need `lat` / `lon` (and usually `after`). Plain same-place activities may omit coords or include them — the router skips near-duplicates (under ~400 m). **Protected / `reserve` activities** with coords still get a map pin even at an existing stop (labelled with the activity name).
-- `protected: true` → selected by default in the UI.
+- Detours that should reshape the day map when selected need `lat` / `lon` (and usually `after`). Plain same-place activities may omit coords or include them — the router skips near-duplicates (under ~400 m). **`reserve` activities** with coords still get a map pin even at an existing stop (labelled with the activity name).
+- All optionals are off by default; the user opts in via the timeline checkbox.
 - `reserve: true` → StepCard `reserve` badge (book ahead when possible). Same field on overnight / waypoints.
 - `scenic: true` → StepCard purple `scenic` badge (official Scenic Route stop). Same field on overnight / waypoints.
 - `price` → short tariff string shown on the timeline (see `price` above). Same field on overnight / ferry / fallbacks.

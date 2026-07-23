@@ -9,7 +9,7 @@
  *     ripple?: [{ day, banner?, replace }]
  *   }
  *
- * Line-level (on optional / protected activities):
+ * Line-level (on optional activities):
  *   fallback?: { when, then: [{ activity, duration_h, notes?, place? }] }
  */
 

@@ -319,7 +319,6 @@ watch(
 
         <ul class="legend">
           <li class="must">Must-do</li>
-          <li class="protect">Protected</li>
           <li class="opt">Optional</li>
           <li class="sleep">Overnight</li>
         </ul>
