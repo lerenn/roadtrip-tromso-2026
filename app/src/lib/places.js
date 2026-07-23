@@ -213,9 +213,10 @@ export const PLACE_IMAGES = {
       'thumb/e/e1/St%C3%B8_01.jpg/1280px-St%C3%B8_01.jpg',
       'Stø_01.jpg',
       'Wikimedia Commons',
-      'Stø, Vesterålen',
+      'Stø harbour, Vesterålen',
     ),
-    match: [/\bstø\b|\bsto harbour\b/i],
+    // No \b around stø — JS word boundaries break on ø
+    match: [/stø|sto harbour/i],
   },
   sortland: {
     ...commons(
@@ -260,7 +261,7 @@ export const PLACE_IMAGES = {
       'Wikimedia Commons',
       'Lakselvtindane from Ullsfjorden (Svensby ferry shore)',
     ),
-    match: [/svensby|ullsfjord/i],
+    match: [/svensby|ullsfjord|western lyngen|lyngen coast/i],
   },
   lyngseidet: {
     ...commons(
@@ -269,7 +270,7 @@ export const PLACE_IMAGES = {
       'Wikimedia Commons',
       'Lyngseidet and Lyngen Alps',
     ),
-    match: [/lyngseidet/i],
+    match: [/lyngseidet|fastdalen|lyngentrappa/i],
   },
   blaisvatnet: {
     ...commons(
@@ -324,6 +325,115 @@ export const PLACE_IMAGES = {
       'Ridge between Segla and Hesten, Senja',
     ),
     match: [/hesten|fjordgård|fjordgard/i],
+  },
+  husfjellet: {
+    ...commons(
+      'thumb/a/ac/Bergsfjorden.jpg/1280px-Bergsfjorden.jpg',
+      'Bergsfjorden.jpg',
+      'Wikimedia Commons',
+      'Bergsfjorden, Senja — the island-dotted fjord below Husfjellet',
+    ),
+    match: [/husfjellet|husfjell/i],
+  },
+  hurtigrutenMuseum: {
+    ...commons(
+      'thumb/c/c6/Hurtigrutemuseet_23_BG.jpg/1280px-Hurtigrutemuseet_23_BG.jpg',
+      'Hurtigrutemuseet_23_BG.jpg',
+      'Wikimedia Commons',
+      'Hurtigruten Museum, Stokmarknes',
+    ),
+    match: [/hurtigruten museum|stokmarknes/i],
+  },
+  tjeldsund: {
+    ...commons(
+      'thumb/6/6d/Tjeldsundbrua%2C_2009_09.jpg/1280px-Tjeldsundbrua%2C_2009_09.jpg',
+      'Tjeldsundbrua,_2009_09.jpg',
+      'Wikimedia Commons',
+      'Tjeldsund Bridge',
+    ),
+    match: [/tjeldsund/i],
+  },
+  bjerkvik: {
+    ...commons(
+      'thumb/f/f4/Bjerkvik%2C_NO.jpg/1280px-Bjerkvik%2C_NO.jpg',
+      'Bjerkvik,_NO.jpg',
+      'Wikimedia Commons',
+      'Bjerkvik / Herjangsfjord',
+    ),
+    match: [/bjerkvik|herjang/i],
+  },
+  bardu: {
+    ...commons(
+      'thumb/6/6c/Setermoen_panorama.jpg/1280px-Setermoen_panorama.jpg',
+      'Setermoen_panorama.jpg',
+      'Wikimedia Commons',
+      'Setermoen, Bardu',
+    ),
+    match: [/bardu|setermoen/i],
+  },
+  koppangen: {
+    ...commons(
+      'thumb/7/7d/Koppangen_in_Lyngen%2C_Troms%2C_Norway_in_2012_March.jpg/1280px-Koppangen_in_Lyngen%2C_Troms%2C_Norway_in_2012_March.jpg',
+      'Koppangen_in_Lyngen,_Troms,_Norway_in_2012_March.jpg',
+      'Ximonic / Wikimedia',
+      'Koppangen, Lyngen',
+    ),
+    match: [/koppangen/i],
+  },
+  gorsa: {
+    ...commons(
+      'thumb/d/d3/Bungee_Jumping_from_Gorsabrua_%28Gorsa_Bridge%29.JPG/1280px-Bungee_Jumping_from_Gorsabrua_%28Gorsa_Bridge%29.JPG',
+      'Bungee_Jumping_from_Gorsabrua_(Gorsa_Bridge).JPG',
+      'Wikimedia Commons',
+      'Gorsa Bridge (Gorsabrua), Kåfjorddalen',
+    ),
+    match: [/gorsa/i],
+  },
+  lyngstuva: {
+    ...commons(
+      'thumb/f/f9/Nordklubben_Lyngsalpan_landskapsvernomr%C3%A5de_from_Hurtigruten_ship_2022-09-08_02.jpg/1280px-Nordklubben_Lyngsalpan_landskapsvernomr%C3%A5de_from_Hurtigruten_ship_2022-09-08_02.jpg',
+      'Nordklubben_Lyngsalpan_landskapsvernområde_from_Hurtigruten_ship_2022-09-08_02.jpg',
+      'Wikimedia Commons',
+      'North Lyngen tip (Lyngsalpan) near Lyngstuva / Russelv',
+    ),
+    match: [/lyngstuva|russelv|nord-lenangen|nordklubben/i],
+  },
+  fjellheisen: {
+    ...commons(
+      'thumb/e/eb/Fjellheisen%2C_Troms%C3%B8_2019.jpg/1280px-Fjellheisen%2C_Troms%C3%B8_2019.jpg',
+      'Fjellheisen,_Tromsø_2019.jpg',
+      'Wikimedia Commons',
+      'Fjellheisen cable car, Tromsdalen',
+    ),
+    match: [/fjellheisen|storsteinen/i],
+  },
+  spaceshipAurora: {
+    ...commons(
+      'thumb/b/bd/Spaceship_Aurora.jpg/1280px-Spaceship_Aurora.jpg',
+      'Spaceship_Aurora.jpg',
+      'Wikimedia Commons',
+      'Spaceship Aurora, Andøya Space',
+    ),
+    match: [/spaceship aurora|andøya space|andoya space/i],
+  },
+  stave: {
+    ...commons(
+      'thumb/f/fe/Stave_Beach.jpg/1280px-Stave_Beach.jpg',
+      'Stave_Beach.jpg',
+      'Wikimedia Commons',
+      'Stave beach, Andøya',
+    ),
+    // Avoid bare "stave" (stave churches elsewhere)
+    match: [/stave camping|stave hot|stave beach|stave (pools|sauna)/i],
+  },
+  gullesfjord: {
+    ...commons(
+      'thumb/2/23/Autumn_landscape_near_Gullesfjordbotn%2C_Hinn%C3%B8ya%2C_2010_September.jpg/1280px-Autumn_landscape_near_Gullesfjordbotn%2C_Hinn%C3%B8ya%2C_2010_September.jpg',
+      'Autumn_landscape_near_Gullesfjordbotn,_Hinnøya,_2010_September.jpg',
+      'Wikimedia Commons',
+      'Near Gullesfjordbotn, Hinnøya',
+    ),
+    match: [/gullesfjord|langvassbukt/i],
   },
   tromso: {
     ...commons(

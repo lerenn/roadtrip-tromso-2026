@@ -1540,6 +1540,27 @@
                     "maps": "https://www.google.com/maps/place/Sortland,+Norv%C3%A8ge/@68.69513,15.41483,15z/data=!4m6!3m5!1s0x45dc45ebf6e94ec9:0x3d05ad80417fc5e6"
                   },
                   {
+                    "name": "Gullesfjordbotn / Lofast junction",
+                    "lat": 68.5363764,
+                    "lon": 15.7521794,
+                    "kind": "via",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Gullesfjordbotn+Lofast"
+                  },
+                  {
+                    "name": "Tjeldsundbrua",
+                    "lat": 68.6282819,
+                    "lon": 16.5785069,
+                    "kind": "via",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Tjeldsundbrua"
+                  },
+                  {
+                    "name": "Bjerkvik",
+                    "lat": 68.5491657,
+                    "lon": 17.5571481,
+                    "kind": "via",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Bjerkvik+Herjangsfjord"
+                  },
+                  {
                     "name": "Overnight Bardu Camping (Setermoen)",
                     "lat": 68.876467,
                     "lon": 18.361033,
@@ -1554,7 +1575,7 @@
                     "after": "Stø"
                   },
                   {
-                    "text": "Fuel + groceries in Sortland; then E10 / E6 inland to Bardu — skip sightseeing stops.",
+                    "text": "Fuel + groceries in Sortland; then Rv85 → E10 → E6 to Bardu — optional short corridor photo stops only (Gullesfjord, Tjeldsund Bridge, Bjerkvik).",
                     "kind": "shop"
                   },
                   {
@@ -1603,6 +1624,27 @@
           "maps": "https://www.google.com/maps/place/Sortland,+Norv%C3%A8ge/@68.69513,15.41483,15z/data=!4m6!3m5!1s0x45dc45ebf6e94ec9:0x3d05ad80417fc5e6"
         },
         {
+          "name": "Gullesfjordbotn / Lofast junction",
+          "lat": 68.5363764,
+          "lon": 15.7521794,
+          "kind": "via",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Gullesfjordbotn+Lofast"
+        },
+        {
+          "name": "Tjeldsundbrua",
+          "lat": 68.6282819,
+          "lon": 16.5785069,
+          "kind": "via",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Tjeldsundbrua"
+        },
+        {
+          "name": "Bjerkvik",
+          "lat": 68.5491657,
+          "lon": 17.5571481,
+          "kind": "via",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Bjerkvik+Herjangsfjord"
+        },
+        {
           "name": "Overnight Bardu Camping (Setermoen)",
           "lat": 68.876467,
           "lon": 18.361033,
@@ -1618,7 +1660,7 @@
           "after": "Nyksund"
         },
         {
-          "text": "Fuel + groceries in Sortland; then E10 / E6 inland to Bardu — skip sightseeing stops.",
+          "text": "Fuel + groceries in Sortland; then Rv85 → E10 → E6 to Bardu — optional short corridor photo stops at Gullesfjord, Tjeldsund Bridge, and Bjerkvik.",
           "kind": "shop"
         },
         {
@@ -1627,6 +1669,36 @@
         }
       ],
       "optional": [
+        {
+          "activity": "Gullesfjord roadside photo stop",
+          "place": "Gullesfjordbotn / Lofast junction",
+          "duration_h": 0.35,
+          "lat": 68.5363764,
+          "lon": 15.7521794,
+          "notes": "First real wow after Sortland — fjord + peaks at the Rv85/E10 junction (Møysalen edge); 15–20 min stretch only.",
+          "after": "Gullesfjordbotn / Lofast junction",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Gullesfjordbotn+Lofast"
+        },
+        {
+          "activity": "Tjeldsund Bridge roadside photo stop",
+          "place": "Tjeldsundbrua",
+          "duration_h": 0.25,
+          "lat": 68.6282819,
+          "lon": 16.5785069,
+          "notes": "Classic mainland-gateway view over Tjeldsundet — park safely and keep it short (10–15 min).",
+          "after": "Tjeldsundbrua",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Tjeldsundbrua"
+        },
+        {
+          "activity": "Bjerkvik / Herjangsfjord roadside photo stop",
+          "place": "Bjerkvik",
+          "duration_h": 0.35,
+          "lat": 68.5491657,
+          "lon": 17.5571481,
+          "notes": "E10/E6 junction fjord views before the inland push to Setermoen — good last stretch stop (15–20 min).",
+          "after": "Bjerkvik",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Bjerkvik+Herjangsfjord"
+        },
         {
           "activity": "Hurtigruten Museum (only if weather is foul)",
           "place": "Stokmarknes",
@@ -1689,7 +1761,7 @@
                 "after": "Nyksund"
               },
               {
-                "text": "Fuel + groceries in Sortland; then E10 / E6 inland to Bardu — skip sightseeing stops.",
+                "text": "Fuel + groceries in Sortland; then Rv85 → E10 → E6 to Bardu — optional short corridor photo stops only (Gullesfjord, Tjeldsund Bridge, Bjerkvik).",
                 "kind": "shop"
               },
               {

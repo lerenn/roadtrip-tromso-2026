@@ -313,6 +313,21 @@
       "name": "Hvalsafari / Whales Centre Andenes",
       "maps": "https://www.google.com/maps/search/?api=1&query=Hvalsafari+Andenes",
       "kind": "search"
+    },
+    "68.53638,15.75218": {
+      "name": "Gullesfjordbotn / Lofast junction",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Gullesfjordbotn+Lofast",
+      "kind": "search"
+    },
+    "68.62828,16.57851": {
+      "name": "Tjeldsundbrua",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Tjeldsundbrua",
+      "kind": "search"
+    },
+    "68.54917,17.55715": {
+      "name": "Bjerkvik",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bjerkvik+Herjangsfjord",
+      "kind": "search"
     }
   }
 }
