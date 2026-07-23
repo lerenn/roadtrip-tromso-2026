@@ -98,11 +98,7 @@ Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg
   "reserve": true,
   "price": "2×1690 NOK ≈ 3380 NOK for 2 adults",
   "notes": "…",
-  "after": "Tungeneset",
-  "fallback": {
-    "when": "Wind / rain",
-    "then": [{ "activity": "Café", "place": "Mefjordvær", "duration_h": 0.5, "url": "https://…" }]
-  }
+  "after": "Tungeneset"
 }
 ```
 
@@ -110,11 +106,11 @@ Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg
 - Photo: registry match in `app/src/lib/places.js`, or override with `image` / `imageAlt` / `imageCredit` / `imagePage` (same fields on waypoints / overnight). Must be the real place; omit if none.
 - Detours that should reshape the day map when selected need `lat` / `lon` (and usually `after`). Plain same-place activities may omit coords or include them — the router skips near-duplicates (under ~400 m). **`reserve` activities** with coords still get a map pin even at an existing stop (labelled with the activity name).
 - All optionals are off by default; the user opts in via the timeline checkbox.
+- Prefer **separate optionals** over line-level `fallback` blocks — list alternatives as their own optionals (same day) so they can be selected independently. Day-level `scenarios[]` are for ferry misses and overnight swaps (campsite/wild), not whole-day weather scripts.
 - `reserve: true` → StepCard `reserve` badge (book ahead when possible). Same field on overnight / waypoints.
 - `scenic: true` → StepCard purple `scenic` badge (official Scenic Route stop). Same field on overnight / waypoints.
-- `price` → short tariff string shown on the timeline (see `price` above). Same field on overnight / ferry / fallbacks.
+- `price` → short tariff string shown on the timeline (see `price` above). Same field on overnight / ferry / optionals.
 - `after` / `during` / `place` anchors insertion into the step list.
-- `fallback` is line-level only (shown under the step), not a day swap.
 
 ## Scenarios (day-level)
 

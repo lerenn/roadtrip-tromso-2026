@@ -25,8 +25,11 @@ function iconForActivity(step) {
   if (/kayak|\bsup\b/.test(t)) {
     return { icon: 'bi-life-preserver', label: 'Kayak' }
   }
-  if (/sauna|fjord dip/.test(t)) {
+  if (/sauna|fjord dip|hot pool|beach sauna/.test(t)) {
     return { icon: 'bi-thermometer-sun', label: 'Sauna' }
+  }
+  if (/cable car|fjellheisen/.test(t)) {
+    return { icon: 'bi-ticket-perforated', label: 'Cable car' }
   }
   if (/café|cafe|galleries/.test(t)) {
     return { icon: 'bi-cup-straw', label: 'Café' }

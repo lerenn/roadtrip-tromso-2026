@@ -357,55 +357,6 @@
           "banner": "Ferry fail — 12:15 Brensholmen → Botnhamn"
         },
         {
-          "id": "weather_senja",
-          "when": "Bad weather on Senja (rain / gale)",
-          "summary": "Cut exposed coast walks; Hamn sauna; still leave for Lyngen on schedule.",
-          "replace": {
-            "optional": [],
-            "notes": [
-              {
-                "text": "Skip kayak / long boardwalk.",
-                "after": "Mefjordvær"
-              },
-              {
-                "text": "Sleep Mefjordvær anyway — Lyngen heroes are still ahead.",
-                "kind": "sleep"
-              }
-            ]
-          },
-          "ripple": [
-            {
-              "day": 3,
-              "banner": "Weather fail — Hamn sauna day",
-              "replace": {
-                "title": "Damp Senja → Hamn sauna",
-                "optional": [
-                  {
-                    "activity": "Sauna / fjord dip",
-                    "place": "Hamn i Senja",
-                    "duration_h": 1.5,
-                    "notes": "Best grey-day use of Senja",
-                    "after": "Hamn i Senja",
-                    "url": "https://hamnisenja.no/",
-                    "reserve": true,
-                    "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "Photo stops from the van only.",
-                    "after": "Husøy"
-                  },
-                  {
-                    "text": "Still leave toward Lyngen on Day 4 as planned.",
-                    "after": "Mefjordvær"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
           "id": "wild_alt_tungeneset",
           "when": "Prefer wild overnight instead of Camp Mefjord",
           "summary": "Sleep the Tungeneset Scenic Route parking after evening light — no showers; morning starts from the viewpoint.",
@@ -633,6 +584,18 @@
           "scenic": true
         },
         {
+          "activity": "Husfjellet hike",
+          "place": "Skaland / Berg kirke",
+          "duration_h": 3.5,
+          "lat": 69.445766,
+          "lon": 17.299713,
+          "notes": "Classic Senja peak (~3–4 h RT; turn around at Sommardalen ~2 h for a shorter view) — clearer weather preferred; trail from Berg kirke / Skaland.",
+          "after": "Ersfjordstranda",
+          "url": "https://ut.no/kart/tur/112369470/topptur-til-husfjell-fra-skaland",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Berg+kirke+Skaland+Senja",
+          "scenic": true
+        },
+        {
           "activity": "Segla summit hike",
           "place": "Fjordgård / Segla",
           "duration_h": 3.5,
@@ -662,21 +625,8 @@
           "duration_h": 2,
           "lat": 69.41736,
           "lon": 17.16489,
-          "notes": "Best calm-water session of the Senja leg",
+          "notes": "Best calm-water session of the Senja leg — pick kayak OR sauna if short on time",
           "after": "Hamn i Senja",
-          "fallback": {
-            "when": "Sea too rough for kayak / SUP",
-            "then": [
-              {
-                "activity": "Sauna / fjord dip",
-                "place": "Hamn i Senja",
-                "duration_h": 1.5,
-                "notes": "Warm Plan B at Hamn",
-                "url": "https://hamnisenja.no/",
-                "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
-              }
-            ]
-          },
           "url": "https://hamnisenja.no/",
           "reserve": true,
           "maps": "https://www.google.com/maps/place/Hamn+i+Senja,+Senja+Reiseliv+(Senja+Travel)/@69.4172863,17.1452542,15z/data=!4m13!1m2!2m1!1sHamn+i+Senja!3m9!1s0x45dca8b52090732b:0x4ac6dd580be7fdef"
@@ -687,7 +637,7 @@
           "duration_h": 1.5,
           "lat": 69.41736,
           "lon": 17.16489,
-          "notes": "Evening ritual before leaving Senja",
+          "notes": "Evening ritual before leaving Senja — pick kayak OR sauna if short on time",
           "after": "Hamn i Senja",
           "url": "https://hamnisenja.no/",
           "reserve": true,
@@ -1185,30 +1135,30 @@
           "duration_h": 3,
           "notes": "Clear-weather hero — keep it short; full circuit is optional, not required",
           "after": "Blåisvatnet trailhead",
-          "fallback": {
-            "when": "Cloud on the lake / rain",
-            "then": [
-              {
-                "activity": "Café in Lyngseidet",
-                "place": "Lyngseidet",
-                "duration_h": 1,
-                "notes": "Skip the walk; ferry views become the day",
-                "url": "https://www.visitlyngenfjord.com/",
-                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
-              }
-            ]
-          },
           "url": "https://ut.no/turforslag/1113458/blaisvatnet",
           "maps": "https://www.google.com/maps/place/Startpunkt+Bl%C3%A5isvatnet/@69.75814,19.95418,15z/data=!4m6!3m5!1s0x45c51fa6d93b4827:0x436f68bcb7d13aaa"
         },
         {
-          "activity": "Café in Lyngseidet",
+          "activity": "Lyngstuva short walk",
+          "place": "Russelv / north Lyngen",
+          "duration_h": 3,
+          "lat": 69.950842,
+          "lon": 20.226377,
+          "notes": "North-tip family walk (~2 h on foot) from Russelv road-end — ocean/fjord panorama; long spur north of Blåisvatnet, only if ferry timing allows.",
+          "after": "Blåisvatnet trailhead",
+          "url": "https://www.visit-lyngenfjord.com/activities/hiking/top-10-in-lyngen",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Lyngstuva+Russelv"
+        },
+        {
+          "activity": "Lyngentrappa short climb",
           "place": "Lyngseidet",
-          "duration_h": 0.75,
-          "notes": "If cloud eats the lake — warm up before the ferry",
-          "after": "Lyngseidet",
-          "url": "https://www.visitlyngenfjord.com/",
-          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
+          "duration_h": 1,
+          "lat": 69.5809928,
+          "lon": 20.2242536,
+          "notes": "Village stair climb for Lyngseidet / fjord views — easy before boarding Olderdalen.",
+          "after": "Lyngseidet ferry",
+          "url": "https://www.visit-lyngenfjord.com/activities/hiking/top-10-in-lyngen",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Lyngentrappa+Lyngseidet"
         },
         {
           "activity": "Gorsa Bridge short walk",
@@ -1220,6 +1170,15 @@
           "after": "Nordmannvik",
           "url": "https://www.visit-lyngenfjord.com/index.php/activities/hiking/top-10-in-lyngen/gorsabridge",
           "maps": "https://www.google.com/maps/search/?api=1&query=Gorsabrua+K%C3%A5fjord"
+        },
+        {
+          "activity": "Café in Lyngseidet",
+          "place": "Lyngseidet",
+          "duration_h": 0.75,
+          "notes": "Village warm-up before or after the ferry",
+          "after": "Lyngseidet",
+          "url": "https://www.visitlyngenfjord.com/",
+          "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
         }
       ],
       "scenarios": [
@@ -1261,100 +1220,6 @@
             ]
           },
           "banner": "Ferry fail — next Lyngseidet → Olderdalen"
-        },
-        {
-          "id": "weather_lyngen",
-          "when": "Bad weather in Lyngen (cloud / rain)",
-          "summary": "Skip hero hikes; keep ferries and fjord driving — cafés, short roadside stops, earlier campsites.",
-          "replace": {
-            "title": "Ferry to east Lyngen (no lake hike)",
-            "notes": [
-              {
-                "text": "Cloud on the glacier lake = skip the walk entirely.",
-                "after": "Café"
-              },
-              {
-                "text": "Use the ferry crossing as the ‘view’ of the day.",
-                "ferry": true
-              },
-              {
-                "text": "Nordmannvik only if rain eases.",
-                "kind": "sleep"
-              }
-            ],
-            "waypoints": [
-              {
-                "name": "Lyngseidet",
-                "lat": 69.576,
-                "lon": 20.218,
-                "kind": "start",
-                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
-              },
-              {
-                "name": "Lyngseidet ferry",
-                "lat": 69.57712,
-                "lon": 20.224,
-                "kind": "ferry",
-                "maps": "https://www.google.com/maps/place/Olderdalen-Lyngseidet,+Norv%C3%A8ge/@69.57712,20.224,15z/data=!4m6!3m5!1s0x45c53e59ee432c73:0x7a906669386263c4"
-              },
-              {
-                "name": "Olderdalen",
-                "lat": 69.60166,
-                "lon": 20.53229,
-                "kind": "ferry",
-                "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
-              },
-              {
-                "name": "Overnight Olderdalen area",
-                "lat": 69.60166,
-                "lon": 20.53229,
-                "kind": "sleep",
-                "maps": "https://www.google.com/maps/place/9146+Olderdalen,+Norv%C3%A8ge/@69.60166,20.53229,15z/data=!4m6!3m5!1s0x45c53ffb5b0cca7d:0x742ae3c0cd71c4c0"
-              }
-            ],
-            "optional": [
-              {
-                "activity": "Café in Lyngseidet",
-                "place": "Lyngseidet",
-                "duration_h": 1,
-                "notes": "Wait out a shower before boarding",
-                "after": "Lyngseidet",
-                "url": "https://www.visitlyngenfjord.com/",
-                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
-              }
-            ]
-          },
-          "banner": "Weather fail — no Blåisvatnet",
-          "ripple": [
-            {
-              "day": 6,
-              "banner": "Weather fail — no Steindalsbreen",
-              "replace": {
-                "title": "West-shore transfer → Svensby early",
-                "notes": [
-                  {
-                    "text": "Skip glacier approach in cloud.",
-                    "after": "Café"
-                  },
-                  {
-                    "text": "Easy photography from the van; early campsite.",
-                    "after": "Café"
-                  }
-                ],
-                "optional": [
-                  {
-                    "activity": "Café stop",
-                    "place": "Lyngseidet",
-                    "duration_h": 1,
-                    "notes": "Rain day anchor",
-                    "after": "Lyngseidet",
-                    "url": "https://www.visitlyngenfjord.com/",
-                    "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
-                  }
-                ]
-              }
-            }
-          ]
         },
         {
           "id": "campsite_alt_olderdalen",
@@ -1545,39 +1410,20 @@
           "duration_h": 2.5,
           "notes": "Clear-weather hero — stay on marked easy paths; turn around early",
           "after": "Steindalsbreen viewpoint / trailhead",
-          "fallback": {
-            "when": "Cloud / tired after Blåisvatnet",
-            "then": [
-              {
-                "activity": "Drone / photography session",
-                "place": "Western Lyngen coast",
-                "duration_h": 1.5,
-                "notes": "If wind allows"
-              },
-              {
-                "activity": "Café stop",
-                "place": "Lyngseidet",
-                "duration_h": 0.75,
-                "notes": "Rain Plan B",
-                "url": "https://www.visitlyngenfjord.com/",
-                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
-              }
-            ]
-          },
           "url": "https://ut.no/turforslag/1112135/steindalsbreen"
         },
         {
           "activity": "Drone / photography session",
           "place": "Western Lyngen coast",
           "duration_h": 1.5,
-          "notes": "Swap for Steindalsbreen if tired or cloudy low",
+          "notes": "Western-shore light / peaks if wind allows — skip if you did a long glacier approach",
           "after": "Western Lyngen viewpoints"
         },
         {
           "activity": "Café stop",
           "place": "Lyngseidet",
           "duration_h": 0.75,
-          "notes": "Rain Plan B",
+          "notes": "Lyngseidet warm-up on the west-shore transfer",
           "after": "Lyngseidet",
           "url": "https://www.visitlyngenfjord.com/",
           "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
@@ -1776,6 +1622,19 @@
           "duration_h": 1,
           "notes": "Water / dump / showers / fuel before buffer night",
           "after": "Breivikeidet"
+        },
+        {
+          "activity": "Fjellheisen cable car",
+          "place": "Tromsdalen / Storsteinen",
+          "duration_h": 1.5,
+          "lat": 69.6385231,
+          "lon": 18.990838,
+          "notes": "Easy Tromsø classic from the buffer night — views over the city and islands; last rides earlier off-peak — check timetable.",
+          "after": "Breivikeidet",
+          "url": "https://fjellheisen.no/",
+          "maps": "https://www.google.com/maps/search/?api=1&query=Fjellheisen+Troms%C3%B8",
+          "reserve": true,
+          "price": "2×495 NOK = 990 NOK for 2 adults (return; official tariff)"
         }
       ],
       "scenarios": [
@@ -1936,7 +1795,8 @@
           "text": "Leave fuel / cleaning per Indie Campers checklist.",
           "kind": "depot"
         }
-      ]
+      ],
+      "scenarios": []
     }
   ]
 }

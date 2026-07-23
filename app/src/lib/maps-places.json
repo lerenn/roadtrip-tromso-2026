@@ -278,6 +278,41 @@
       "name": "Knuten trail parking (Mefjordvær)",
       "maps": "https://www.google.com/maps/search/?api=1&query=Knuten+Mefjordv%C3%A6r",
       "kind": "search"
+    },
+    "69.44577,17.29971": {
+      "name": "Berg kirke / Husfjellet trailhead",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Berg+kirke+Skaland+Senja",
+      "kind": "search"
+    },
+    "69.63852,18.99084": {
+      "name": "Fjellheisen lower station",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Fjellheisen+Troms%C3%B8",
+      "kind": "search"
+    },
+    "69.58099,20.22425": {
+      "name": "Lyngentrappa",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Lyngentrappa+Lyngseidet",
+      "kind": "search"
+    },
+    "69.95084,20.22638": {
+      "name": "Russelv / Lyngstuva access",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Lyngstuva+Russelv",
+      "kind": "search"
+    },
+    "69.20475,15.86306": {
+      "name": "Stave Camping / hot pools",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Stave+Camping+And%C3%B8ya",
+      "kind": "search"
+    },
+    "69.32401,16.11591": {
+      "name": "Andenes lighthouse",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Andenes+fyr",
+      "kind": "search"
+    },
+    "69.32440,16.11786": {
+      "name": "Hvalsafari / Whales Centre Andenes",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Hvalsafari+Andenes",
+      "kind": "search"
     }
   }
 }

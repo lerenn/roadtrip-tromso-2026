@@ -9,8 +9,8 @@
  *     ripple?: [{ day, banner?, replace }]
  *   }
  *
- * Line-level (on optional activities):
- *   fallback?: { when, then: [{ activity, duration_h, notes?, place? }] }
+ * Line-level fallback on optionals is discouraged — prefer separate optionals.
+ * (UI still renders `fallback` if present.)
  */
 
 function deepClone(obj) {
