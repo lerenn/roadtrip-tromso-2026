@@ -25,6 +25,7 @@ make build    # app/dist
 
 - Pickup Sat 29 Aug 2026 15:30 → return Sat 5 Sep 2026 11:30, Indie Campers Tromsø
 - Depot: Håndverkervegen 6 — coords in `shared/depot.json` (verify before changing)
+- **2026 Tromsøbrua:** closed to cars 7 Apr–1 Nov 2026; vans use **E8 Tromsøysundtunnelen** (60 km/h). Affects Day 8 Lodge (Tromsdalen) → depot and any island errands — warn on Day 7/8 notes; check https://www.vegvesen.no/trafikk
 - Van: Dethleffs Globetrail Active Plus **5.99 m / 599 cm** (ferry AutoPASS **0–6 m**); party **2 adults** — size `price` strings for that
 - Options A (Senja + Vesterålen) and B (Senja + Lyngen); English; short walks; ~50/50 scenic/campsite nights; last night near Tromsø
 - Skip repeating Tromsø/Sommarøy (week 2 after camper)

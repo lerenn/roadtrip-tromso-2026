@@ -328,6 +328,11 @@
       "name": "Bjerkvik",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bjerkvik+Herjangsfjord",
       "kind": "search"
+    },
+    "69.63600,18.00500": {
+      "name": "Sommarøy Camping & Marina",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Sommar%C3%B8y+Camping+%26+Marina+Hilles%C3%B8yvegen",
+      "kind": "search"
     }
   }
 }

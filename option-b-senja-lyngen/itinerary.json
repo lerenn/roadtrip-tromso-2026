@@ -28,7 +28,7 @@
         "type": "scenic",
         "lat": 69.61,
         "lon": 18.04,
-        "alt_campsite": "Utsikten Bobil Camping (near Brensholmen / Sommarøy road)",
+        "alt_campsite": "Sommarøy Camping & Marina (Hillesøyvegen; ~10–15 min to Brensholmen ferry)",
         "maps": "https://www.google.com/maps/place/Brensholmen+fergekai/@69.6078446,18.0133376,15z/data=!4m10!1m2!2m1!1sNear+Brensholmen+ferry+quay!3m6!1s0x45c4ae0933665cb9:0x7fa6b84224433c8e"
       },
       "waypoints": [
@@ -78,6 +78,10 @@
         {
           "text": "Stock up in Tromsø — Senja shops are fewer on Sunday.",
           "kind": "shop"
+        },
+        {
+          "text": "Sleep near the quay (not necessarily in the loading lane). Unlike Gryllefjord, you do not need an overnight queue here — many sailings and a 12:15 backup if you miss 10:15. Check signs; don’t block boarding. Morning: join the queue ~1h+ before 10:15 (earlier if busy); live queue https://svipper.no/Q",
+          "kind": "sleep"
         }
       ],
       "optional": [
@@ -93,20 +97,21 @@
       "scenarios": [
         {
           "id": "campsite_alt_brensholmen",
-          "when": "Prefer a bookable / facilities campsite instead of wild overnight",
-          "summary": "Sleep Utsikten Bobil Camping (showers/power) near Brensholmen — still an easy morning run to the ferry quay.",
-          "banner": "Campsite alt — Utsikten Bobil Camping",
+          "when": "Prefer a facilities campsite instead of wild overnight",
+          "summary": "Sleep Sommarøy Camping & Marina (showers/power/dump) — ~10–15 min drive to Brensholmen in the morning.",
+          "banner": "Campsite alt — Sommarøy Camping & Marina",
           "replace": {
             "overnight": {
-              "name": "Utsikten Bobil Camping",
+              "name": "Sommarøy Camping & Marina",
               "type": "campsite",
-              "lat": 69.63327,
-              "lon": 17.97729,
-              "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
+              "lat": 69.636,
+              "lon": 18.005,
+              "maps": "https://www.google.com/maps/search/?api=1&query=Sommar%C3%B8y+Camping+%26+Marina+Hilles%C3%B8yvegen",
+              "url": "https://yttersia.info/en/accomodation/",
               "alt_campsite": null,
               "alt_scenic": null,
               "scenic": false,
-              "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
+              "price": "≈200–250 NOK / night pitch for the van + 50 NOK electricity (bobilplassen.no; pay at machine; no advance booking)"
             },
             "waypoints": [
               {
@@ -139,12 +144,13 @@
                 "maps": "https://maps.app.goo.gl/eyQJrBcEYcavtiDb6"
               },
               {
-                "name": "Overnight Utsikten Bobil Camping",
-                "lat": 69.63327,
-                "lon": 17.97729,
+                "name": "Overnight Sommarøy Camping & Marina",
+                "lat": 69.636,
+                "lon": 18.005,
                 "kind": "sleep",
-                "maps": "https://www.google.com/maps/search/?api=1&query=Utsikten+Bobil+Camping",
-                "price": "300 NOK / night pitch for the van (Park4Night / guest reports; VIPPS or cash on-site)"
+                "maps": "https://www.google.com/maps/search/?api=1&query=Sommar%C3%B8y+Camping+%26+Marina+Hilles%C3%B8yvegen",
+                "url": "https://yttersia.info/en/accomodation/",
+                "price": "≈200–250 NOK / night pitch for the van + 50 NOK electricity (bobilplassen.no; pay at machine; no advance booking)"
               }
             ],
             "notes": [
@@ -157,12 +163,83 @@
                 "kind": "shop"
               },
               {
-                "text": "Utsikten Bobil Camping is the named motorhome pitch north of the quay (VIPPS / on-site pay; no online booking). ~5–10 min to Brensholmen in the morning.",
+                "text": "Sommarøy Camping & Marina (Hillesøyvegen) — self-service machine payment, showers/dump. Sleep here tonight (not in the ferry loading lane). Morning: ~10–15 min to Brensholmen, join the queue ~1h+ before 10:15 (earlier if busy); live queue https://svipper.no/Q — 12:15 backup if you miss.",
                 "kind": "sleep"
               }
             ]
           },
-          "attach": "overnight"
+          "attach": "overnight",
+          "ripple": [
+            {
+              "day": 2,
+              "banner": "Campsite alt — start from Sommarøy Camping",
+              "replace": {
+                "waypoints": [
+                  {
+                    "name": "Sommarøy Camping & Marina",
+                    "lat": 69.636,
+                    "lon": 18.005,
+                    "kind": "start",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Sommar%C3%B8y+Camping+%26+Marina+Hilles%C3%B8yvegen",
+                    "url": "https://yttersia.info/en/accomodation/"
+                  },
+                  {
+                    "name": "Brensholmen",
+                    "lat": 69.60785,
+                    "lon": 18.03186,
+                    "kind": "ferry",
+                    "maps": "https://www.google.com/maps/place/9118+Brensholmen,+Norv%C3%A8ge/@69.60785,18.03186,15z/data=!4m6!3m5!1s0x45c4adfb9e71b231:0xfab2e46a536fab12"
+                  },
+                  {
+                    "name": "Botnhamn",
+                    "lat": 69.50694,
+                    "lon": 17.90873,
+                    "kind": "ferry",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                    "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Husøy",
+                    "lat": 69.542,
+                    "lon": 17.665,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                    "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Mefjordvær",
+                    "lat": 69.51864,
+                    "lon": 17.43821,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                    "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Tungeneset",
+                    "lat": 69.48695,
+                    "lon": 17.33304,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                    "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Overnight Camp Mefjord (Mefjordvær)",
+                    "lat": 69.51571,
+                    "lon": 17.4422,
+                    "kind": "sleep",
+                    "url": "https://campmefjord.no/",
+                    "maps": "https://www.google.com/maps/place/Camp+Mefjord/@69.51571,17.4422,15z/data=!4m9!3m8!1s0x45dcab8cbaaddc1d:0x780ae7bac6fac6c0"
+                  }
+                ],
+                "drive_km_approx": 90,
+                "drive_h_approx": 1.75
+              }
+            }
+          ]
         }
       ]
     },
@@ -258,7 +335,7 @@
       },
       "notes": [
         {
-          "text": "Same soft Senja arrival as Option A.",
+          "text": "Sunday 10:15 sailing — join the queue ~1h+ early (live queue https://svipper.no/Q); 12:15 is the next useful backup. Same soft Senja arrival as Option A.",
           "ferry": true
         },
         {
@@ -1611,6 +1688,12 @@
           "kind": "sleep"
         },
         {
+          "text": "Tromsøbrua is closed to cars until 1 Nov 2026 — island errands and tomorrow’s Lodge → depot return use E8 Tromsøysundtunnelen (60 km/h): https://www.vegvesen.no/trafikk",
+          "after": "Breivikeidet",
+          "kind": "warning",
+          "during": "Drive"
+        },
+        {
           "text": "Service the van (water, waste, fuel) tonight.",
           "after": "Tromsø grocery"
         }
@@ -1657,6 +1740,12 @@
               {
                 "text": "Stay at Svensby quay — crossings are frequent.",
                 "ferry": true
+              },
+              {
+                "text": "Tromsøbrua is closed to cars until 1 Nov 2026 — island errands and tomorrow’s Lodge → depot return use E8 Tromsøysundtunnelen (60 km/h): https://www.vegvesen.no/trafikk",
+                "after": "Breivikeidet",
+                "kind": "warning",
+                "during": "Drive"
               },
               {
                 "text": "Buffer night near depot still works; service the van after arrival.",
@@ -1719,6 +1808,12 @@
             ],
             "notes": [
               {
+                "text": "Tromsøbrua is closed to cars until 1 Nov 2026 — reaching Telegrafbukta (Tromsøya) from the mainland uses E8 Tromsøysundtunnelen (60 km/h): https://www.vegvesen.no/trafikk",
+                "after": "Breivikeidet",
+                "kind": "warning",
+                "during": "Drive"
+              },
+              {
                 "text": "Wild overnight at Telegrafbukta — stay quiet, follow local signs; do van service before sleeping. Tromsø Lodge remains the facilities default.",
                 "kind": "sleep"
               },
@@ -1751,7 +1846,21 @@
                   }
                 ],
                 "drive_km_approx": 12,
-                "drive_h_approx": 0.3
+                "drive_h_approx": 0.3,
+                "notes": [
+                  {
+                    "text": "Return appointment 11:30 — leave overnight with ~30 min buffer.",
+                    "kind": "depot"
+                  },
+                  {
+                    "text": "Already on Tromsøya — short island drive to the depot (no Tromsøbrua). Still check https://www.vegvesen.no/trafikk if you need the tunnel for any last errand.",
+                    "kind": "depot"
+                  },
+                  {
+                    "text": "Leave fuel / cleaning per Indie Campers checklist.",
+                    "kind": "depot"
+                  }
+                ]
               }
             }
           ],
@@ -1788,7 +1897,13 @@
       "ferry": null,
       "notes": [
         {
-          "text": "Return appointment 11:30 — leave overnight with ~30 min buffer.",
+          "text": "Tromsøbrua is closed to cars until 1 Nov 2026 — Lodge (Tromsdalen) → depot (Tromsøya) must use E8 Tromsøysundtunnelen (60 km/h). Leave early for 11:30; check tunnel status: https://www.vegvesen.no/trafikk",
+          "kind": "warning",
+          "during": "Drive",
+          "before": "Indie Campers Tromsø"
+        },
+        {
+          "text": "Return appointment 11:30 — leave overnight with ~30 min buffer (tunnel queues possible).",
           "kind": "depot"
         },
         {
