@@ -557,13 +557,13 @@ button.linkish:disabled {
   color: var(--fjord-deep);
 }
 
-.ferry-miss {
+.line-scenario {
   margin-top: 0.45rem;
   display: grid;
   gap: 0.35rem;
 }
 
-.ferry-miss__item {
+.line-scenario__item {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.5rem;
@@ -576,12 +576,12 @@ button.linkish:disabled {
   font-weight: 400;
 }
 
-.ferry-miss__item.on {
+.line-scenario__item.on {
   border-color: color-mix(in srgb, var(--opt) 60%, var(--line));
   background: color-mix(in srgb, #f7f0e4 85%, white);
 }
 
-.ferry-miss__item input {
+.line-scenario__item input {
   margin-top: 0.15rem;
   width: 1rem;
   height: 1rem;
@@ -589,12 +589,12 @@ button.linkish:disabled {
   cursor: pointer;
 }
 
-.ferry-miss__text {
+.line-scenario__text {
   display: grid;
   gap: 0.15rem;
 }
 
-.ferry-miss__label {
+.line-scenario__label {
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -602,23 +602,23 @@ button.linkish:disabled {
   color: #6a4e24;
 }
 
-.ferry-miss__when {
+.line-scenario__when {
   font-weight: 700;
   color: var(--ink);
   font-size: 0.88rem;
 }
 
-.ferry-miss__summary {
+.line-scenario__summary {
   font-size: 0.82rem;
   color: var(--ink-soft);
 }
 
-.ferry-miss__ripple {
+.line-scenario__ripple {
   font-size: 0.78rem;
   color: var(--muted);
 }
 
-.ferry-miss__ripple a {
+.line-scenario__ripple a {
   font-weight: 700;
   text-decoration: none;
   color: var(--fjord-deep);
@@ -1372,13 +1372,13 @@ button.linkish:disabled {
   }
 
   .scenario-picker__item input,
-  .ferry-miss__item input,
+  .line-scenario__item input,
   .opt-toggle input {
     width: 1.15rem;
     height: 1.15rem;
   }
 
-  .ferry-miss__item {
+  .line-scenario__item {
     padding: 0.65rem 0.6rem;
   }
 

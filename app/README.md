@@ -51,5 +51,5 @@ Day notes (`day.notes`) can be plain strings (auto-placed on depot / shop / ferr
 
 Fail scripts are integrated in the JSON (no global switch):
 
-- **Day-level** — `day.scenarios[]` with `when`, `replace` for that day, optional `ripple` for later days. In the UI these appear as checkboxes at the top of each day; selecting one (or several) swaps the roadbook for that contingency. Use `"attach": "ferry_crossing"` to put the toggle on the ferry crossing line instead. Nested `replace` fields (e.g. `ferry.target_departure`) deep-merge into the day.
+- **Day-level** — `day.scenarios[]` with `when`, `replace` for that day, optional `ripple` for later days. In the UI these appear as checkboxes at the top of each day unless line-attached. Use `"attach": "ferry_crossing"` to put the toggle on the ferry crossing line, or `"attach": "overnight"` for campsite/wild overnight alts on the Overnight step. Nested `replace` fields (e.g. `ferry.target_departure`) deep-merge into the day.
 - **Line-level** — `optional[].fallback` with `when` + `then` alternate activities under a step.

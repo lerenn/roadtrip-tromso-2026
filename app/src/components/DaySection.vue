@@ -15,6 +15,7 @@ import {
 import {
   ferryScenariosForDay,
   materializeDayWithSelection,
+  overnightScenariosForDay,
   scenarioChoicesForDay,
 } from '../lib/scenarios'
 import { buildDayRoutes, waypointsForMap } from '../lib/osrm'
@@ -50,8 +51,15 @@ const ferryScenarios = computed(() =>
   ferryScenariosForDay(props.itinerary, props.day.number),
 )
 
+const overnightScenarios = computed(() =>
+  overnightScenariosForDay(props.itinerary, props.day.number),
+)
+
 const whatIfCount = computed(
-  () => scenarioChoices.value.length + ferryScenarios.value.length,
+  () =>
+    scenarioChoices.value.length +
+    ferryScenarios.value.length +
+    overnightScenarios.value.length,
 )
 
 const activeMaterialized = computed(() =>
@@ -308,6 +316,7 @@ watch(
         :key="step.optId || step.sun || step.meal || i"
         :step="step"
         :ferry-scenarios="ferryScenarios"
+        :overnight-scenarios="overnightScenarios"
         :is-scenario-selected="isScenarioSelected"
         @toggle-optional="toggleOptional"
         @toggle-scenario="(id) => emit('toggle-scenario', id)"

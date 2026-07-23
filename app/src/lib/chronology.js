@@ -806,9 +806,9 @@ export function buildDaySteps(day, osrmLegs = null) {
       activity = activityFor(day, wp)
       if (wp.kind === 'sleep') {
         const ov = day.overnight || {}
+        // Overnight alt campsite / wild toggles live on the sleep StepCard
+        // (`attach: "overnight"`) — do not duplicate as free-text here.
         notes = ov.name || ''
-        if (ov.alt_campsite) notes += ` · alt campsite: ${ov.alt_campsite}`
-        if (ov.alt_scenic) notes += ` · alt scenic: ${ov.alt_scenic}`
       } else if (wp.kind === 'viewpoint') {
         notes = 'Short stop / photos / drone if allowed'
       } else if (day.day === 1 && wp.kind === 'depot') {

@@ -179,7 +179,8 @@
                 "kind": "sleep"
               }
             ]
-          }
+          },
+          "attach": "overnight"
         }
       ]
     },
@@ -409,6 +410,99 @@
               }
             }
           ]
+        },
+        {
+          "id": "wild_alt_mefjord",
+          "when": "Prefer wild overnight instead of Camp Mefjord",
+          "summary": "Sleep a quiet pull-off in/above Mefjordvær village (allemannsretten) if the campsite is full or you skip facilities.",
+          "banner": "Wild alt — Mefjordvær village pull-off",
+          "replace": {
+            "overnight": {
+              "name": "Mefjordvær village / harbour pull-off",
+              "type": "scenic",
+              "lat": 69.51864,
+              "lon": 17.43821,
+              "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+              "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+              "reserve": null,
+              "price": null,
+              "alt_scenic": null,
+              "alt_campsite": "Camp Mefjord, Mefjordvær",
+              "scenic": true
+            },
+            "waypoints": [
+              {
+                "name": "Brensholmen ferry",
+                "lat": 69.60785,
+                "lon": 18.03186,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/9118+Brensholmen,+Norv%C3%A8ge/@69.60785,18.03186,15z/data=!4m6!3m5!1s0x45c4adfb9e71b231:0xfab2e46a536fab12"
+              },
+              {
+                "name": "Botnhamn",
+                "lat": 69.50694,
+                "lon": 17.90873,
+                "kind": "ferry",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/9373+Botnhamn,+Norv%C3%A8ge/@69.50694,17.90873,15z/data=!4m6!3m5!1s0x45db52c903c14af3:0x4ef79c6edf54d818",
+                "scenic": true
+              },
+              {
+                "name": "Husøy",
+                "lat": 69.542,
+                "lon": 17.665,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Hus%C3%B8y/@69.542,17.665,15z/data=!4m10!1m2!2m1!1zSHVzw7h5!3m6!1s0x45c4ab2c832be63d:0x51f863eb92bd6ccb",
+                "scenic": true
+              },
+              {
+                "name": "Mefjordvær",
+                "lat": 69.51864,
+                "lon": 17.43821,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+                "scenic": true
+              },
+              {
+                "name": "Tungeneset",
+                "lat": 69.48695,
+                "lon": 17.33304,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Tungeneset/@69.48695,17.33304,15z/data=!4m6!3m5!1s0x45dcabd22fa6ebb5:0x64ed25c75d476070",
+                "scenic": true
+              },
+              {
+                "name": "Overnight Mefjordvær village pull-off",
+                "lat": 69.51864,
+                "lon": 17.43821,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/place/9386+Mefjordv%C3%A6r,+Norv%C3%A8ge/@69.51864,17.43821,15z/data=!4m6!3m5!1s0x45dcaaf51e092bbb:0x460e7ab1cfef7869",
+                "scenic": true
+              }
+            ],
+            "notes": [
+              {
+                "text": "Sunday 10:15 sailing — first useful departure.",
+                "ferry": true
+              },
+              {
+                "text": "Scenic Route starts here — stop often; empty the afternoon.",
+                "after": "Husøy"
+              },
+              {
+                "text": "Aim for Tungeneset in good evening light (Devil’s Teeth).",
+                "after": "Tungeneset"
+              },
+              {
+                "text": "Wild overnight near Mefjordvær — stay ≥150 m from houses, leave no trace; Camp Mefjord remains the facilities fallback.",
+                "kind": "sleep"
+              }
+            ]
+          },
+          "attach": "overnight"
         }
       ]
     },
@@ -664,7 +758,8 @@
                 "after": "Bergsbotn"
               }
             ]
-          }
+          },
+          "attach": "overnight"
         }
       ]
     },
@@ -1064,6 +1159,169 @@
               }
             }
           ]
+        },
+        {
+          "id": "wild_alt_bleik",
+          "when": "Prefer wild overnight instead of Midnattsol Camping",
+          "summary": "Sleep Bleik beach parking if legal/quiet — no showers/power; still on tomorrow’s Andøya spine.",
+          "banner": "Wild alt — Bleik beach parking",
+          "replace": {
+            "overnight": {
+              "name": "Bleik beach parking",
+              "type": "scenic",
+              "lat": 69.273,
+              "lon": 15.955,
+              "maps": "https://www.google.com/maps/place/Bleik+sandstrand/@69.273,15.955,15z/data=!4m6!3m5!1s0x45dce94768db855f:0x6ca0a322ce9edb46",
+              "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+              "reserve": null,
+              "price": null,
+              "alt_scenic": null,
+              "alt_campsite": "Midnattsol Camping, Bleik",
+              "scenic": true
+            },
+            "waypoints": [
+              {
+                "name": "Gryllefjord ferry",
+                "lat": 69.36347,
+                "lon": 17.0529,
+                "kind": "ferry",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/senja/",
+                "maps": "https://www.google.com/maps/place/Gryllefjord+ferjekai/@69.36347,17.0529,15z/data=!4m6!3m5!1s0x45dca5ca1b82cf8d:0xac5fa26ac1d8622f",
+                "scenic": true
+              },
+              {
+                "name": "Andenes ferry",
+                "lat": 69.32681,
+                "lon": 16.13402,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/Andenes+ferjekai/@69.32681,16.13402,15z/data=!4m6!3m5!1s0x45dcc18ae05630db:0xb80f15d0d8e6febf",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                "scenic": true
+              },
+              {
+                "name": "Andenes harbour",
+                "lat": 69.32681,
+                "lon": 16.13402,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                "maps": "https://www.google.com/maps/place/Andenes+ferjekai/@69.32681,16.13402,15z/data=!4m6!3m5!1s0x45dcc18ae05630db:0xb80f15d0d8e6febf",
+                "scenic": true
+              },
+              {
+                "name": "Kleivodden",
+                "lat": 69.29753,
+                "lon": 15.99351,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Kleivodden+And%C3%B8ya",
+                "scenic": true
+              },
+              {
+                "name": "Bleik beach",
+                "lat": 69.273,
+                "lon": 15.955,
+                "kind": "viewpoint",
+                "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                "maps": "https://www.google.com/maps/place/Bleik+sandstrand/@69.273,15.955,15z/data=!4m6!3m5!1s0x45dce94768db855f:0x6ca0a322ce9edb46",
+                "scenic": true
+              },
+              {
+                "name": "Overnight Bleik beach parking",
+                "lat": 69.273,
+                "lon": 15.955,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/place/Bleik+sandstrand/@69.273,15.955,15z/data=!4m6!3m5!1s0x45dce94768db855f:0x6ca0a322ce9edb46",
+                "scenic": true
+              }
+            ],
+            "notes": [
+              {
+                "text": "PROTECTED DAY: keep the afternoon for whale safari; keep evening for Bleik.",
+                "after": "Whale safari"
+              },
+              {
+                "text": "Do not stack museums/lighthouse tours on top of the safari — those are weather Plan B.",
+                "after": "Whale safari"
+              },
+              {
+                "text": "Book whale safari the evening before or early morning if seats look good.",
+                "after": "Whale safari"
+              },
+              {
+                "text": "Wild overnight at Bleik beach parking only if signs allow / it stays quiet — Midnattsol Camping is the facilities default.",
+                "kind": "sleep"
+              }
+            ]
+          },
+          "ripple": [
+            {
+              "day": 5,
+              "banner": "Wild alt — start from Bleik beach",
+              "replace": {
+                "waypoints": [
+                  {
+                    "name": "Bleik beach",
+                    "lat": 69.273,
+                    "lon": 15.955,
+                    "kind": "start",
+                    "maps": "https://www.google.com/maps/place/Bleik+sandstrand/@69.273,15.955,15z/data=!4m6!3m5!1s0x45dce94768db855f:0x6ca0a322ce9edb46",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Kleivodden",
+                    "lat": 69.29753,
+                    "lon": 15.99351,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Kleivodden+And%C3%B8ya",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Måtinden trailhead (Baugtua)",
+                    "lat": 69.248,
+                    "lon": 15.968,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                    "maps": "https://www.google.com/maps/place/Parkeringsplass+Baugtua+M%C3%A5tinden/@69.235293,15.9293277,15z/data=!4m10!1m2!2m1!1sM%C3%A5tinden+trailhead+(Baugtua)!3m6!1s0x45dce9690416083b:0x1fc8c2a0523de7c8",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Bukkekjerka",
+                    "lat": 69.10416,
+                    "lon": 15.57321,
+                    "kind": "viewpoint",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                    "maps": "https://www.google.com/maps/place/Bukkekjerka/@69.10416,15.57321,15z/data=!4m6!3m5!1s0x45dcfbabd84e5413:0x61bf89b7f78e6255",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Bjørnskinn",
+                    "lat": 68.98978,
+                    "lon": 15.64687,
+                    "kind": "via",
+                    "url": "https://www.nasjonaleturistveger.no/en/routes/andoya/",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Bj%C3%B8rnskinn+And%C3%B8ya",
+                    "scenic": true
+                  },
+                  {
+                    "name": "Risøyhamn",
+                    "lat": 68.97,
+                    "lon": 15.64,
+                    "kind": "via",
+                    "maps": "https://www.google.com/maps/place/8484+Ris%C3%B8yhamn,+Norv%C3%A8ge/@68.97,15.64,15z/data=!4m6!3m5!1s0x45dcf6375f2d8dcb:0xd638431464b4d978"
+                  },
+                  {
+                    "name": "Nyksund",
+                    "lat": 68.99576,
+                    "lon": 15.01344,
+                    "kind": "sleep",
+                    "maps": "https://www.google.com/maps/place/8430+Nyksund,+Norv%C3%A8ge/@68.99576,15.01344,15z/data=!4m6!3m5!1s0x45ddaa63677f4cc7:0x65f65882802a084a"
+                  }
+                ]
+              }
+            }
+          ],
+          "attach": "overnight"
         }
       ]
     },
@@ -1369,11 +1627,11 @@
                   },
                   {
                     "name": "Overnight Bardu Camping (Setermoen)",
-                    "lat": 69,
-                    "lon": 18.52,
+                    "lat": 68.876467,
+                    "lon": 18.361033,
                     "kind": "sleep",
                     "url": "https://barducamping.no/",
-                    "maps": "https://www.google.com/maps/place/9360+Setermoen,+Norv%C3%A8ge/@69,18.52,15z/data=!4m6!3m5!1s0x45db054c5ed431cd:0xa9dcdc90e32c02a6"
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Bardu+Camping+Setermoen"
                   }
                 ],
                 "notes": [
@@ -1392,7 +1650,8 @@
                 ]
               }
             }
-          ]
+          ],
+          "attach": "overnight"
         }
       ]
     },
@@ -1406,12 +1665,12 @@
       "overnight": {
         "name": "Bardu Camping, Setermoen",
         "type": "campsite",
-        "lat": 69,
-        "lon": 18.52,
+        "lat": 68.876467,
+        "lon": 18.361033,
         "alt_scenic": "E6 pull-off only if you already have water/showers",
         "url": "https://barducamping.no/",
         "reserve": true,
-        "maps": "https://www.google.com/maps/place/9360+Setermoen,+Norv%C3%A8ge/@69,18.52,15z/data=!4m6!3m5!1s0x45db054c5ed431cd:0xa9dcdc90e32c02a6",
+        "maps": "https://www.google.com/maps/search/?api=1&query=Bardu+Camping+Setermoen",
         "price": "340 NOK / night for 2 adults (300 pitch + 20×2)"
       },
       "waypoints": [
@@ -1431,11 +1690,11 @@
         },
         {
           "name": "Overnight Bardu Camping (Setermoen)",
-          "lat": 69,
-          "lon": 18.52,
+          "lat": 68.876467,
+          "lon": 18.361033,
           "kind": "sleep",
           "url": "https://barducamping.no/",
-          "maps": "https://www.google.com/maps/place/9360+Setermoen,+Norv%C3%A8ge/@69,18.52,15z/data=!4m6!3m5!1s0x45db054c5ed431cd:0xa9dcdc90e32c02a6"
+          "maps": "https://www.google.com/maps/search/?api=1&query=Bardu+Camping+Setermoen"
         }
       ],
       "ferry": null,
@@ -1466,6 +1725,67 @@
           "maps": "https://www.google.com/maps/place/8450+Stokmarknes,+Norv%C3%A8ge/@68.56931,14.91255,15z/data=!4m6!3m5!1s0x45dc34f168fc7acf:0x20f0f6547c71ea1",
           "price": "2×190 NOK = 380 NOK for 2 adults (from 1 Sep 2026)"
         }
+      ],
+      "scenarios": [
+        {
+          "id": "wild_alt_bardu",
+          "when": "Prefer wild overnight instead of Bardu Camping",
+          "summary": "E6 corridor pull-off near Setermoen only if showers/water are already done — no facilities.",
+          "banner": "Wild alt — E6 near Setermoen",
+          "replace": {
+            "overnight": {
+              "name": "E6 pull-off near Setermoen",
+              "type": "scenic",
+              "lat": 68.8549568,
+              "lon": 18.3567515,
+              "maps": "https://www.google.com/maps/search/?api=1&query=Setermoen+Bardu",
+              "url": null,
+              "reserve": null,
+              "price": null,
+              "alt_scenic": null,
+              "alt_campsite": "Bardu Camping, Setermoen",
+              "scenic": false
+            },
+            "waypoints": [
+              {
+                "name": "Nyksund",
+                "lat": 68.99576,
+                "lon": 15.01344,
+                "kind": "start",
+                "maps": "https://www.google.com/maps/place/8430+Nyksund,+Norv%C3%A8ge/@68.99576,15.01344,15z/data=!4m6!3m5!1s0x45ddaa63677f4cc7:0x65f65882802a084a"
+              },
+              {
+                "name": "Sortland",
+                "lat": 68.69513,
+                "lon": 15.41483,
+                "kind": "shop",
+                "maps": "https://www.google.com/maps/place/Sortland,+Norv%C3%A8ge/@68.69513,15.41483,15z/data=!4m6!3m5!1s0x45dc45ebf6e94ec9:0x3d05ad80417fc5e6"
+              },
+              {
+                "name": "Overnight E6 pull-off near Setermoen",
+                "lat": 68.8549568,
+                "lon": 18.3567515,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Setermoen+Bardu"
+              }
+            ],
+            "notes": [
+              {
+                "text": "Transit day by design — hours were spent on Senja/Andøya instead.",
+                "after": "Nyksund"
+              },
+              {
+                "text": "Fuel + groceries in Sortland; then E10 / E6 inland to Bardu — skip sightseeing stops.",
+                "kind": "shop"
+              },
+              {
+                "text": "Wild E6 pull-off near Setermoen — only if you already have water/showers; Bardu Camping is the facilities default.",
+                "kind": "sleep"
+              }
+            ]
+          },
+          "attach": "overnight"
+        }
       ]
     },
     {
@@ -1489,11 +1809,11 @@
       "waypoints": [
         {
           "name": "Setermoen (Bardu Camping)",
-          "lat": 69,
-          "lon": 18.52,
+          "lat": 68.876467,
+          "lon": 18.361033,
           "kind": "start",
           "url": "https://barducamping.no/",
-          "maps": "https://www.google.com/maps/place/9360+Setermoen,+Norv%C3%A8ge/@69,18.52,15z/data=!4m6!3m5!1s0x45db054c5ed431cd:0xa9dcdc90e32c02a6"
+          "maps": "https://www.google.com/maps/search/?api=1&query=Bardu+Camping+Setermoen"
         },
         {
           "name": "Målselvfossen",
@@ -1639,6 +1959,119 @@
             ]
           },
           "banner": "Ferry fail — next Svensby → Breivikeidet"
+        },
+        {
+          "id": "wild_alt_tromso_a",
+          "when": "Prefer wild overnight instead of Tromsø Lodge & Camping",
+          "summary": "Sleep Telegrafbukta (south Tromsø) within ~20 min of the depot — only after showers/service elsewhere.",
+          "banner": "Wild alt — Telegrafbukta",
+          "replace": {
+            "overnight": {
+              "name": "Telegrafbukta (Tromsø)",
+              "type": "scenic",
+              "lat": 69.6325275,
+              "lon": 18.9062274,
+              "maps": "https://www.google.com/maps/search/?api=1&query=Telegrafbukta+Troms%C3%B8",
+              "url": null,
+              "reserve": null,
+              "price": null,
+              "alt_scenic": null,
+              "alt_campsite": "Tromsø Lodge & Camping (Tromsdalen)",
+              "scenic": false
+            },
+            "waypoints": [
+              {
+                "name": "Setermoen (Bardu Camping)",
+                "lat": 68.876467,
+                "lon": 18.361033,
+                "kind": "start",
+                "url": "https://barducamping.no/",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Bardu+Camping+Setermoen"
+              },
+              {
+                "name": "Målselvfossen",
+                "lat": 69.036,
+                "lon": 18.66,
+                "kind": "viewpoint",
+                "maps": "https://www.google.com/maps/place/M%C3%A5lselvfossen/@69.036,18.66,15z/data=!4m6!3m5!1s0x45db18a0312b595d:0x703d520054b455c9"
+              },
+              {
+                "name": "Lyngseidet",
+                "lat": 69.576,
+                "lon": 20.218,
+                "kind": "viewpoint",
+                "url": "https://www.visit-lyngenfjord.com/",
+                "maps": "https://www.google.com/maps/place/9060+Lyngseidet,+Norv%C3%A8ge/@69.576,20.218,15z/data=!4m6!3m5!1s0x45c53c15f47e73af:0xd5cb8897e8952a1f"
+              },
+              {
+                "name": "Svensby",
+                "lat": 69.66327,
+                "lon": 19.80893,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/9064+Svensby,+Norv%C3%A8ge/@69.66327,19.80893,15z/data=!4m6!3m5!1s0x45c5219cb48295d3:0x52730b1f30068923"
+              },
+              {
+                "name": "Breivikeidet",
+                "lat": 69.66992,
+                "lon": 19.65118,
+                "kind": "ferry",
+                "maps": "https://www.google.com/maps/place/9027+Breivikeidet,+Norv%C3%A8ge/@69.66992,19.65118,15z/data=!4m6!3m5!1s0x45c4df69b7c1d8a9:0xb9b0bcaf56ed25c3"
+              },
+              {
+                "name": "Overnight Telegrafbukta (Tromsø)",
+                "lat": 69.6325275,
+                "lon": 18.9062274,
+                "kind": "sleep",
+                "maps": "https://www.google.com/maps/search/?api=1&query=Telegrafbukta+Troms%C3%B8"
+              }
+            ],
+            "notes": [
+              {
+                "text": "After Målselvfossen, stay on the E6 past Nordkjosbotn, then at Oteren turn onto Fv868 north along Lyngenfjord (Alps across the water; pull-offs are sparse). Overview: https://nordnorge.com/en/artikkel/take-a-driving-tour-around-the-lyngen-alps/",
+                "after": "Målselvfossen"
+              },
+              {
+                "text": "Lyngseidet is a short village linger (church / café) — then cross the peninsula to Svensby for the ferry.",
+                "after": "Lyngseidet"
+              },
+              {
+                "text": "Aim for a mid-afternoon Svensby → Breivikeidet sailing; still reach Tromsø Lodge with evening left for van service.",
+                "ferry": true
+              },
+              {
+                "text": "Wild overnight at Telegrafbukta — stay quiet, follow local signs; do van service before sleeping. Tromsø Lodge remains the facilities default.",
+                "kind": "sleep"
+              }
+            ]
+          },
+          "ripple": [
+            {
+              "day": 8,
+              "banner": "Wild alt — start from Telegrafbukta",
+              "replace": {
+                "waypoints": [
+                  {
+                    "name": "Telegrafbukta",
+                    "lat": 69.6325275,
+                    "lon": 18.9062274,
+                    "kind": "start",
+                    "maps": "https://www.google.com/maps/search/?api=1&query=Telegrafbukta+Troms%C3%B8"
+                  },
+                  {
+                    "name": "Indie Campers Tromsø",
+                    "lat": 69.694817,
+                    "lon": 19.010038,
+                    "kind": "depot",
+                    "url": "https://indiecampers.com/",
+                    "maps": "https://maps.app.goo.gl/nNCo44E1x5iMZHy18"
+                  }
+                ],
+                "drive_km_approx": 12,
+                "drive_h_approx": 0.3
+              }
+            }
+          ],
+          "attach": "overnight"
         }
       ]
     },

@@ -9,6 +9,7 @@ import { imageForStep } from '../lib/places'
 const props = defineProps({
   step: { type: Object, required: true },
   ferryScenarios: { type: Array, default: () => [] },
+  overnightScenarios: { type: Array, default: () => [] },
   isScenarioSelected: { type: Function, default: () => false },
 })
 
@@ -73,6 +74,7 @@ const hasDetails = computed(() => {
       photo.value ||
       mapsUrl.value ||
       (s.ferry && props.ferryScenarios.length) ||
+      (s.overnight && props.overnightScenarios.length) ||
       s.timeShifted,
   )
 })
@@ -206,11 +208,11 @@ const hasDetails = computed(() => {
           <LinkifiedText :text="step.notes" />
         </p>
 
-        <div v-if="step.ferry && ferryScenarios.length" class="ferry-miss">
+        <div v-if="step.ferry && ferryScenarios.length" class="line-scenario">
           <label
             v-for="fs in ferryScenarios"
             :key="fs.id"
-            class="ferry-miss__item"
+            class="line-scenario__item"
             :class="{ on: isScenarioSelected(fs.id) }"
           >
             <input
@@ -218,16 +220,47 @@ const hasDetails = computed(() => {
               :checked="isScenarioSelected(fs.id)"
               @change="emit('toggle-scenario', fs.id)"
             />
-            <span class="ferry-miss__text">
-              <span class="ferry-miss__label">If missed</span>
-              <span class="ferry-miss__when">{{ fs.when }}</span>
-              <span class="ferry-miss__summary">{{ fs.summary }}</span>
-              <span v-if="fs.ripple?.length" class="ferry-miss__ripple">
+            <span class="line-scenario__text">
+              <span class="line-scenario__label">If missed</span>
+              <span class="line-scenario__when">{{ fs.when }}</span>
+              <span class="line-scenario__summary">{{ fs.summary }}</span>
+              <span v-if="fs.ripple?.length" class="line-scenario__ripple">
                 Also reshapes
                 <template v-for="(r, ri) in fs.ripple" :key="r.day">
                   <a :href="`#day-${String(r.day).padStart(2, '0')}`"
                     >Day {{ r.day }}</a
                   ><template v-if="ri < fs.ripple.length - 1">, </template>
+                </template>
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <div
+          v-if="step.overnight && overnightScenarios.length"
+          class="line-scenario"
+        >
+          <label
+            v-for="os in overnightScenarios"
+            :key="os.id"
+            class="line-scenario__item"
+            :class="{ on: isScenarioSelected(os.id) }"
+          >
+            <input
+              type="checkbox"
+              :checked="isScenarioSelected(os.id)"
+              @change="emit('toggle-scenario', os.id)"
+            />
+            <span class="line-scenario__text">
+              <span class="line-scenario__label">{{ os.lineLabel }}</span>
+              <span class="line-scenario__when">{{ os.when }}</span>
+              <span class="line-scenario__summary">{{ os.summary }}</span>
+              <span v-if="os.ripple?.length" class="line-scenario__ripple">
+                Also reshapes
+                <template v-for="(r, ri) in os.ripple" :key="r.day">
+                  <a :href="`#day-${String(r.day).padStart(2, '0')}`"
+                    >Day {{ r.day }}</a
+                  ><template v-if="ri < os.ripple.length - 1">, </template>
                 </template>
               </span>
             </span>

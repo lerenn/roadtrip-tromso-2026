@@ -4,7 +4,7 @@
  * Day-level:
  *   day.scenarios[] = {
  *     id, when, summary,
- *     attach?: "ferry_crossing" — selectable on the ferry crossing line (not top picker),
+ *     attach?: "ferry_crossing" | "overnight" — line toggle (not top picker),
  *     replace?: partial day fields for THIS day,
  *     ripple?: [{ day, banner?, replace }]
  *   }
@@ -43,9 +43,24 @@ function selectedSet(selectedIds) {
   return new Set(selectedIds || [])
 }
 
-export function isFerryAttachedScenario(scenario) {
+function attachKind(scenario) {
   const attach = scenario?.attach
-  return attach === 'ferry_crossing' || attach?.kind === 'ferry_crossing'
+  if (!attach) return null
+  if (typeof attach === 'string') return attach
+  return attach.kind || null
+}
+
+export function isFerryAttachedScenario(scenario) {
+  return attachKind(scenario) === 'ferry_crossing'
+}
+
+export function isOvernightAttachedScenario(scenario) {
+  return attachKind(scenario) === 'overnight'
+}
+
+/** Line-attached scenarios are not listed in the day-header What-if picker. */
+export function isLineAttachedScenario(scenario) {
+  return isFerryAttachedScenario(scenario) || isOvernightAttachedScenario(scenario)
 }
 
 /** Scenarios toggled from the ferry crossing step on this day (anchor only). */
@@ -58,6 +73,23 @@ export function ferryScenariosForDay(itinerary, dayNumber) {
       ...s,
       anchor_day: day.day,
       role: 'anchor',
+    }))
+}
+
+/** Scenarios toggled from the overnight / sleep step on this day (anchor only). */
+export function overnightScenariosForDay(itinerary, dayNumber) {
+  const day = (itinerary.days || []).find((d) => d.day === dayNumber)
+  if (!day) return []
+  return (day.scenarios || [])
+    .filter((s) => isOvernightAttachedScenario(s))
+    .map((s) => ({
+      ...s,
+      anchor_day: day.day,
+      role: 'anchor',
+      /** Short UI chip: Prefer campsite | Prefer wild */
+      lineLabel: String(s.id || '').startsWith('wild_alt_')
+        ? 'Prefer wild'
+        : 'Prefer campsite',
     }))
 }
 
@@ -94,12 +126,12 @@ export function scenariosForDay(itinerary, dayNumber) {
 
 /**
  * Unique selectable What-ifs for a day (one checkbox per scenario id).
- * Excludes ferry-attached scenarios — those live on the ferry crossing line.
+ * Excludes line-attached scenarios (ferry crossing / overnight) — those live on the step.
  */
 export function scenarioChoicesForDay(itinerary, dayNumber) {
   const byId = new Map()
   for (const entry of scenariosForDay(itinerary, dayNumber)) {
-    if (isFerryAttachedScenario(entry)) continue
+    if (isLineAttachedScenario(entry)) continue
     const existing = byId.get(entry.id)
     if (!existing) {
       byId.set(entry.id, {

@@ -140,20 +140,22 @@ Drive warnings: use `during: "Drive"` plus `after` (departure stop name) or `leg
 }
 ```
 
-- Omit `attach` (or anything other than `ferry_crossing`) → checkbox at top of day.
-- `attach: "ferry_crossing"` → toggle on the merged ferry step.
-- Scenario `id` is shared across anchor + ripples for multi-select state. Keep ids unique within an itinerary (e.g. one `campsite_alt_*` per scenic night).
+- Omit `attach` (or anything other than `ferry_crossing` / `overnight`) → checkbox at top of day.
+- `attach: "ferry_crossing"` → toggle on the merged ferry step (“If missed”).
+- `attach: "overnight"` → toggle on the Overnight / sleep StepCard (“Prefer campsite” for `campsite_alt_*`, “Prefer wild” for `wild_alt_*`).
+- Scenario `id` is shared across anchor + ripples for multi-select state. Keep ids unique within an itinerary (e.g. one `campsite_alt_*` per scenic night, one `wild_alt_*` per campsite night).
 - Nested `replace` keys deep-merge; arrays (`waypoints`, `notes`, `optional`) replace entirely.
 
 ### Wild overnight → campsite contingency
 
-For each day with `overnight.type: "scenic"`, add a **top-of-day** scenario (no `attach`) so the default stays wild and checking the box switches to a bookable campsite — same UX as weather fails / other day pickers:
+For each day with `overnight.type: "scenic"`, add a scenario with `"attach": "overnight"` so the default stays wild and checking the box on the Overnight step switches to a bookable campsite:
 
 ```json
 {
   "id": "campsite_alt_brensholmen",
   "when": "Prefer a campsite instead of wild overnight",
   "summary": "Sleep at the named campsite; showers/power; still reach tomorrow’s start.",
+  "attach": "overnight",
   "banner": "Campsite alt — …",
   "replace": {
     "overnight": {
@@ -187,6 +189,51 @@ For each day with `overnight.type: "scenic"`, add a **top-of-day** scenario (no 
 - Set `reserve: true` only when the site takes pitch bookings; omit for walk-up / VIPPS-only motorhome pitches.
 - Because `replace.overnight` **deep-merges**, clear wild leftovers explicitly: `"alt_campsite": null`, `"alt_scenic": null`, `"scenic": false` (otherwise the scenic night’s fields linger).
 - Ripple the next day when the new overnight makes the default start waypoint wrong.
+
+### Campsite overnight → wild contingency
+
+For each day with `overnight.type: "campsite"`, add the **mirror** scenario with `"attach": "overnight"` so the default stays campsite and checking the box on the Overnight step switches to a wild / allemannsretten pin:
+
+```json
+{
+  "id": "wild_alt_mefjord",
+  "when": "Prefer wild overnight instead of Camp Mefjord",
+  "summary": "Sleep a quiet pull-off near the village if the campsite is full or you skip facilities.",
+  "attach": "overnight",
+  "banner": "Wild alt — Mefjordvær village pull-off",
+  "replace": {
+    "overnight": {
+      "name": "Mefjordvær village / harbour pull-off",
+      "type": "scenic",
+      "lat": 69.51864,
+      "lon": 17.43821,
+      "maps": "https://…",
+      "url": null,
+      "reserve": null,
+      "price": null,
+      "alt_scenic": null,
+      "alt_campsite": "Camp Mefjord, Mefjordvær",
+      "scenic": true
+    },
+    "waypoints": [],
+    "notes": []
+  },
+  "ripple": [
+    {
+      "day": 3,
+      "banner": "Wild alt — start from …",
+      "replace": { "waypoints": [] }
+    }
+  ]
+}
+```
+
+- Prefer the place hinted in `alt_scenic`. If vague (“E6 pull-off”, “Fjellveggen”), pick the best named parking / Scenic Route rest area near that night and say so in the sleep note.
+- Geocode with Nominatim; never invent coords. Reuse pins already on the day spine when they match (e.g. Tungeneset, Bleik beach, Svensby quay).
+- `replace.waypoints` must update the final `kind: "sleep"` pin to the wild spot.
+- Because `replace.overnight` **deep-merges**, clear campsite leftovers explicitly: `"url": null`, `"reserve": null`, `"price": null`, `"alt_scenic": null`. Set `alt_campsite` to the facilities default you left. Use `"scenic": true` only when the wild pin itself is an official Scenic Route stop.
+- Ripple the next day when the wild overnight makes the default start waypoint wrong (e.g. Tungeneset vs Camp Mefjord, Telegrafbukta vs Tromsø Lodge). Same-village swaps (Camp Mefjord ↔ Mefjordvær pull-off) usually need no ripple.
+- Do **not** also dump `alt_campsite` / `alt_scenic` as free-text on the Overnight notes — the StepCard checkbox is the UX.
 
 ## Chronology behaviour
 
