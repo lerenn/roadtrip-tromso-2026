@@ -58,6 +58,8 @@ Source of truth: `option-*/itinerary.json`. Shared depot: `shared/depot.json`.
 
 Waypoint `kind` drives map styling and chronology. Consecutive ferry quays (`kind: "ferry"`) become a dashed crossing, not an OSRM drive.
 
+`kind: "via"` and bare morning `kind: "start"` are **map / routing markers only**: they shape the day map + OSRM/GPX spine and can anchor notes/optionals, but they do **not** get a timeline StepCard. Drive rows merge across consecutive vias, and a morning `start` is only the departure pin (first useful line is the Drive away, e.g. Bleik → Kleivodden). Use `viewpoint` / `shop` / `depot` / `ferry` / `sleep` when the place should appear as a line in the chronology.
+
 `maps` (optional): prefer a real Google Maps place page (`/maps/place/…`) or short link (`maps.app.goo.gl/…`). For vague non-POI stops, use named search `https://www.google.com/maps/search/?api=1&query=…` (no GPS) or omit for lat/lon fallback. Same field on overnight / optionals. See `app/src/lib/maps-places.json`.
 
 `reserve` (optional boolean): set `true` when a reservation/booking is typically needed or strongly recommended (named campsites with booking, whale safari, guided kayak, bookable sauna). StepCard shows a `reserve` badge alongside must/optional/protect/sleep. Omit for scenic allemannsretten nights, first-come ferries, and campsites that do not accept motorhome/tent pitch reservations (e.g. Midnattsol Camping, Bleik — keep their info URL, just no `reserve`). Depot pickup/return are already locked appointments — leave unmarked.

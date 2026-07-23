@@ -18,7 +18,16 @@ const STOP_DURATION_H = {
   ferry: null,
   sleep: 0.0,
   start: 0.0,
-  via: 0.15,
+  // `via` is map/routing only — no timeline linger.
+  via: 0,
+}
+
+/** Routing / map pins that do not get their own timeline StepCard. */
+function isMapOnlyWaypoint(wp) {
+  const k = wp?.kind || ''
+  // `via` = pass-through marker; `start` = morning departure from last night
+  // (nothing to do there — first useful line is the Drive away).
+  return k === 'via' || k === 'start'
 }
 
 function parseDate(day) {
@@ -458,6 +467,13 @@ function findNoteStep(steps, target) {
       if (mode === 'during') return step
       return step
     }
+    // Map-only vias never get a step — attach to the Drive that routes through them.
+    const viaDrive = steps.find(
+      (s) =>
+        (s.activity || '') === 'Drive' &&
+        (s.vias || []).some((name) => placeMatches(key, name)),
+    )
+    if (viaDrive) return viaDrive
   }
   return null
 }
@@ -728,34 +744,57 @@ export function buildDaySteps(day, osrmLegs = null) {
   const dateLabel = fmtDate(day)
   const steps = []
 
+  /** Last waypoint that got a timeline row (not a map-only via). */
+  let lastVisible = null
+  /** Drive segment being merged across map-only vias. */
+  let pending = null
+
+  const flushPendingDrive = (toWp) => {
+    if (!pending || !lastVisible || !toWp) {
+      pending = null
+      return
+    }
+    const driveH = pending.driveH
+    const vias = pending.vias
+    const viaClocks = pending.viaClocks
+    const fromWp = lastVisible
+    if (driveH >= 0.02) {
+      const km = pending.hasKm ? pending.km : null
+      const info =
+        km != null && km > 0
+          ? `~${km < 10 ? km.toFixed(1) : Math.round(km)} km · OSRM`
+          : day.drive_km_approx
+            ? `~${Math.round(day.drive_km_approx * (driveH / (driveTotalH || 1)))} km`
+            : ''
+      steps.push({
+        date: steps.length ? '' : dateLabel,
+        activity: 'Drive',
+        place: `${fromWp.name} → ${toWp.name}`,
+        start: fmtTime(pending.startClock),
+        duration: fmtDuration(driveH),
+        duration_h: driveH,
+        must: true,
+        notes: info,
+        lat: toWp.lat,
+        lon: toWp.lon,
+        _dt: new Date(pending.startClock),
+        vias: vias.length ? vias : undefined,
+      })
+      const driveIdx = steps.length - 1
+      for (let vi = 0; vi < vias.length; vi++) {
+        placeEndTimes.push([vias[vi], viaClocks[vi], driveIdx])
+      }
+    }
+    pending = null
+  }
+
   for (let i = 0; i < wps.length; i++) {
     const wp = wps[i]
     if (i > 0) {
       const driveH = legHours[i - 1]
       const prev = wps[i - 1]
-      if (driveH >= 0.02 && !(prev.kind === 'ferry' && wp.kind === 'ferry')) {
-        const km = legKm[i - 1]
-        const info =
-          km != null && km > 0
-            ? `~${km < 10 ? km.toFixed(1) : Math.round(km)} km · OSRM`
-            : day.drive_km_approx
-              ? `~${Math.round(day.drive_km_approx * (driveH / (driveTotalH || 1)))} km`
-              : ''
-        steps.push({
-          date: steps.length ? '' : dateLabel,
-          activity: 'Drive',
-          place: `${prev.name} → ${wp.name}`,
-          start: fmtTime(clock),
-          duration: fmtDuration(driveH),
-          duration_h: driveH,
-          must: true,
-          notes: info,
-          lat: wp.lat,
-          lon: wp.lon,
-          _dt: new Date(clock),
-        })
-        clock = addHours(clock, driveH)
-      } else if (prev.kind === 'ferry' && wp.kind === 'ferry') {
+      if (prev.kind === 'ferry' && wp.kind === 'ferry') {
+        flushPendingDrive(prev)
         const crossH = (ferry.duration_min || 35) / 60
         steps.push({
           date: steps.length ? '' : dateLabel,
@@ -779,8 +818,39 @@ export function buildDaySteps(day, osrmLegs = null) {
           price: ferry.price || null,
         })
         clock = addHours(clock, crossH)
+      } else if (driveH >= 0) {
+        if (!pending) {
+          pending = {
+            startClock: new Date(clock),
+            driveH: 0,
+            km: 0,
+            hasKm: false,
+            vias: [],
+            viaClocks: [],
+          }
+        }
+        pending.driveH += driveH
+        const km = legKm[i - 1]
+        if (km != null && km > 0) {
+          pending.km += km
+          pending.hasKm = true
+        }
+        clock = addHours(clock, driveH)
+        if (isMapOnlyWaypoint(wp)) {
+          pending.vias.push(wp.name)
+          pending.viaClocks.push(new Date(clock))
+        }
       }
     }
+
+    // Map-only vias / bare morning starts: pin + route shaping only — no StepCard.
+    if (isMapOnlyWaypoint(wp)) {
+      // Keep as Drive label origin (e.g. Bleik → Kleivodden) even with no row.
+      if (!lastVisible) lastVisible = wp
+      continue
+    }
+
+    flushPendingDrive(wp)
 
     let dur = stopDuration(day, wp, i)
     const nextWp = wps[i + 1]
@@ -852,8 +922,7 @@ export function buildDaySteps(day, osrmLegs = null) {
         imagePage: ov.imagePage || wp.imagePage || null,
       })
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
-    } else if (dur > 0 || ['depot', 'ferry', 'shop', 'via', 'start'].includes(wp.kind)) {
-      if (dur <= 0 && ['via', 'start'].includes(wp.kind)) dur = 0.05
+    } else if (dur > 0 || ['depot', 'ferry', 'shop'].includes(wp.kind)) {
       const isBoardFerry = wp.kind === 'ferry' && nextWp?.kind === 'ferry'
       steps.push({
         date: steps.length ? '' : dateLabel,
@@ -886,6 +955,8 @@ export function buildDaySteps(day, osrmLegs = null) {
       clock = addHours(clock, dur)
       placeEndTimes.push([wp.name, new Date(clock), steps.length - 1])
     }
+
+    lastVisible = wp
   }
 
   let overnightDt = steps.find((s) => s.activity?.startsWith('Overnight'))?._dt

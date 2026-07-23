@@ -5,6 +5,7 @@ import LinkifiedText from './LinkifiedText.vue'
 import { fmtDuration } from '../lib/chronology'
 import { formatPriceChip, RATE_NOTE } from '../lib/money'
 import { imageForStep } from '../lib/places'
+import { iconForStep } from '../lib/stepIcons'
 
 const props = defineProps({
   step: { type: Object, required: true },
@@ -17,6 +18,7 @@ const emit = defineEmits(['toggle-optional', 'toggle-scenario'])
 
 const open = ref(false)
 const photo = computed(() => imageForStep(props.step))
+const stepIcon = computed(() => iconForStep(props.step))
 
 const title = computed(() => {
   const a = props.step.activity || ''
@@ -82,6 +84,10 @@ const hasDetails = computed(() => {
 
 <template>
   <div v-if="step.interline" class="sun-row" :class="step.rowClass">
+    <span class="opt-toggle opt-toggle--spacer" aria-hidden="true"></span>
+    <span class="step-icon" aria-hidden="true" :title="stepIcon.label">
+      <i class="bi" :class="stepIcon.icon"></i>
+    </span>
     <span class="time col-start">{{ step.start }}</span>
     <span class="time col-duration">{{ step.duration || '—' }}</span>
     <span class="sun-interline">
@@ -112,6 +118,10 @@ const hasDetails = computed(() => {
         />
       </label>
       <span v-else class="opt-toggle opt-toggle--spacer" aria-hidden="true"></span>
+
+      <span class="step-icon" aria-hidden="true" :title="stepIcon.label">
+        <i class="bi" :class="stepIcon.icon"></i>
+      </span>
 
       <span class="time col-start" :class="{ 'time--shifted': step.timeShifted }">
         <span v-if="step.timeShifted" class="time-shift" tabindex="0" @click.stop>
